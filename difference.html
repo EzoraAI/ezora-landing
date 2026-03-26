@@ -181,9 +181,13 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
   .answer-grid{grid-template-columns:1fr}
   .bc-flow{grid-template-columns:1fr 1fr}
   .bc-step .arrow{display:none}
-  .comp-table{font-size:12px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .comp-table th,.comp-table td{padding:8px 10px}
-  .comp-table th:first-child{width:auto;min-width:100px}
+  .comp-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:12px}
+  .comp-table{min-width:800px;border-radius:0;overflow:visible}
+  .comp-table th,.comp-table td{padding:10px 12px;font-size:12px}
+  .comp-table th:first-child,.comp-table td:first-child{position:sticky;left:0;z-index:2;min-width:170px;max-width:170px;box-shadow:2px 0 8px rgba(0,0,0,.3)}
+  .comp-table th:first-child{background:#0f1730}
+  .comp-table td:first-child{background:var(--dark)}
+  .comp-table tr.highlight-row td:first-child{background:#0f2a2a}
   .scroll-hint{display:block}
   .manifesto-box{padding:28px 20px}
   .pledge-box{padding:28px 20px}
@@ -411,7 +415,7 @@ document.addEventListener('click',function(e){
     <h2 class="fade-in">How we compare</h2>
     <p class="sub fade-in delay-1">Every platform has strengths. Here's where ezora.ai offers something different.</p>
     <p class="scroll-hint fade-in delay-2">&larr; Scroll to compare &rarr;</p>
-    <table class="comp-table fade-in delay-2">
+    <div class="comp-scroll"><table class="comp-table fade-in delay-2">
       <thead>
         <tr>
           <th></th>
@@ -488,7 +492,7 @@ document.addEventListener('click',function(e){
           <td class="ezora-col ezora"><span class="check">✓ 1-on-1 with real experts</span></td>
         </tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 </section>
 
@@ -523,7 +527,7 @@ document.addEventListener('click',function(e){
   <div class="container fade-in">
     <h2>Transparency isn't a feature.<br>It's the foundation.</h2>
     <p>Join the platform built on trust you can verify — not trust you're told to assume.</p>
-    <a href="index.html#join" onclick="window.location.href='/#join'">Join the waitlist →</a>
+    <a href="index.html#join">Join the waitlist →</a>
   </div>
 </section>
 
