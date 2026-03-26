@@ -26,6 +26,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 :root{
   --navy:#0B1224;--dark:#131D3B;--teal:#00C9A7;--purple:#7C3AED;--gold:#F5A623;
   --white:#F4F6FA;--gray:#94A3B8;--text:#E2E8F0;--mid:#64748b;
@@ -60,16 +61,34 @@ nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4
 .nav-right{display:flex;align-items:center;gap:2px}
 
 /* Hero */
-.hero{padding:80px 0 100px;text-align:center;position:relative}
-.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:120%;height:100%;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(0,201,167,.06) 0%,rgba(0,201,167,.02) 40%,transparent 70%);pointer-events:none}
-.hero h1{font-size:clamp(46px,6.5vw,80px);line-height:1.08;color:#fff;margin-bottom:24px;letter-spacing:-2px;font-weight:400;position:relative}
+.hero{padding:80px 0 80px;text-align:center;background:radial-gradient(ellipse 50% 45% at 50% 35%,rgba(0,201,167,.05) 0%,rgba(0,201,167,.02) 40%,transparent 70%)}
+.hero h1{font-size:clamp(46px,6.5vw,80px);line-height:1.08;color:#fff;margin-bottom:24px;letter-spacing:-2px;font-weight:400}
 .hero h1 em{font-style:italic;color:var(--teal);font-size:0.65em;display:block;margin-top:12px}
-.hero p{font-size:16px;color:var(--gray);max-width:620px;margin:0 auto 36px;line-height:1.7;letter-spacing:.3px;position:relative}
-.hero-ctas{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:480px;margin:32px auto 0;position:relative}
-.hero-ctas a{padding:16px 32px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;cursor:pointer;text-align:center}
+.hero h1 .tw-word{opacity:0;display:inline-block;transition:opacity .3s ease}
+.hero h1 .tw-word.visible{opacity:1}
+.hero p{font-size:16px;color:var(--gray);max-width:620px;margin:0 auto 32px;line-height:1.7;letter-spacing:.3px}
+.hero-ctas{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:480px;margin:0 auto}
+.hero-ctas a{padding:16px 32px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;transition:transform .15s,box-shadow .2s,background .2s,border-color .2s;cursor:pointer;text-align:center}
 .hero-ctas a:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.hero-ctas a:active{transform:scale(.97);box-shadow:none;transition:transform .1s}
 .btn-browse{grid-column:1/-1;background:rgba(255,255,255,.03);color:var(--gray);border:1px solid rgba(255,255,255,.1)}
 .btn-browse:hover{background:rgba(255,255,255,.07);color:var(--text);border-color:rgba(255,255,255,.18)}
+
+/* Hero compact form */
+.hero-form{max-width:520px;margin:32px auto 0}
+.hero-roles{display:flex;justify-content:center;gap:16px;margin-bottom:14px;flex-wrap:wrap}
+.hero-roles label{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--gray);cursor:pointer}
+.hero-roles input[type=radio]{accent-color:var(--teal)}
+.hero-input-row{display:flex;gap:10px}
+.hero-input-row input{flex:1;padding:14px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:var(--dark);color:#fff;font-size:15px;font-family:'DM Sans',sans-serif}
+.hero-input-row input::placeholder{color:var(--mid)}
+.hero-input-row input:focus{outline:none;border-color:var(--teal)}
+.hero-input-row button{padding:14px 28px;border-radius:8px;border:none;background:var(--teal);color:var(--navy);font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;white-space:nowrap}
+.hero-input-row button:hover{background:#00e6be}
+.hero-input-row button:active,.wl-form button:active{transform:scale(.97)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.btn-loading{pointer-events:none;position:relative;color:transparent!important}
+.btn-loading::after{content:'';position:absolute;top:50%;left:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border:2px solid rgba(11,18,36,.3);border-top-color:var(--navy);border-radius:50%;animation:spin .6s linear infinite}
 .btn-teal{background:var(--teal);color:var(--navy)}
 .btn-teal:hover{background:#00e6be}
 .btn-purple{background:var(--purple);color:#fff}
@@ -116,7 +135,7 @@ nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4
 .audience{padding:80px 0}
 .audience-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
 .aud-card{background:var(--dark);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:32px 24px;position:relative;overflow:hidden;transition:.3s;display:flex;flex-direction:column}
-.aud-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.aud-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.2),0 0 30px rgba(0,201,167,.08)}
 .aud-card .accent{height:4px;position:absolute;top:0;left:0;right:0}
 .aud-card h3{font-size:22px;color:#fff;margin:16px 0 8px}
 .aud-card .card-desc{font-size:15px;color:var(--gray);line-height:1.6;margin-bottom:16px;flex:1}
@@ -189,6 +208,12 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
   .hero{padding:80px 0 60px}
   .hero p{margin-bottom:32px}
   .hero-ctas{max-width:100%}
+  .hero-roles{flex-direction:column;align-items:center;gap:8px}
+  .hero-input-row{flex-direction:column}
+  .hero-input-row input,.hero-input-row button{width:100%}
+  .hero-input-row button{min-height:48px}
+  .hero-input-row input{min-height:48px}
+  .hero-roles label{min-height:44px}
   .problem,.audience,.waitlist{padding:60px 0}
   .trust-strip{padding:36px 0}
   .trust-strip .trust-items{gap:24px}
@@ -252,6 +277,26 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
 .back-to-top{position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;border:none;background:var(--teal);color:var(--navy);font-size:22px;cursor:pointer;z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .3s,transform .3s,background .2s;box-shadow:0 4px 16px rgba(0,0,0,.3)}
 .back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
 .back-to-top:hover{background:#00e6be}
+
+/* Sticky bottom banner */
+.bottom-banner{position:fixed;bottom:0;left:0;right:0;z-index:998;background:var(--dark);border-top:2px solid var(--teal);transform:translateY(100%);transition:transform .3s ease-out;box-shadow:0 -4px 24px rgba(0,0,0,.4)}
+.bottom-banner.visible{transform:translateY(0)}
+.bottom-banner.hiding{transform:translateY(100%);transition:transform .3s ease-in}
+.bottom-banner .bb-inner{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:center;gap:16px}
+.bottom-banner .bb-text{font-size:14px;color:var(--gray);font-weight:500;white-space:nowrap}
+.bottom-banner .bb-text strong{color:#fff}
+.bottom-banner .bb-input{padding:8px 14px;border-radius:6px;border:1px solid rgba(255,255,255,.12);background:rgba(11,18,36,.8);color:#fff;font-size:13px;font-family:'DM Sans',sans-serif;width:200px}
+.bottom-banner .bb-input::placeholder{color:var(--mid)}
+.bottom-banner .bb-input:focus{outline:none;border-color:var(--teal)}
+.bottom-banner .bb-btn{padding:8px 20px;border-radius:6px;border:none;background:var(--teal);color:var(--navy);font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;white-space:nowrap}
+.bottom-banner .bb-btn:hover{background:#00e6be}
+.bottom-banner .bb-close{background:none;border:none;color:var(--mid);font-size:20px;cursor:pointer;padding:4px 8px;line-height:1;transition:color .2s;position:absolute;right:16px;top:50%;transform:translateY(-50%)}
+.bottom-banner .bb-close:hover{color:#fff}
+@media(max-width:768px){
+  .bottom-banner .bb-inner{flex-wrap:wrap;gap:10px;justify-content:center;padding:12px 48px 12px 16px}
+  .bottom-banner .bb-text{white-space:normal;text-align:center;width:100%;font-size:13px}
+  .bottom-banner .bb-input{flex:1;min-width:0}
+}
 
 /* Hamburger menu — hidden on desktop */
 .nav-toggle-checkbox{display:none}
@@ -337,6 +382,7 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
     scroll-behavior:auto !important;
   }
   .fade-in{opacity:1;transform:none}
+  .hero h1 .tw-word{opacity:1}
   .aud-card:hover{transform:none}
   nav{transition:none}
   body{transition:none}
@@ -381,22 +427,22 @@ document.addEventListener('click',function(e){
   <div class="container">
     <h1 class="fade-in delay-1"><em>AI expertise. Verified. Accessible. Yours.</em></h1>
     <p class="fade-in delay-2">EzoraAI is the central hub for the AI economy — connecting you with real AI experts for personalized 1-on-1 sessions, backed by a 24/7 community of learners and professionals navigating AI together. Whether you're changing careers, growing a business, or just curious about AI, this is the place where anyone can belong and get the help they need.</p>
-    <div class="fade-in delay-3">
-      <div class="wl-roles">
+    <div class="hero-ctas fade-in delay-3">
+      <a href="#hero-form" class="btn-teal" onclick="selectRole('learner')">I need AI help</a>
+      <a href="#hero-form" class="btn-purple" onclick="selectRole('expert')">I'm an AI expert</a>
+      <a href="#hero-form" class="btn-browse" onclick="selectRole('learner')">I'm here to browse</a>
+    </div>
+    <div class="hero-form fade-in delay-4" id="hero-form">
+      <div class="hero-roles">
         <label><input type="radio" name="role" value="learner" checked> I want to learn AI</label>
         <label><input type="radio" name="role" value="business"> I run a business</label>
         <label><input type="radio" name="role" value="expert"> I'm an AI expert</label>
       </div>
-      <div class="wl-form">
+      <div class="hero-input-row">
         <input type="email" id="email" placeholder="Enter your email" required>
         <button onclick="submitWaitlist()">Join the waitlist</button>
       </div>
-      <p id="wl-msg" style="margin-top:16px;color:var(--teal);display:none;font-size:14px"></p>
-    </div>
-    <div class="hero-ctas fade-in delay-4">
-      <a href="#join" class="btn-teal" onclick="selectRole('learner')">I need AI help</a>
-      <a href="#join" class="btn-purple" onclick="selectRole('expert')">I'm an AI expert</a>
-      <a href="#join" class="btn-browse" onclick="selectRole('learner')">I'm here to browse</a>
+      <p id="wl-msg" style="margin-top:12px;color:var(--teal);display:none;font-size:14px"></p>
     </div>
   </div>
 </section>
@@ -651,8 +697,8 @@ async function submitWaitlist(){
   var role=document.querySelector('input[name="role"]:checked').value;
   if(!email||!email.includes('@')){return}
   var msg=document.getElementById('wl-msg');
-  var btn=document.querySelector('#join .wl-form button');
-  btn.textContent='Submitting...';
+  var btn=document.querySelector('.hero-input-row button');
+  btn.classList.add('btn-loading');
   btn.disabled=true;
   try{
     var res=await fetch('https://script.google.com/macros/s/AKfycbzfjBhdJW3BrryrtT7TaVYFUpLfO4d346q2vHdZXEwa4M1S73ltEu5xaRnqkK7yxqnptQ/exec',{
@@ -660,6 +706,7 @@ async function submitWaitlist(){
       body:JSON.stringify({email:email,role:role})
     });
     var data=await res.json();
+    btn.classList.remove('btn-loading');
     msg.style.display='block';
     if(data.status==='ok'){
       msg.style.color='var(--teal)';
@@ -675,6 +722,7 @@ async function submitWaitlist(){
       throw new Error('Unexpected response');
     }
   }catch(err){
+    btn.classList.remove('btn-loading');
     msg.style.display='block';
     msg.style.color='#EF4444';
     msg.textContent='Something went wrong. Please try again.';
@@ -689,7 +737,7 @@ async function submitWaitlist2(){
   if(!email||!email.includes('@')){return}
   var msg=document.getElementById('wl-msg2');
   var btn=document.querySelector('#join-bottom .wl-form button');
-  btn.textContent='Submitting...';
+  btn.classList.add('btn-loading');
   btn.disabled=true;
   try{
     var res=await fetch('https://script.google.com/macros/s/AKfycbzfjBhdJW3BrryrtT7TaVYFUpLfO4d346q2vHdZXEwa4M1S73ltEu5xaRnqkK7yxqnptQ/exec',{
@@ -697,6 +745,7 @@ async function submitWaitlist2(){
       body:JSON.stringify({email:email,role:role})
     });
     var data=await res.json();
+    btn.classList.remove('btn-loading');
     msg.style.display='block';
     if(data.status==='ok'){
       msg.style.color='var(--teal)';
@@ -712,6 +761,7 @@ async function submitWaitlist2(){
       throw new Error('Unexpected response');
     }
   }catch(err){
+    btn.classList.remove('btn-loading');
     msg.style.display='block';
     msg.style.color='#EF4444';
     msg.textContent='Something went wrong. Please try again.';
@@ -725,6 +775,24 @@ var obs=new IntersectionObserver(function(entries){
   entries.forEach(function(e){if(e.isIntersecting){e.target.style.animationPlayState='running';obs.unobserve(e.target)}})
 },{threshold:0.1});
 document.querySelectorAll('.fade-in').forEach(function(el){el.style.animationPlayState='paused';obs.observe(el)});
+
+// Typewriter effect for hero headline
+(function(){
+  var h1=document.querySelector('.hero h1');
+  if(!h1)return;
+  var em=h1.querySelector('em');
+  if(!em)return;
+  var text=em.textContent;
+  var words=text.split(' ');
+  em.innerHTML='';
+  words.forEach(function(word,i){
+    var span=document.createElement('span');
+    span.className='tw-word';
+    span.textContent=word+(i<words.length-1?' ':'');
+    em.appendChild(span);
+    setTimeout(function(){span.classList.add('visible')},300+i*100);
+  });
+})();
 
 function toggleVision(e) {
   e.preventDefault();
@@ -767,6 +835,15 @@ if (window.location.hash === '#vision') {
 </script>
 
 <button id="backToTop" class="back-to-top" aria-label="Back to top">&#8593;</button>
+
+<div class="bottom-banner" id="bottomBanner">
+  <div class="bb-inner">
+    <span class="bb-text"><strong>The AI economy is here.</strong> Don't get left behind.</span>
+    <input type="email" class="bb-input" id="bbEmail" placeholder="Your email">
+    <button class="bb-btn" onclick="submitBanner()">Join</button>
+    <button class="bb-close" onclick="dismissBanner()" aria-label="Close">&times;</button>
+  </div>
+</div>
 
 <script>
 var bttBtn=document.getElementById('backToTop');
@@ -813,6 +890,62 @@ var statsObs=new IntersectionObserver(function(entries){
 },{threshold:0.3});
 var statsEl=document.getElementById('statsSection');
 if(statsEl)statsObs.observe(statsEl);
+
+// Bottom banner logic
+var bannerShown=false;
+var bannerSubmitted=false;
+var pageReady=false;
+
+setTimeout(function(){pageReady=true;checkBanner()},15000);
+
+window.addEventListener('scroll',function(){
+  if(!pageReady)return;
+  checkBanner();
+});
+
+function checkBanner(){
+  if(bannerShown||bannerSubmitted)return;
+  if(sessionStorage.getItem('bb_dismissed'))return;
+  var scrollPct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight);
+  if(scrollPct>=0.6&&pageReady){
+    var banner=document.getElementById('bottomBanner');
+    banner.classList.add('visible');
+    bannerShown=true;
+  }
+}
+
+function dismissBanner(){
+  var banner=document.getElementById('bottomBanner');
+  banner.classList.remove('visible');
+  banner.classList.add('hiding');
+  sessionStorage.setItem('bb_dismissed','1');
+  setTimeout(function(){banner.style.display='none'},300);
+}
+
+async function submitBanner(){
+  var email=document.getElementById('bbEmail').value;
+  if(!email||!email.includes('@'))return;
+  var btn=document.querySelector('.bb-btn');
+  btn.classList.add('btn-loading');
+  btn.disabled=true;
+  try{
+    var res=await fetch('https://script.google.com/macros/s/AKfycbzfjBhdJW3BrryrtT7TaVYFUpLfO4d346q2vHdZXEwa4M1S73ltEu5xaRnqkK7yxqnptQ/exec',{
+      method:'POST',
+      body:JSON.stringify({email:email,role:'banner'})
+    });
+    var data=await res.json();
+    btn.classList.remove('btn-loading');
+    bannerSubmitted=true;
+    var inner=document.querySelector('.bb-inner');
+    inner.innerHTML='<span class="bb-text" style="color:var(--teal);font-weight:600">✓ You\'re on the list!</span>';
+    sessionStorage.setItem('bb_dismissed','1');
+    setTimeout(dismissBanner,2000);
+  }catch(err){
+    btn.classList.remove('btn-loading');
+    btn.textContent='Retry';
+    btn.disabled=false;
+  }
+}
 </script>
 
 </body>
