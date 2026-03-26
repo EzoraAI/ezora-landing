@@ -174,6 +174,11 @@ nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4
 /* Waitlist */
 .waitlist{padding:80px 0;text-align:center;background:rgba(0,201,167,.04)}
 .waitlist h2{font-size:clamp(32px,4vw,48px);color:#fff;margin-bottom:12px;letter-spacing:-1px}
+.wl-pills{display:flex;justify-content:center;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.wl-pill{padding:8px 20px;border-radius:20px;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;border:1.5px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--gray);transition:all .25s}
+.wl-pill:hover{border-color:rgba(255,255,255,.25);color:var(--text)}
+.wl-pill.selected{border-color:var(--teal);color:var(--teal);box-shadow:0 0 16px rgba(0,201,167,.15);background:rgba(0,201,167,.06)}
+.wl-pill.dimmed{opacity:.45}
 .waitlist .sub{color:var(--mid);font-size:16px;margin-bottom:32px}
 .wl-form{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;max-width:520px;margin:0 auto}
 .wl-form input{flex:1;min-width:240px;padding:14px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:var(--dark);color:#fff;font-size:15px;font-family:'DM Sans',sans-serif}
@@ -285,20 +290,34 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
 .bottom-banner{position:fixed;bottom:0;left:0;right:0;z-index:998;background:var(--dark);border-top:2px solid var(--teal);transform:translateY(100%);transition:transform .3s ease-out;box-shadow:0 -4px 24px rgba(0,0,0,.4)}
 .bottom-banner.visible{transform:translateY(0)}
 .bottom-banner.hiding{transform:translateY(100%);transition:transform .3s ease-in}
-.bottom-banner .bb-inner{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:center;gap:16px}
-.bottom-banner .bb-text{font-size:14px;color:var(--gray);font-weight:500;white-space:nowrap}
-.bottom-banner .bb-text strong{color:#fff}
-.bottom-banner .bb-input{padding:8px 14px;border-radius:6px;border:1px solid rgba(255,255,255,.12);background:rgba(11,18,36,.8);color:#fff;font-size:13px;font-family:'DM Sans',sans-serif;width:200px}
-.bottom-banner .bb-input::placeholder{color:var(--mid)}
-.bottom-banner .bb-input:focus{outline:none;border-color:var(--teal)}
-.bottom-banner .bb-btn{padding:8px 20px;border-radius:6px;border:none;background:var(--teal);color:var(--navy);font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;white-space:nowrap}
-.bottom-banner .bb-btn:hover{background:#00e6be}
-.bottom-banner .bb-close{background:none;border:none;color:var(--mid);font-size:20px;cursor:pointer;padding:4px 8px;line-height:1;transition:color .2s;position:absolute;right:16px;top:50%;transform:translateY(-50%)}
-.bottom-banner .bb-close:hover{color:#fff}
+.bb-inner{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:16px;position:relative}
+.bb-text{font-size:14px;color:var(--gray);font-weight:500;white-space:nowrap}
+.bb-text strong{color:#fff}
+.bb-pills{display:flex;gap:8px;flex-shrink:0;transition:gap .25s ease}
+.bb-pill{height:32px;padding:0 16px;border-radius:16px;font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:transform .25s ease,opacity .25s ease,box-shadow .25s ease;white-space:nowrap}
+.bb-pill-learn{background:rgba(124,58,237,.8);color:#fff}
+.bb-pill-learn.bb-selected{background:rgba(124,58,237,1);box-shadow:0 0 14px rgba(124,58,237,.4)}
+.bb-pill-expert{background:rgba(245,166,35,.8);color:var(--navy)}
+.bb-pill-expert.bb-selected{background:rgba(245,166,35,1);box-shadow:0 0 14px rgba(245,166,35,.4)}
+.bb-pill-browse{background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--gray)}
+.bb-pill-browse.bb-selected{border-color:rgba(255,255,255,.5);box-shadow:0 0 14px rgba(255,255,255,.1);color:#fff}
+.bb-pill.bb-unselected{transform:scale(.85);opacity:.4}
+.bb-email-row{display:flex;gap:8px;align-items:center;overflow:hidden;max-width:0;opacity:0;transition:max-width .25s ease,opacity .25s ease}
+.bb-email-row.bb-open{max-width:320px;opacity:1}
+.bb-email-row input{width:180px;padding:7px 12px;border-radius:6px;border:1px solid rgba(255,255,255,.12);background:rgba(11,18,36,.8);color:#fff;font-size:13px;font-family:'DM Sans',sans-serif}
+.bb-email-row input::placeholder{color:var(--mid)}
+.bb-email-row input:focus{outline:none;border-color:var(--teal)}
+.bb-email-row button{padding:7px 18px;border-radius:6px;border:none;background:var(--teal);color:var(--navy);font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;white-space:nowrap}
+.bb-email-row button:hover{background:#00e6be}
+.bb-close{background:none;border:none;color:var(--mid);font-size:20px;cursor:pointer;padding:4px 8px;line-height:1;transition:color .2s;position:absolute;right:16px;top:50%;transform:translateY(-50%)}
+.bb-close:hover{color:#fff}
 @media(max-width:768px){
-  .bottom-banner .bb-inner{flex-wrap:wrap;gap:10px;justify-content:center;padding:12px 48px 12px 16px}
-  .bottom-banner .bb-text{white-space:normal;text-align:center;width:100%;font-size:13px}
-  .bottom-banner .bb-input{flex:1;min-width:0}
+  .bb-inner{flex-wrap:wrap;gap:10px;justify-content:center;padding:12px 48px 12px 16px}
+  .bb-text{white-space:normal;text-align:center;width:100%;font-size:13px}
+  .bb-pills{justify-content:center;width:100%}
+  .bb-email-row{width:100%;justify-content:center}
+  .bb-email-row.bb-open{max-width:100%}
+  .bb-email-row input{flex:1;min-width:0}
 }
 
 /* Hamburger menu — hidden on desktop */
@@ -519,10 +538,10 @@ document.addEventListener('click',function(e){
     <h2 class="fade-in">Ready to get started?</h2>
     <p class="sub fade-in delay-1">Early access is opening soon. Be first in line.</p>
     <div class="fade-in delay-2">
-      <div class="wl-roles">
-        <label><input type="radio" name="role2" value="learner" checked> I want to learn AI</label>
-        <label><input type="radio" name="role2" value="business"> I run a business</label>
-        <label><input type="radio" name="role2" value="expert"> I'm an AI expert</label>
+      <div class="wl-pills">
+        <button class="wl-pill selected" data-role="learner" onclick="selectRole2('learner',this)">Learn</button>
+        <button class="wl-pill" data-role="expert" onclick="selectRole2('expert',this)">Expert</button>
+        <button class="wl-pill" data-role="browser" onclick="selectRole2('browser',this)">Browse</button>
       </div>
       <div class="wl-form">
         <input type="email" id="email2" placeholder="Enter your email" required>
@@ -738,9 +757,19 @@ async function submitWaitlist(){
   btn.disabled=false;
 }
 
+var selectedRole2='learner';
+function selectRole2(role,btn){
+  selectedRole2=role;
+  var pills=document.querySelectorAll('.wl-pills .wl-pill');
+  pills.forEach(function(p){
+    if(p===btn){p.classList.add('selected');p.classList.remove('dimmed')}
+    else{p.classList.remove('selected');p.classList.add('dimmed')}
+  });
+}
+
 async function submitWaitlist2(){
   var email=document.getElementById('email2').value;
-  var role=document.querySelector('input[name="role2"]:checked').value;
+  var role=selectedRole2;
   if(!email||!email.includes('@')){return}
   var msg=document.getElementById('wl-msg2');
   var btn=document.querySelector('#join-bottom .wl-form button');
@@ -844,8 +873,15 @@ if (window.location.hash === '#vision') {
 <div class="bottom-banner" id="bottomBanner">
   <div class="bb-inner">
     <span class="bb-text"><strong>The AI economy is here.</strong> Don't get left behind.</span>
-    <input type="email" class="bb-input" id="bbEmail" placeholder="Your email">
-    <button class="bb-btn" onclick="submitBanner()">Join</button>
+    <div class="bb-pills">
+      <button class="bb-pill bb-pill-learn" onclick="selectBannerRole('learn',this)">Learn</button>
+      <button class="bb-pill bb-pill-expert" onclick="selectBannerRole('expert',this)">Expert</button>
+      <button class="bb-pill bb-pill-browse" onclick="selectBannerRole('browse',this)">Browse</button>
+    </div>
+    <div class="bb-email-row" id="bbEmailRow">
+      <input type="email" id="bbEmail" placeholder="Your email">
+      <button onclick="submitBanner()">Join</button>
+    </div>
     <button class="bb-close" onclick="dismissBanner()" aria-label="Close">&times;</button>
   </div>
 </div>
@@ -899,6 +935,7 @@ if(statsEl)statsObs.observe(statsEl);
 // Bottom banner logic
 var bannerShown=false;
 var bannerSubmitted=false;
+var bannerRole='';
 var pageReady=false;
 
 setTimeout(function(){pageReady=true;checkBanner()},15000);
@@ -913,10 +950,19 @@ function checkBanner(){
   if(sessionStorage.getItem('bb_dismissed'))return;
   var scrollPct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight);
   if(scrollPct>=0.6&&pageReady){
-    var banner=document.getElementById('bottomBanner');
-    banner.classList.add('visible');
+    document.getElementById('bottomBanner').classList.add('visible');
     bannerShown=true;
   }
+}
+
+function selectBannerRole(role,btn){
+  bannerRole=role;
+  document.querySelectorAll('.bb-pill').forEach(function(p){
+    if(p===btn){p.classList.add('bb-selected');p.classList.remove('bb-unselected')}
+    else{p.classList.remove('bb-selected');p.classList.add('bb-unselected')}
+  });
+  document.getElementById('bbEmailRow').classList.add('bb-open');
+  setTimeout(function(){document.getElementById('bbEmail').focus()},300);
 }
 
 function dismissBanner(){
@@ -930,13 +976,13 @@ function dismissBanner(){
 async function submitBanner(){
   var email=document.getElementById('bbEmail').value;
   if(!email||!email.includes('@'))return;
-  var btn=document.querySelector('.bb-btn');
+  var btn=document.querySelector('.bb-email-row button');
   btn.classList.add('btn-loading');
   btn.disabled=true;
   try{
     var res=await fetch('https://script.google.com/macros/s/AKfycbzfjBhdJW3BrryrtT7TaVYFUpLfO4d346q2vHdZXEwa4M1S73ltEu5xaRnqkK7yxqnptQ/exec',{
       method:'POST',
-      body:JSON.stringify({email:email,role:'banner'})
+      body:JSON.stringify({email:email,role:bannerRole})
     });
     var data=await res.json();
     btn.classList.remove('btn-loading');

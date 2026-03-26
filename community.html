@@ -45,7 +45,7 @@ h1,h2,h3{font-family:'Instrument Serif',serif;font-weight:400}
 /* Nav */
 nav{padding:14px 0;position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:none;transition:background .3s,box-shadow .3s,border-bottom .3s,backdrop-filter .3s}
 nav.nav-scrolled{background:rgba(11,18,36,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 24px rgba(0,0,0,.4);border-bottom:1px solid rgba(255,255,255,.06)}
-nav .container{display:flex;justify-content:space-between;align-items:center;gap:16px}
+nav .container{display:flex;justify-content:space-between;align-items:center;gap:16px;position:relative}
 nav a.nav-link{color:var(--mid);font-size:13px;font-weight:500;text-decoration:none;transition:color .2s ease-out;padding:7px 14px;border-radius:6px;position:relative;letter-spacing:.2px;z-index:1}
 nav a.nav-link::before{content:'';position:absolute;inset:0;border-radius:6px;background:rgba(255,255,255,.06);opacity:0;transform:scale(.8);transition:opacity .2s ease-out,transform .2s ease-out;z-index:-1}
 nav a.nav-link:hover{color:var(--white)}
@@ -58,7 +58,7 @@ nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4
 .nav-right{display:flex;align-items:center;gap:2px}
 
 /* Hero */
-.hero{padding:120px 0 40px;text-align:center;position:relative}
+.hero{padding:80px 0 40px;text-align:center;position:relative}
 .hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:140%;height:180%;background:radial-gradient(ellipse 65% 55% at 50% 45%,rgba(0,201,167,.07) 0%,rgba(0,201,167,.03) 40%,transparent 70%);pointer-events:none;opacity:0;animation:glowIn .8s ease .15s forwards}
 @keyframes glowIn{to{opacity:1}}
 .hero-tag{display:inline-block;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);border:1px solid rgba(0,201,167,.3);padding:6px 16px;border-radius:20px;margin-bottom:20px}
@@ -140,10 +140,10 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
 .footer-socials a:hover{color:var(--teal)}
 
 
-/* Hamburger menu */
+/* Hamburger menu (hidden on desktop) */
 .nav-toggle-checkbox{display:none}
-.nav-hamburger{display:none}
-.nav-close{display:none}
+.nav-toggle-label{display:none}
+.nav-close-label{display:none}
 
 /* Back to top */
 .back-to-top{position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;border:none;background:var(--teal);color:var(--navy);font-size:22px;cursor:pointer;z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .3s,transform .3s,background .2s;box-shadow:0 4px 16px rgba(0,0,0,.3)}
@@ -161,15 +161,13 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
   .footer-grid{grid-template-columns:repeat(2,1fr);gap:32px}
 
   /* Hamburger menu */
-  .nav-hamburger{display:flex;align-items:center;justify-content:center;width:44px;height:44px;font-size:24px;color:var(--white);cursor:pointer;border:none;background:none;border-radius:8px;-webkit-tap-highlight-color:transparent;order:2;margin-left:auto}
-  .nav-right{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(11,18,36,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:12px 24px 20px;border-bottom:1px solid rgba(255,255,255,.06);box-shadow:0 8px 32px rgba(0,0,0,.4)}
+  .nav-toggle-label{display:flex;align-items:center;justify-content:center;width:44px;height:44px;font-size:24px;color:var(--white);cursor:pointer;border-radius:8px;background:rgba(255,255,255,.06)}
+  .nav-right{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(11,18,36,.97);backdrop-filter:blur(12px);padding:16px 24px 24px;border-bottom:1px solid rgba(255,255,255,.06);gap:4px}
   .nav-toggle-checkbox:checked ~ .nav-right{display:flex}
-  .nav-close{display:flex;align-items:center;justify-content:flex-end;width:100%;height:44px;font-size:28px;color:var(--white);cursor:pointer;-webkit-tap-highlight-color:transparent;margin-bottom:4px}
-  .nav-right a.nav-link{font-size:15px;padding:12px 8px;min-height:44px;display:flex;align-items:center;width:100%;border-bottom:1px solid rgba(255,255,255,.04)}
-  .nav-right a.nav-link::before{display:none}
-  .nav-right a.nav-link.active::after{display:none}
-  .nav-right a.cta-nav{font-size:15px;padding:14px 22px;min-height:44px;display:flex;align-items:center;justify-content:center;width:100%;margin-top:8px;text-align:center}
-  nav .container{position:relative;flex-wrap:wrap}
+  .nav-close-label{display:flex;align-items:center;justify-content:center;align-self:flex-end;width:44px;height:44px;font-size:28px;color:var(--gray);cursor:pointer}
+  .nav-right a.nav-link{width:100%;padding:12px 16px;min-height:44px;display:flex;align-items:center;font-size:15px}
+  .nav-right a.cta-nav{width:100%;text-align:center;padding:14px;min-height:44px;margin-top:8px;font-size:15px}
+  nav .container{position:relative}
 
   /* Touch targets */
   .footer-col a,.footer-col .coming-soon{min-height:44px;display:flex;align-items:center}
@@ -213,11 +211,11 @@ document.addEventListener('click',function(e){
 
 <nav>
   <div class="container">
-    <a href="index.html" class="logo-wordmark" style="text-decoration:none;font-family:'DM Sans',sans-serif;font-size:20px;font-weight:700;color:#F4F6FA;letter-spacing:-.3px">ezora<span style="color:#00C9A7">.ai</span></a>
-    <input type="checkbox" id="navToggle" class="nav-toggle-checkbox">
-    <label class="nav-hamburger" for="navToggle">&#9776;</label>
+    <a href="index.html" class="logo-wordmark" style="text-decoration:none;font-family:'DM Sans',sans-serif;font-size:20px;font-weight:700;color:#F4F6FA;letter-spacing:-.3px;display:flex;align-items:center;gap:5px"><img src="icon-512.png" alt="EzoraAI" style="width:28px;height:28px"><span>ezora<span style="color:#00C9A7">.ai</span></span></a>
+    <input type="checkbox" id="navToggle" class="nav-toggle-checkbox" aria-label="Toggle navigation menu">
+    <label for="navToggle" class="nav-toggle-label" aria-label="Open menu">&#9776;</label>
     <div class="nav-right">
-      <label class="nav-close" for="navToggle">&times;</label>
+      <label for="navToggle" class="nav-close-label" aria-label="Close menu">&times;</label>
       <a href="index.html" class="nav-link">Home</a>
       <a href="vision.html" class="nav-link">Our vision</a>
       <a href="difference.html" class="nav-link">The difference</a>
