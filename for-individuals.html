@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EzoraAI — For Individuals</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+:root{
+  --navy:#0B1224;--dark:#131D3B;--teal:#00C9A7;--purple:#7C3AED;--gold:#F5A623;
+  --white:#F4F6FA;--gray:#94A3B8;--text:#E2E8F0;--mid:#64748b;
+}
+body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;opacity:0;transition:opacity .3s ease}
+body.loaded{opacity:1}
+body.fade-out{opacity:0;transition:opacity .2s ease}
+h1,h2,h3{font-family:'Instrument Serif',serif;font-weight:400}
+.container{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* Animations */
+.fade-in{opacity:0;transform:translateY(30px);animation:fadeUp .8s ease forwards}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+.delay-1{animation-delay:.15s}.delay-2{animation-delay:.3s}.delay-3{animation-delay:.45s}.delay-4{animation-delay:.6s}
+
+/* Nav */
+nav{padding:14px 0;position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:none;transition:background .3s,box-shadow .3s,border-bottom .3s,backdrop-filter .3s}
+nav.nav-scrolled{background:rgba(11,18,36,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 24px rgba(0,0,0,.4);border-bottom:1px solid rgba(255,255,255,.06)}
+nav .container{display:flex;justify-content:space-between;align-items:center;gap:16px}
+nav a.nav-link{color:var(--mid);font-size:13px;font-weight:500;text-decoration:none;transition:color .2s ease-out;padding:7px 14px;border-radius:6px;position:relative;letter-spacing:.2px;z-index:1}
+nav a.nav-link::before{content:'';position:absolute;inset:0;border-radius:6px;background:rgba(255,255,255,.06);opacity:0;transform:scale(.8);transition:opacity .2s ease-out,transform .2s ease-out;z-index:-1}
+nav a.nav-link:hover{color:var(--white)}
+nav a.nav-link:hover::before{opacity:1;transform:scale(1)}
+nav a.nav-link.active{color:var(--white)}
+nav a.nav-link.active::before{opacity:1;transform:scale(1);background:rgba(255,255,255,.08)}
+nav a.nav-link.active::after{content:'';position:absolute;bottom:0;left:14px;right:14px;height:1.5px;background:var(--teal);border-radius:1px}
+nav a.cta-nav{color:var(--navy);font-size:13px;font-weight:600;text-decoration:none;background:var(--teal);padding:8px 22px;border-radius:6px;transition:all .2s;border:none;letter-spacing:.2px}
+nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,201,167,.3)}
+.nav-right{display:flex;align-items:center;gap:2px}
+
+/* Hero */
+.hero{padding:80px 0 60px;text-align:center;position:relative}
+.hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:140%;height:180%;background:radial-gradient(ellipse 65% 55% at 50% 45%,rgba(0,201,167,.07) 0%,rgba(0,201,167,.03) 40%,transparent 70%);pointer-events:none;opacity:0;animation:glowIn .8s ease .15s forwards}
+@keyframes glowIn{to{opacity:1}}
+.hero h1{font-size:clamp(32px,5vw,56px);line-height:1.12;color:#fff;margin-bottom:20px;letter-spacing:-1.5px}
+.hero h1 em{font-style:italic;color:var(--teal)}
+.hero p{font-size:17px;color:var(--gray);max-width:640px;margin:0 auto;line-height:1.7}
+
+/* Section headings */
+.section-title{font-size:clamp(28px,4vw,44px);color:#fff;text-align:center;margin-bottom:12px;letter-spacing:-1px}
+.section-sub{text-align:center;color:var(--mid);font-size:16px;margin-bottom:48px;max-width:650px;margin-left:auto;margin-right:auto}
+
+/* Topic cards grid */
+.topics{padding:80px 0}
+.topics-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.topic-card{background:var(--dark);border-radius:12px;padding:28px 24px;cursor:pointer;transition:transform .3s cubic-bezier(.25,.46,.45,.94),box-shadow .3s,border-color .3s;border:1px solid rgba(255,255,255,.04);text-decoration:none;display:block;position:relative;-webkit-tap-highlight-color:rgba(0,201,167,.2);touch-action:manipulation;user-select:none}
+.topic-card::after{content:'\2197';position:absolute;bottom:20px;right:20px;font-size:18px;color:var(--teal);opacity:0;transform:translate(-4px,4px);transition:opacity .3s,transform .3s}
+.topic-card:hover{transform:translateY(-6px);box-shadow:0 8px 32px rgba(0,201,167,.12),0 0 0 1px rgba(0,201,167,.3);border-color:rgba(0,201,167,.4)}
+.topic-card:hover::after{opacity:1;transform:translate(0,0)}
+.topic-card h3{font-family:'Instrument Serif',serif;font-size:22px;color:#fff;margin-bottom:8px;font-weight:400}
+.topic-card p{font-size:14px;color:var(--gray);line-height:1.6;margin-bottom:16px}
+.topic-card .explore-link{font-size:13px;color:var(--teal);font-weight:600;transition:.2s}
+.topic-card:hover .explore-link{letter-spacing:.5px}
+
+
+/* Modal */
+.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:1000;display:none;justify-content:center;align-items:flex-start;padding:40px 20px;overflow-y:auto;opacity:0;transition:opacity .3s}
+.modal-overlay.active{display:flex;opacity:1}
+.modal-panel{background:var(--dark);border-radius:16px;padding:40px 36px;max-width:640px;width:100%;position:relative;margin:auto;border:1px solid rgba(255,255,255,.06);animation:modalSlideUp .5s cubic-bezier(.34,1.56,.64,1)}
+.modal-panel.wide{max-width:960px}
+@keyframes modalSlideUp{from{opacity:0;transform:translateY(80px)}to{opacity:1;transform:translateY(0)}}
+.modal-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;font-size:24px;width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;font-family:'DM Sans',sans-serif;line-height:1}
+.modal-close:hover{background:var(--teal);color:var(--navy);border-color:var(--teal)}
+.modal-title{font-family:'Instrument Serif',serif;font-size:28px;color:#fff;margin-bottom:8px}
+.modal-desc{font-size:15px;color:var(--gray);line-height:1.6;margin-bottom:28px}
+.modal-topic{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border-radius:8px;transition:background .2s;margin-bottom:4px}
+.modal-topic:hover{background:rgba(0,201,167,.06)}
+.modal-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:6px}
+.modal-topic span{font-size:14px;color:var(--text);line-height:1.5}
+.modal-cta{display:inline-block;margin-top:24px;padding:14px 32px;background:var(--teal);color:var(--navy);font-size:15px;font-weight:700;border-radius:8px;text-decoration:none;transition:.2s}
+.modal-cta:hover{background:#00e6be}
+
+/* Sub-category grid (category 7 modal) */
+.subcat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.subcat-card{background:rgba(11,18,36,.6);border-radius:10px;padding:20px;border:1px solid rgba(255,255,255,.06)}
+.subcat-card h4{font-family:'Instrument Serif',serif;font-size:18px;color:var(--teal);margin-bottom:12px;font-weight:400}
+.subcat-card .modal-topic{padding:8px 0}
+.subcat-card .modal-topic span{font-size:13px}
+
+/* How it works */
+.how-it-works{padding:80px 0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:800px;margin:0 auto}
+.step{text-align:center}
+.step-num{width:48px;height:48px;border-radius:50%;background:var(--teal);color:var(--navy);font-family:'Instrument Serif',serif;font-size:22px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.step h3{font-size:16px;color:#fff;margin-bottom:8px;font-weight:600;font-family:'DM Sans',sans-serif}
+.step p{font-size:14px;color:var(--gray);line-height:1.6}
+
+/* Pricing callout */
+.pricing-callout{padding:60px 0}
+.pricing-box{background:var(--dark);border:2px solid var(--teal);border-radius:16px;padding:48px 40px;text-align:center;max-width:680px;margin:0 auto}
+.pricing-box h2{font-size:clamp(28px,4vw,40px);color:#fff;margin-bottom:12px}
+.pricing-box h2 span{color:var(--teal)}
+.pricing-box p{font-size:16px;color:var(--gray);line-height:1.7;max-width:520px;margin:0 auto}
+
+/* CTA */
+.final-cta{padding:60px 0 80px;text-align:center}
+.final-cta h2{font-size:clamp(28px,4vw,44px);color:#fff;margin-bottom:24px;letter-spacing:-1px}
+.final-cta a{display:inline-block;padding:16px 36px;background:var(--teal);color:var(--navy);font-size:16px;font-weight:700;border-radius:8px;text-decoration:none;transition:.2s}
+.final-cta a:hover{background:#00e6be}
+
+/* Footer */
+footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
+.footer-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px}
+.footer-logo{font-family:'DM Sans',sans-serif;font-size:20px;font-weight:700;color:#F4F6FA;letter-spacing:-.3px}
+.footer-logo span{color:var(--teal)}
+.footer-tagline{font-size:13px;color:var(--mid)}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-bottom:48px}
+.footer-col h4{font-size:12px;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:var(--mid);text-decoration:none;padding:4px 0;transition:color .2s}
+.footer-col a:hover{color:var(--teal)}
+.footer-col .coming-soon{display:block;font-size:13px;color:rgba(100,116,139,.5);padding:4px 0;cursor:default}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding:24px 0;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{font-size:12px;color:var(--mid)}
+.footer-socials{display:flex;gap:16px}
+.footer-socials a{color:var(--mid);text-decoration:none;font-size:13px;transition:color .2s}
+.footer-socials a:hover{color:var(--teal)}
+
+
+/* Back to top */
+.back-to-top{position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;border:none;background:var(--teal);color:var(--navy);font-size:22px;cursor:pointer;z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .3s,transform .3s,background .2s;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+.back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.back-to-top:hover{background:#00e6be}
+
+/* Responsive */
+@media(max-width:768px){
+  .topics-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr;gap:32px}
+  .subcat-grid{grid-template-columns:1fr}
+  .modal-panel{padding:28px 20px}
+  .pricing-box{padding:32px 24px}
+  .nav-right{gap:10px;flex-wrap:wrap;justify-content:flex-end}
+  .nav-right a.nav-link{font-size:13px}
+  .nav-right a.cta-nav{font-size:13px;padding:6px 14px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .footer-top{flex-direction:column;align-items:flex-start;gap:4px}
+  .footer-bottom{flex-direction:column;gap:12px;align-items:flex-start}
+}
+@media(min-width:769px) and (max-width:1024px){
+  .subcat-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<script>
+document.body.classList.add('loaded');
+document.addEventListener('click',function(e){
+  var link=e.target.closest('a');
+  if(!link)return;
+  var href=link.getAttribute('href');
+  if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')||link.target==='_blank')return;
+  e.preventDefault();
+  document.body.classList.add('fade-out');
+  document.body.classList.remove('loaded');
+  setTimeout(function(){window.location.href=href},200);
+});
+</script>
+
+<nav>
+  <div class="container">
+    <a href="index.html" class="logo-wordmark" style="text-decoration:none;font-family:'DM Sans',sans-serif;font-size:20px;font-weight:700;color:#F4F6FA;letter-spacing:-.3px">ezora<span style="color:#00C9A7">.ai</span></a>
+    <div class="nav-right">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="vision.html" class="nav-link">Our vision</a>
+      <a href="difference.html" class="nav-link">The difference</a>
+      <a href="for-individuals.html" class="nav-link active">For individuals</a>
+      <a href="community.html" class="nav-link">Community</a>
+      <a href="index.html#join" class="cta-nav">Join the waitlist</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1 class="fade-in">AI is reshaping your industry.<br><em>Here's how you stay ahead.</em></h1>
+    <p class="fade-in delay-1">Browse real topics you can explore 1-on-1 with a vetted EzoraAI expert. No jargon. No coding required. Just practical, personalized guidance.</p>
+  </div>
+</section>
+
+<!-- What you can learn -->
+<section class="topics">
+  <div class="container">
+    <h2 class="section-title fade-in">What you can learn</h2>
+    <p class="section-sub fade-in delay-1">Click any category to see specific topics you can explore with an expert.</p>
+
+    <div class="topics-grid">
+
+      <div class="topic-card fade-in delay-1" role="button" tabindex="0" onclick="openModal('cat7')">
+        <h3>AI for white-collar professionals</h3>
+        <p>Your role isn't disappearing. It's evolving. These sessions help you evolve with it.</p>
+        <span class="explore-link">Explore topics &rarr;</span>
+      </div>
+
+      <div class="topic-card fade-in delay-1" role="button" tabindex="0" onclick="openModal('cat1')">
+        <h3>AI fundamentals</h3>
+        <p>Start here if you've never used AI tools or want to understand what's actually possible.</p>
+        <span class="explore-link">Explore topics &rarr;</span>
+      </div>
+
+      <div class="topic-card fade-in delay-2" role="button" tabindex="0" onclick="openModal('cat2')">
+        <h3>AI for your career</h3>
+        <p>Your job is changing. These sessions help you stay ahead of the curve instead of behind it.</p>
+        <span class="explore-link">Explore topics &rarr;</span>
+      </div>
+
+      <div class="topic-card fade-in delay-3" role="button" tabindex="0" onclick="openModal('cat4')">
+        <h3>AI for creatives and freelancers</h3>
+        <p>AI isn't replacing creativity. It's multiplying it — if you know how to use it.</p>
+        <span class="explore-link">Explore topics &rarr;</span>
+      </div>
+
+      <div class="topic-card fade-in delay-1" role="button" tabindex="0" onclick="openModal('cat5')">
+        <h3>Vibe coding and building</h3>
+        <p>Build real apps, tools, and websites by describing what you want — no coding experience needed.</p>
+        <span class="explore-link">Explore topics &rarr;</span>
+      </div>
+
+      <div class="topic-card fade-in delay-2" role="button" tabindex="0" onclick="openModal('cat6')">
+        <h3>Industries facing disruption</h3>
+        <p>If you work in one of these fields, AI is already changing the rules. Get ahead of it.</p>
+        <span class="explore-link">Explore topics &rarr;</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Modals -->
+
+<!-- Category 1 -->
+<div class="modal-overlay" id="cat1" onclick="closeModalOutside(event)">
+  <div class="modal-panel">
+    <button class="modal-close" onclick="closeModal('cat1')">&times;</button>
+    <h3 class="modal-title">AI fundamentals</h3>
+    <p class="modal-desc">Start here if you've never used AI tools or want to understand what's actually possible.</p>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Understanding ChatGPT, Claude, and Gemini — what each does best</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Writing effective prompts that get real results</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Using AI to research, summarize, and organize information</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>AI ethics and limitations — what to trust and what not to</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Setting up your personal AI workflow</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>How AI actually works — a non-technical explanation</span></div>
+    <div style="text-align:center"><a href="index.html#join" class="modal-cta">Find an expert for this &rarr;</a></div>
+  </div>
+</div>
+
+<!-- Category 2 -->
+<div class="modal-overlay" id="cat2" onclick="closeModalOutside(event)">
+  <div class="modal-panel">
+    <button class="modal-close" onclick="closeModal('cat2')">&times;</button>
+    <h3 class="modal-title">AI for your career</h3>
+    <p class="modal-desc">Your job is changing. These sessions help you stay ahead of the curve instead of behind it.</p>
+    <div class="modal-topic"><span class="modal-dot"></span><span>How AI is impacting your specific industry (tailored to you)</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Building an AI-enhanced resume and LinkedIn profile</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Using AI to prepare for interviews and salary negotiations</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Automating repetitive tasks in your current role</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Positioning yourself as AI-literate to employers</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Transitioning into AI-adjacent roles</span></div>
+    <div style="text-align:center"><a href="index.html#join" class="modal-cta">Find an expert for this &rarr;</a></div>
+  </div>
+</div>
+
+<!-- Category 4 -->
+<div class="modal-overlay" id="cat4" onclick="closeModalOutside(event)">
+  <div class="modal-panel">
+    <button class="modal-close" onclick="closeModal('cat4')">&times;</button>
+    <h3 class="modal-title">AI for creatives and freelancers</h3>
+    <p class="modal-desc">AI isn't replacing creativity. It's multiplying it — if you know how to use it.</p>
+    <div class="modal-topic"><span class="modal-dot"></span><span>AI-assisted writing — blogs, copy, scripts, and emails</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Image and video generation for your brand</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Building a portfolio with AI-enhanced work</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Using AI to manage clients, proposals, and invoicing</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Pricing your services in an AI-augmented market</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Creating and selling digital products with AI</span></div>
+    <div style="text-align:center"><a href="index.html#join" class="modal-cta">Find an expert for this &rarr;</a></div>
+  </div>
+</div>
+
+<!-- Category 5 -->
+<div class="modal-overlay" id="cat5" onclick="closeModalOutside(event)">
+  <div class="modal-panel">
+    <button class="modal-close" onclick="closeModal('cat5')">&times;</button>
+    <h3 class="modal-title">Vibe coding and building</h3>
+    <p class="modal-desc">Build real apps, tools, and websites by describing what you want — no coding experience needed.</p>
+    <div class="modal-topic"><span class="modal-dot"></span><span>What vibe coding is and how to get started</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Building your first app with Cursor, Replit, or Claude Code</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Creating a personal website or landing page with AI</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Automating workflows with Zapier, Make, and AI agents</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Building internal business tools without developers</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>From idea to MVP — shipping a product in a weekend</span></div>
+    <div style="text-align:center"><a href="index.html#join" class="modal-cta">Find an expert for this &rarr;</a></div>
+  </div>
+</div>
+
+<!-- Category 6 -->
+<div class="modal-overlay" id="cat6" onclick="closeModalOutside(event)">
+  <div class="modal-panel">
+    <button class="modal-close" onclick="closeModal('cat6')">&times;</button>
+    <h3 class="modal-title">Industries facing disruption</h3>
+    <p class="modal-desc">If you work in one of these fields, AI is already changing the rules. Get ahead of it.</p>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Legal — contract review, research, and document automation</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Finance and accounting — analysis, reporting, and compliance</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Marketing — content generation, campaign optimization, analytics</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Real estate — market analysis, listing automation, client matching</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Healthcare administration — scheduling, records, patient communication</span></div>
+    <div class="modal-topic"><span class="modal-dot"></span><span>Education — personalized learning, curriculum design, assessment</span></div>
+    <div style="text-align:center"><a href="index.html#join" class="modal-cta">Find an expert for this &rarr;</a></div>
+  </div>
+</div>
+
+<!-- Category 7 (wide modal with sub-category grid) -->
+<div class="modal-overlay" id="cat7" onclick="closeModalOutside(event)">
+  <div class="modal-panel wide">
+    <button class="modal-close" onclick="closeModal('cat7')">&times;</button>
+    <h3 class="modal-title">AI for white-collar professionals</h3>
+    <p class="modal-desc">Your role isn't disappearing. It's evolving. These sessions help you evolve with it.</p>
+
+    <div class="subcat-grid">
+
+      <div class="subcat-card">
+        <h4>Law</h4>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Automating contract review and redlining with AI</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Legal research in minutes instead of hours</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>AI-powered document drafting for briefs, memos, and filings</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Using AI for due diligence and compliance checks</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Client intake automation and case management</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>How AI is reshaping billable hour models — and what comes next</span></div>
+      </div>
+
+      <div class="subcat-card">
+        <h4>Finance & Accounting</h4>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Automating financial reporting and reconciliation</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>AI-powered forecasting and scenario modeling</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Using AI for audit preparation and anomaly detection</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Streamlining accounts payable/receivable workflows</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>AI tools for tax preparation and compliance</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Building automated dashboards that update in real time</span></div>
+      </div>
+
+      <div class="subcat-card">
+        <h4>Marketing & Advertising</h4>
+        <div class="modal-topic"><span class="modal-dot"></span><span>AI content pipelines — blogs, social posts, email sequences at scale</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Automated A/B testing and campaign optimization</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>AI-driven customer segmentation and targeting</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Social media management and scheduling with AI</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>SEO strategy and keyword research using AI tools</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Generating ad creative, copy variations, and landing pages in minutes</span></div>
+      </div>
+
+      <div class="subcat-card">
+        <h4>Human Resources</h4>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Automating resume screening and candidate ranking</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>AI-powered employee onboarding workflows</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Writing job descriptions, policies, and handbooks with AI</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Sentiment analysis on employee surveys and feedback</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Automating payroll, scheduling, and benefits administration</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Using AI for performance reviews and goal tracking</span></div>
+      </div>
+
+      <div class="subcat-card">
+        <h4>Sales</h4>
+        <div class="modal-topic"><span class="modal-dot"></span><span>AI-powered lead scoring and pipeline prioritization</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Automating cold outreach and follow-up sequences</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Using AI to research prospects before calls</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>CRM automation — data entry, activity logging, deal tracking</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>AI-generated sales decks and proposals</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Conversation intelligence — analyzing calls for coaching insights</span></div>
+      </div>
+
+      <div class="subcat-card">
+        <h4>Operations & Project Management</h4>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Automating status reports, meeting summaries, and action items</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>AI-powered resource allocation and capacity planning</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Building workflow automations without engineering support</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Supply chain optimization and demand forecasting with AI</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Vendor evaluation and contract management automation</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Creating SOPs and process documentation with AI in minutes</span></div>
+      </div>
+
+      <div class="subcat-card">
+        <h4>Consulting</h4>
+        <div class="modal-topic"><span class="modal-dot"></span><span>AI-accelerated market research and competitive analysis</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Building client deliverables in half the time with AI</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Automating data analysis and visualization for presentations</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Using AI to generate frameworks, models, and strategic recommendations</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>Proposal writing and scoping with AI assistance</span></div>
+        <div class="modal-topic"><span class="modal-dot"></span><span>How to position AI skills as a premium service offering</span></div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:32px"><a href="index.html#join" class="modal-cta">Find an expert for this &rarr;</a></div>
+  </div>
+</div>
+
+<!-- How it works -->
+<section class="how-it-works">
+  <div class="container">
+    <h2 class="section-title fade-in">How it works</h2>
+    <div class="steps fade-in delay-1">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Browse topics that matter to you</h3>
+        <p>Explore categories above and find what's relevant to your goals, career, or business.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Match with an expert who understands your situation</h3>
+        <p>Every EzoraAI expert is vetted and verified. You'll find someone who's done what you need done.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Book a 1-on-1 session</h3>
+        <p>Video call, screen share, real guidance. Not a generic course — a real expert, focused on you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing callout -->
+<section class="pricing-callout">
+  <div class="container">
+    <div class="pricing-box fade-in">
+      <h2>All of this starts at <span>$8.99/mo</span></h2>
+      <p>Less than a Netflix subscription. More valuable than any online course. Because this is personalized — a real expert, focused on your specific goals.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta">
+  <div class="container fade-in">
+    <h2>Your industry is changing. Your move.</h2>
+    <a href="index.html#join">Join the waitlist</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-logo">ezora<span>.ai</span></div>
+      <p class="footer-tagline">Critical infrastructure for the largest workforce transition in modern history.</p>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a href="index.html">Home</a>
+        <a href="for-individuals.html">For Individuals</a>
+        <a href="community.html">Community</a>
+        <a href="index.html#join">Waitlist</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="vision.html">Our Vision</a>
+        <a href="difference.html">The Difference</a>
+        <span class="coming-soon">Blog (coming soon)</span>
+        <span class="coming-soon">Careers (coming soon)</span>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+        <a href="https://www.instagram.com/ezora.ai/" target="_blank">Instagram</a>
+        <span class="coming-soon">Discord (coming soon)</span>
+        <span class="coming-soon">Contact (coming soon)</span>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="EzoraAI_Waitlist_Privacy_Policy.docx.pdf" target="_blank">Privacy Policy</a>
+        <a href="EzoraAI_Waitlist_Terms_of_Service.docx.pdf" target="_blank">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 EzoraAI. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+        <a href="https://www.instagram.com/ezora.ai/" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button id="backToTop" class="back-to-top" aria-label="Back to top">&#8593;</button>
+
+<script>
+// Scroll-triggered fade-in
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.style.animationPlayState='running';obs.unobserve(e.target)}})
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>{el.style.animationPlayState='paused';obs.observe(el)});
+
+// Modal functions
+function openModal(id){
+  const overlay=document.getElementById(id);
+  overlay.style.display='flex';
+  requestAnimationFrame(()=>{overlay.classList.add('active')});
+  document.body.style.overflow='hidden';
+}
+function closeModal(id){
+  const overlay=document.getElementById(id);
+  overlay.classList.remove('active');
+  overlay.style.display='none';
+  document.body.style.overflow='';
+}
+function closeModalOutside(e){
+  if(e.target===e.currentTarget){
+    e.target.classList.remove('active');
+    e.target.style.display='none';
+    document.body.style.overflow='';
+  }
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.querySelectorAll('.modal-overlay.active').forEach(function(m){
+      m.classList.remove('active');
+      m.style.display='none';
+    });
+    document.body.style.overflow='';
+  }
+});
+
+// Back to top
+const bttBtn=document.getElementById('backToTop');
+window.addEventListener('scroll',()=>{
+  bttBtn.classList.toggle('visible',window.scrollY>300);
+});
+bttBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'})});
+
+window.addEventListener('scroll',function(){var nav=document.querySelector('nav');if(window.scrollY>50){nav.classList.add('nav-scrolled')}else{nav.classList.remove('nav-scrolled')}});
+</script>
+
+</body>
+</html>
