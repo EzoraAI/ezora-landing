@@ -213,18 +213,25 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
 /* Responsive */
 @media(max-width:768px){
   .problem-grid,.steps,.audience-grid,.shift-cards,.answer-cards{grid-template-columns:1fr}
-  .stats{padding:40px 0}
+  .stats{padding:32px 0}
   .stats .container{flex-wrap:wrap;gap:32px}
   .stat{flex:none;width:45%;padding:0}
   .stat+.stat::before{display:none}
-  .hero{padding:80px 0 60px}
-  .hero-sub{margin-bottom:28px}
-  .hero-ctas{max-width:100%}
+  .stat .num{font-size:28px}
+  .hero{padding:48px 0 40px}
+  .hero-logo{width:70px;margin-bottom:16px}
+  .hero h1{font-size:28px;letter-spacing:-1px}
+  .hero .hero-sub{font-size:15px;line-height:1.5;margin-bottom:20px}
+  .hero-ctas{max-width:100%;grid-template-columns:1fr;gap:8px}
+  .hero-ctas button{padding:14px 24px;font-size:14px}
+  .hero-ctas .btn-browse{grid-column:auto}
   .hero-input-row{flex-direction:column}
-  .hero-input-row input,.hero-input-row button{width:100%}
-  .hero-input-row button{min-height:48px}
-  .hero-input-row input{min-height:48px}
+  .hero-input-row input,.hero-input-row button{width:100%;padding:12px}
+  .hero-input-row button{min-height:44px}
+  .hero-input-row input{min-height:44px}
   .problem,.audience,.waitlist{padding:60px 0}
+  .aud-card{padding:20px 16px}
+  .aud-card h3{font-size:18px}
   .trust-strip{padding:36px 0}
   .trust-strip .trust-items{gap:24px}
   .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
@@ -333,14 +340,15 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
 
 /* 480px breakpoint — small phones */
 @media(max-width:480px){
-  .hero{padding:60px 0 40px}
-  .hero h1{letter-spacing:-1px}
-  .hero-ctas{grid-template-columns:1fr}
-  .stats{padding:32px 0}
-  .stats .container{flex-direction:column;align-items:center;gap:24px}
+  .hero{padding:36px 0 32px}
+  .hero-logo{width:56px;margin-bottom:12px}
+  .hero h1{font-size:26px}
+  .hero .hero-sub{font-size:14px;margin-bottom:16px}
+  .stats{padding:24px 0}
+  .stats .container{flex-direction:column;align-items:center;gap:20px}
   .stat{width:100%}
+  .stat .num{font-size:24px}
   .problem,.audience,.waitlist{padding:48px 0}
-  .aud-card{padding:24px 20px}
   .trust-strip{padding:28px 0}
   .trust-strip .trust-items{flex-direction:column;gap:12px}
   .footer-grid{grid-template-columns:1fr}
