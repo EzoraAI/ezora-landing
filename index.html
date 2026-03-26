@@ -71,8 +71,9 @@ nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4
 .hero-ctas button{padding:16px 32px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;text-align:center;border:2px solid transparent;transition:transform .15s,box-shadow .25s,opacity .25s,border-color .25s;font-family:'DM Sans',sans-serif}
 .hero-ctas button:active{transform:scale(.97)}
 .hero-ctas button.dimmed{opacity:.45}
-.hero-ctas .btn-teal{background:var(--teal);color:var(--navy)}
-.hero-ctas .btn-teal.selected{border-color:var(--teal);box-shadow:0 0 20px rgba(0,201,167,.3)}
+@keyframes tealPulse{0%,100%{box-shadow:0 0 0 rgba(0,201,167,0)}50%{box-shadow:0 0 20px rgba(0,201,167,.2)}}
+.hero-ctas .btn-teal{background:var(--teal);color:var(--navy);font-size:16px;animation:tealPulse 3s ease-in-out infinite}
+.hero-ctas .btn-teal.selected{border-color:var(--teal);box-shadow:0 0 20px rgba(0,201,167,.3);animation:none}
 .hero-ctas .btn-purple{background:var(--purple);color:#fff}
 .hero-ctas .btn-purple.selected{border-color:var(--purple);box-shadow:0 0 20px rgba(124,58,237,.3)}
 .hero-ctas .btn-browse{grid-column:1/-1;background:rgba(255,255,255,.03);color:var(--gray);border:1px solid rgba(255,255,255,.1)}
@@ -141,6 +142,7 @@ nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4
 .audience-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
 .aud-card{background:var(--dark);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:32px 24px;position:relative;overflow:hidden;transition:.3s;display:flex;flex-direction:column}
 .aud-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.2),0 0 30px rgba(0,201,167,.08)}
+.aud-featured{box-shadow:0 0 24px rgba(124,58,237,.1);border-color:rgba(124,58,237,.15)}
 .aud-card .accent{height:4px;position:absolute;top:0;left:0;right:0}
 .aud-card h3{font-size:22px;color:#fff;margin:16px 0 8px}
 .aud-card .card-desc{font-size:15px;color:var(--gray);line-height:1.6;margin-bottom:16px;flex:1}
@@ -230,56 +232,6 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
   .footer-bottom{flex-direction:column;gap:12px;align-items:flex-start}
 }
 
-/* Vision */
-.vision{padding:100px 0}
-.vision-header{text-align:center;margin-bottom:60px}
-.vision-tag{display:inline-block;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);border:1px solid rgba(0,201,167,.3);padding:6px 16px;border-radius:20px;margin-bottom:16px}
-.vision h2{font-size:clamp(36px,5vw,56px);color:#fff;letter-spacing:-1.5px;line-height:1.1}
-.vision-story{margin-bottom:48px}
-.vision-founders{background:var(--dark);border-radius:14px;padding:32px;border-left:4px solid var(--teal)}
-.founders-badge{font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
-.founders-desc{font-size:16px;color:var(--gray);line-height:1.7}
-.founders-desc strong{color:var(--text)}
-.vision-narrative{margin-bottom:48px}
-.vn-block{margin-bottom:36px}
-.vn-block h3{font-family:'Instrument Serif',serif;font-size:24px;color:#fff;margin-bottom:12px}
-.vn-block p{font-size:15px;color:var(--gray);line-height:1.7;margin-bottom:12px}
-.vn-block blockquote{border-left:3px solid var(--teal);padding:12px 20px;margin:20px 0;font-family:'Instrument Serif',serif;font-size:20px;color:var(--text);font-style:italic;line-height:1.5}
-.vision-mission{background:var(--dark);border-radius:14px;padding:36px;margin-bottom:48px;position:relative}
-.vm-accent{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--teal),var(--purple));border-radius:14px 14px 0 0}
-.vision-mission h3{font-family:'Instrument Serif',serif;font-size:26px;color:#fff;margin-bottom:12px}
-.vision-mission p{font-size:15px;color:var(--gray);line-height:1.7}
-.vision-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px}
-.vp-card{background:var(--dark);border-radius:12px;padding:28px 24px}
-.vp-num{font-family:'Instrument Serif',serif;font-size:32px;color:var(--teal);margin-bottom:8px}
-.vp-card h4{font-size:16px;font-weight:600;color:#fff;margin-bottom:8px}
-.vp-card p{font-size:13px;color:var(--gray);line-height:1.6}
-.vision-audience{margin-bottom:48px}
-.vision-audience h3{font-family:'Instrument Serif',serif;font-size:24px;color:#fff;margin-bottom:24px;text-align:center}
-.va-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.va-item{display:flex;gap:14px;align-items:flex-start;background:var(--dark);border-radius:10px;padding:20px}
-.va-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:6px}
-.va-item strong{display:block;color:#fff;font-size:14px;margin-bottom:4px}
-.va-item span{font-size:13px;color:var(--gray);line-height:1.5}
-.vision-defining{margin-bottom:48px}
-.vision-defining h3{font-family:'Instrument Serif',serif;font-size:24px;color:#fff;margin-bottom:12px;text-align:center}
-.vision-defining p{font-size:15px;color:var(--gray);line-height:1.7;max-width:720px;margin:0 auto 12px;text-align:center}
-.vision-defining strong{color:var(--teal)}
-.vision-close{text-align:center}
-.vc-box{background:var(--dark);border-radius:16px;padding:48px 36px;border:1px solid rgba(0,201,167,.15)}
-.vc-statement{font-family:'Instrument Serif',serif;font-size:clamp(24px,3.5vw,36px);color:#fff;line-height:1.2;margin-bottom:12px}
-.vc-sub{font-size:15px;color:var(--gray)}
-@media(max-width:768px){
-  .vision-pillars,.va-grid{grid-template-columns:1fr}
-}
-
-/* Vision overlay */
-.vision-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.85);z-index:1000;display:none;overflow-y:auto;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.vision-overlay.active{display:block}
-.vision-panel{max-width:1080px;margin:0 auto;padding:24px 24px 80px;position:relative;min-height:100vh}
-.vision-close-btn{position:fixed;top:20px;right:24px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#fff;font-size:28px;width:44px;height:44px;border-radius:50%;cursor:pointer;z-index:1001;display:flex;align-items:center;justify-content:center;transition:.2s;font-family:var(--font-sans);line-height:1}
-.vision-close-btn:hover{background:var(--teal);color:var(--navy);border-color:var(--teal)}
-.vision-overlay .vision{padding:60px 0 40px}
 
 /* Back to top */
 .back-to-top{position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;border:none;background:var(--teal);color:var(--navy);font-size:22px;cursor:pointer;z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .3s,transform .3s,background .2s;box-shadow:0 4px 16px rgba(0,0,0,.3)}
@@ -448,8 +400,8 @@ document.addEventListener('click',function(e){
 <section class="hero" id="join">
   <div class="container">
     <img src="icon-512.png" alt="EzoraAI" class="hero-logo fade-in">
-    <h1 class="fade-in delay-1">AI expertise. Verified. Accessible. Yours.</h1>
-    <p class="hero-sub fade-in delay-2">Connect with vetted AI experts. Learn 1-on-1. Join the community.</p>
+    <h1 class="fade-in delay-1">Adapt or get left behind.</h1>
+    <p class="hero-sub fade-in delay-2">EzoraAI gives you a real AI expert in your corner — personalized 1-on-1 guidance to help you stay ahead of the AI revolution.</p>
     <div class="hero-ctas fade-in delay-3">
       <button class="btn-teal" data-role="learner" onclick="selectRole('learner',this)">I need AI help</button>
       <button class="btn-purple" data-role="expert" onclick="selectRole('expert',this)">I'm an AI expert</button>
@@ -490,15 +442,15 @@ document.addEventListener('click',function(e){
 
 <section class="problem">
   <div class="container">
-    <h2 class="fade-in">The AI economy is here. Most people aren't ready.</h2>
-    <p class="fade-in delay-1 desc">AI is reshaping every industry — law firms are cutting junior classes, agencies are doing with 5 people what took 20, and businesses are replacing entire software stacks. Millions of professionals need to reskill, businesses need expert guidance they can trust, and AI experts need a real platform to build their careers. That's exactly what we're building.</p>
+    <h2 class="fade-in">Your industry is changing faster than you think.</h2>
+    <p class="fade-in delay-1 desc">Law firms are cutting junior classes. Marketing agencies are doing with 5 people what took 20. Accountants, consultants, salespeople — every white-collar role is being restructured by AI. The professionals who learn to work with it will thrive. The ones who don't will be replaced. You deserve a real expert in your corner — not a YouTube video.</p>
   </div>
 </section>
 
 <section class="audience">
   <div class="container">
     <div class="audience-grid">
-      <div class="aud-card fade-in delay-1">
+      <div class="aud-card aud-featured fade-in delay-1">
         <div class="accent" style="background:var(--purple)"></div>
         <h3>For <span class="purple">people</span></h3>
         <p class="card-desc">Personalized 1-on-1 AI coaching from a real expert who understands your goals — no coding needed, no confusion.</p>
@@ -517,7 +469,7 @@ document.addEventListener('click',function(e){
         <h3>For <span class="teal">businesses</span></h3>
         <p class="card-desc">Source vetted AI experts for projects, replace costly SaaS with custom AI tools, and get real strategy — not just gig work.</p>
         <div class="price">Starting at $45.99/mo</div>
-        <a href="#join" class="btn-card" style="background:var(--teal);color:var(--navy)" onclick="selectRole('business')">Find AI talent →</a>
+        <a href="#join" class="btn-card" style="background:var(--teal);color:var(--navy)" onclick="selectRole('learner')">Find AI talent →</a>
       </div>
     </div>
   </div>
@@ -552,115 +504,6 @@ document.addEventListener('click',function(e){
   </div>
 </section>
 
-<div class="vision-overlay" id="visionOverlay">
-  <div class="vision-panel">
-    <button class="vision-close-btn" onclick="toggleVision(event)">&times;</button>
-    <section class="vision" id="vision">
-  <div class="container">
-    <div class="vision-header fade-in">
-      <span class="vision-tag">Our vision</span>
-      <h2>Why we’re building this.</h2>
-    </div>
-
-    <div class="vision-story fade-in delay-1">
-      <div class="vision-founders">
-        <div class="founders-badge">Founded by two operators</div>
-        <p class="founders-desc">Backgrounds in <strong>Private Equity</strong>, <strong>Venture Capital fundraising</strong>, and <strong>Cloud Infrastructure Optimization</strong>. We’ve spent years at the intersection of capital, technology, and business operations.</p>
-      </div>
-    </div>
-
-    <div class="vision-narrative fade-in delay-2">
-      <div class="vn-block">
-        <h3>The question that started everything</h3>
-        <p>We’ve been studying the rapid acceleration of AI — not as spectators, but as operators who see the numbers. And one question kept us up at night:</p>
-        <blockquote>What happens to the majority of the white-collar workforce when AI can do their job faster, cheaper, and around the clock?</blockquote>
-        <p>And a second question, just as urgent:</p>
-        <blockquote>What happens to the millions of small and mid-sized businesses that don’t have the infrastructure, the talent, or the knowledge to stay relevant during a technological revolution?</blockquote>
-      </div>
-
-      <div class="vn-block">
-        <h3>The honest answer</h3>
-        <p>Neither party — the individual professional nor the average business — truly has the education or the tools to survive this transformation. And it’s not their fault. The AI landscape today is fragmented: knowledge is scattered across social media, tools are siloed, and businesses struggle to identify who to trust. There is no central, structured, reliable place to go.</p>
-        <p>That’s what we’re building.</p>
-      </div>
-    </div>
-
-    <div class="vision-mission fade-in delay-3">
-      <div class="vm-accent"></div>
-      <h3>The central hub for the AI economy</h3>
-      <p>EzoraAI is a unified platform where individuals and businesses can discover, access, and leverage trusted AI expertise, tools, and services in one place. We combine the best elements of a professional network, a services marketplace, and a knowledge hub — designed specifically for AI.</p>
-    </div>
-
-    <div class="vision-pillars fade-in delay-4">
-      <div class="vp-card">
-        <div class="vp-num">01</div>
-        <h4>Trust & transparency</h4>
-        <p>Profiles are structured, searchable, and review-driven. Blockchain-verified proof-of-work means every expert’s track record is immutable. Users make informed decisions quickly. No more guessing who’s actually good.</p>
-      </div>
-      <div class="vp-card">
-        <div class="vp-num">02</div>
-        <h4>The network flywheel</h4>
-        <p>As more experts join, the value for users increases. As more users engage, the opportunity for experts expands. This isn’t a transactional marketplace — it’s a defensible ecosystem that compounds over time.</p>
-      </div>
-      <div class="vp-card">
-        <div class="vp-num">03</div>
-        <h4>Beyond connections</h4>
-        <p>We’re evolving into a full AI infrastructure layer — integrating education, tooling, collaboration, and embedded workflows. Users won’t just find experts. They’ll deploy solutions, manage projects, and measure outcomes — all within the platform.</p>
-      </div>
-    </div>
-
-    <div class="vision-audience fade-in">
-      <h3>Who this is for</h3>
-      <div class="va-grid">
-        <div class="va-item">
-          <span class="va-dot" style="background:var(--purple)"></span>
-          <div>
-            <strong>The professional facing displacement.</strong>
-            <span>Marketers, accountants, lawyers, developers — anyone whose role is being restructured by AI. They need personalized, 1-on-1 guidance from someone who understands their specific situation.</span>
-          </div>
-        </div>
-        <div class="va-item">
-          <span class="va-dot" style="background:var(--teal)"></span>
-          <div>
-            <strong>The business without AI infrastructure.</strong>
-            <span>SMBs and mid-market companies paying for SaaS that doesn’t fit, losing ground to AI-native competitors. They need vetted experts who can build what they actually need.</span>
-          </div>
-        </div>
-        <div class="va-item">
-          <span class="va-dot" style="background:var(--gold)"></span>
-          <div>
-            <strong>The AI expert ready to scale.</strong>
-            <span>Builders, coaches, and consultants who’ve created powerful AI workflows but have no unified platform to showcase, teach, and monetize their expertise.</span>
-          </div>
-        </div>
-        <div class="va-item">
-          <span class="va-dot" style="background:var(--white)"></span>
-          <div>
-            <strong>The solo entrepreneur or enterprise team.</strong>
-            <span>Anyone beginning their AI journey — whether the goal is to learn, implement, outsource, or scale AI capabilities. EzoraAI is the gateway.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="vision-defining fade-in">
-      <h3>A defining shift</h3>
-      <p>We’re positioned to capture a transition that’s only just beginning: the move from AI as a tool to <strong>AI as a service economy</strong>. By organizing and standardizing how expertise is discovered and delivered, EzoraAI becomes the connective tissue between innovation and real-world application.</p>
-      <p>Monetization is aligned with value creation. A dual-sided subscription model ensures accessibility for users while providing consistent exposure for experts. This supports long-term growth, predictable revenue, and continuous improvement of the ecosystem.</p>
-    </div>
-
-    <div class="vision-close fade-in">
-      <div class="vc-box">
-        <p class="vc-statement">Make AI expertise accessible, trustworthy, and actionable — for everyone.</p>
-        <p class="vc-sub">This is what we’re building. This is why it matters. And the time is now.</p>
-        <a href="#join" class="btn-teal" style="margin-top:20px;display:inline-block">Join the waitlist →</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-  </div>
-</div>
 <footer>
   <div class="container">
     <div class="footer-top">
@@ -828,43 +671,6 @@ document.querySelectorAll('.fade-in').forEach(function(el){el.style.animationPla
   });
 })();
 
-function toggleVision(e) {
-  e.preventDefault();
-  var overlay = document.getElementById('visionOverlay');
-  var isOpen = overlay.classList.contains('active');
-  if (isOpen) {
-    overlay.classList.remove('active');
-    document.body.style.overflow = '';
-  } else {
-    overlay.classList.add('active');
-    overlay.scrollTop = 0;
-    document.body.style.overflow = 'hidden';
-    // Trigger fade-in animations inside the overlay
-    overlay.querySelectorAll('.fade-in').forEach(function(el) {
-      el.style.animationPlayState = 'running';
-    });
-  }
-}
-// Close on escape key
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    var overlay = document.getElementById('visionOverlay');
-    if (overlay.classList.contains('active')) {
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  }
-});
-// Auto-open vision overlay if #vision is in the URL
-if (window.location.hash === '#vision') {
-  var overlay = document.getElementById('visionOverlay');
-  overlay.classList.add('active');
-  overlay.scrollTop = 0;
-  document.body.style.overflow = 'hidden';
-  overlay.querySelectorAll('.fade-in').forEach(function(el) {
-    el.style.animationPlayState = 'running';
-  });
-}
 
 </script>
 
