@@ -62,23 +62,27 @@ nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4
 
 /* Hero */
 .hero{padding:80px 0 80px;text-align:center;background:radial-gradient(ellipse 50% 45% at 50% 35%,rgba(0,201,167,.05) 0%,rgba(0,201,167,.02) 40%,transparent 70%)}
-.hero h1{font-size:clamp(46px,6.5vw,80px);line-height:1.08;color:#fff;margin-bottom:24px;letter-spacing:-2px;font-weight:400}
-.hero h1 em{font-style:italic;color:var(--teal);font-size:0.65em;display:block;margin-top:12px}
+.hero-logo{width:130px;height:auto;margin:0 auto 28px;display:block}
+.hero h1{font-size:clamp(36px,5vw,56px);line-height:1.1;color:var(--teal);margin-bottom:16px;letter-spacing:-1.5px;font-weight:400;font-style:italic;font-family:'Instrument Serif',serif}
 .hero h1 .tw-word{opacity:0;display:inline-block;transition:opacity .3s ease}
 .hero h1 .tw-word.visible{opacity:1}
-.hero p{font-size:16px;color:var(--gray);max-width:620px;margin:0 auto 32px;line-height:1.7;letter-spacing:.3px}
+.hero .hero-sub{font-size:17px;color:var(--gray);max-width:560px;margin:0 auto 36px;line-height:1.6}
 .hero-ctas{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:480px;margin:0 auto}
-.hero-ctas a{padding:16px 32px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;transition:transform .15s,box-shadow .2s,background .2s,border-color .2s;cursor:pointer;text-align:center}
-.hero-ctas a:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.25)}
-.hero-ctas a:active{transform:scale(.97);box-shadow:none;transition:transform .1s}
-.btn-browse{grid-column:1/-1;background:rgba(255,255,255,.03);color:var(--gray);border:1px solid rgba(255,255,255,.1)}
-.btn-browse:hover{background:rgba(255,255,255,.07);color:var(--text);border-color:rgba(255,255,255,.18)}
+.hero-ctas button{padding:16px 32px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;text-align:center;border:2px solid transparent;transition:transform .15s,box-shadow .25s,opacity .25s,border-color .25s;font-family:'DM Sans',sans-serif}
+.hero-ctas button:active{transform:scale(.97)}
+.hero-ctas button.dimmed{opacity:.45}
+.hero-ctas .btn-teal{background:var(--teal);color:var(--navy)}
+.hero-ctas .btn-teal.selected{border-color:var(--teal);box-shadow:0 0 20px rgba(0,201,167,.3)}
+.hero-ctas .btn-purple{background:var(--purple);color:#fff}
+.hero-ctas .btn-purple.selected{border-color:var(--purple);box-shadow:0 0 20px rgba(124,58,237,.3)}
+.hero-ctas .btn-browse{grid-column:1/-1;background:rgba(255,255,255,.03);color:var(--gray);border:1px solid rgba(255,255,255,.1)}
+.hero-ctas .btn-browse.selected{border-color:rgba(255,255,255,.4);box-shadow:0 0 20px rgba(255,255,255,.08)}
 
-/* Hero compact form */
-.hero-form{max-width:520px;margin:32px auto 0}
-.hero-roles{display:flex;justify-content:center;gap:16px;margin-bottom:14px;flex-wrap:wrap}
-.hero-roles label{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--gray);cursor:pointer}
-.hero-roles input[type=radio]{accent-color:var(--teal)}
+/* Hero email capture */
+.hero-capture{max-width:480px;margin:0 auto;overflow:hidden;max-height:0;opacity:0;transition:max-height .3s ease,opacity .3s ease,margin .3s ease}
+.hero-capture.open{max-height:200px;opacity:1;margin-top:24px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.hero-urgency{font-size:13px;color:var(--teal);margin-bottom:14px;animation:pulse 2s ease-in-out infinite}
 .hero-input-row{display:flex;gap:10px}
 .hero-input-row input{flex:1;padding:14px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:var(--dark);color:#fff;font-size:15px;font-family:'DM Sans',sans-serif}
 .hero-input-row input::placeholder{color:var(--mid)}
@@ -86,6 +90,7 @@ nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4
 .hero-input-row button{padding:14px 28px;border-radius:8px;border:none;background:var(--teal);color:var(--navy);font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;white-space:nowrap}
 .hero-input-row button:hover{background:#00e6be}
 .hero-input-row button:active,.wl-form button:active{transform:scale(.97)}
+.hero-fine{font-size:11px;color:var(--mid);margin-top:10px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .btn-loading{pointer-events:none;position:relative;color:transparent!important}
 .btn-loading::after{content:'';position:absolute;top:50%;left:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border:2px solid rgba(11,18,36,.3);border-top-color:var(--navy);border-radius:50%;animation:spin .6s linear infinite}
@@ -206,14 +211,12 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
   .stat{flex:none;width:45%;padding:0}
   .stat+.stat::before{display:none}
   .hero{padding:80px 0 60px}
-  .hero p{margin-bottom:32px}
+  .hero-sub{margin-bottom:28px}
   .hero-ctas{max-width:100%}
-  .hero-roles{flex-direction:column;align-items:center;gap:8px}
   .hero-input-row{flex-direction:column}
   .hero-input-row input,.hero-input-row button{width:100%}
   .hero-input-row button{min-height:48px}
   .hero-input-row input{min-height:48px}
-  .hero-roles label{min-height:44px}
   .problem,.audience,.waitlist{padding:60px 0}
   .trust-strip{padding:36px 0}
   .trust-strip .trust-items{gap:24px}
@@ -341,7 +344,7 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
 
 /* Touch targets — ensure 44px minimum on mobile */
 @media(max-width:768px){
-  .hero-ctas a{min-height:48px;display:flex;align-items:center;justify-content:center}
+  .hero-ctas button{min-height:48px}
   .wl-form input{min-height:48px}
   .wl-form button{min-height:48px}
   .wl-roles label{min-height:44px;padding:4px 8px}
@@ -425,24 +428,22 @@ document.addEventListener('click',function(e){
 
 <section class="hero" id="join">
   <div class="container">
-    <h1 class="fade-in delay-1"><em>AI expertise. Verified. Accessible. Yours.</em></h1>
-    <p class="fade-in delay-2">EzoraAI is the central hub for the AI economy — connecting you with real AI experts for personalized 1-on-1 sessions, backed by a 24/7 community of learners and professionals navigating AI together. Whether you're changing careers, growing a business, or just curious about AI, this is the place where anyone can belong and get the help they need.</p>
+    <img src="icon-512.png" alt="EzoraAI" class="hero-logo fade-in">
+    <h1 class="fade-in delay-1">AI expertise. Verified. Accessible. Yours.</h1>
+    <p class="hero-sub fade-in delay-2">Connect with vetted AI experts. Learn 1-on-1. Join the community.</p>
     <div class="hero-ctas fade-in delay-3">
-      <a href="#hero-form" class="btn-teal" onclick="selectRole('learner')">I need AI help</a>
-      <a href="#hero-form" class="btn-purple" onclick="selectRole('expert')">I'm an AI expert</a>
-      <a href="#hero-form" class="btn-browse" onclick="selectRole('learner')">I'm here to browse</a>
+      <button class="btn-teal" data-role="learner" onclick="selectRole('learner',this)">I need AI help</button>
+      <button class="btn-purple" data-role="expert" onclick="selectRole('expert',this)">I'm an AI expert</button>
+      <button class="btn-browse" data-role="browser" onclick="selectRole('browser',this)">I'm here to browse</button>
     </div>
-    <div class="hero-form fade-in delay-4" id="hero-form">
-      <div class="hero-roles">
-        <label><input type="radio" name="role" value="learner" checked> I want to learn AI</label>
-        <label><input type="radio" name="role" value="business"> I run a business</label>
-        <label><input type="radio" name="role" value="expert"> I'm an AI expert</label>
-      </div>
+    <div class="hero-capture" id="heroCapture">
+      <p class="hero-urgency">✦ Founding member spots are limited</p>
       <div class="hero-input-row">
         <input type="email" id="email" placeholder="Enter your email" required>
-        <button onclick="submitWaitlist()">Join the waitlist</button>
+        <button onclick="submitWaitlist()">Get early access</button>
       </div>
-      <p id="wl-msg" style="margin-top:12px;color:var(--teal);display:none;font-size:14px"></p>
+      <p class="hero-fine">No spam. Unsubscribe anytime.</p>
+      <p id="wl-msg" style="margin-top:8px;color:var(--teal);display:none;font-size:14px"></p>
     </div>
   </div>
 </section>
@@ -686,18 +687,24 @@ document.addEventListener('click',function(e){
 </footer>
 
 <script>
-function selectRole(role){
-  var radios=document.querySelectorAll('input[name="role"]');
-  radios.forEach(function(r){if(r.value===role)r.checked=true});
-  document.getElementById('email').focus();
+var selectedRole='';
+function selectRole(role,btn){
+  selectedRole=role;
+  var btns=document.querySelectorAll('.hero-ctas button');
+  btns.forEach(function(b){
+    if(b===btn){b.classList.add('selected');b.classList.remove('dimmed')}
+    else{b.classList.remove('selected');b.classList.add('dimmed')}
+  });
+  document.getElementById('heroCapture').classList.add('open');
+  setTimeout(function(){document.getElementById('email').focus()},350);
 }
 
 async function submitWaitlist(){
   var email=document.getElementById('email').value;
-  var role=document.querySelector('input[name="role"]:checked').value;
+  var role=selectedRole||'browser';
   if(!email||!email.includes('@')){return}
   var msg=document.getElementById('wl-msg');
-  var btn=document.querySelector('.hero-input-row button');
+  var btn=document.querySelector('#heroCapture .hero-input-row button');
   btn.classList.add('btn-loading');
   btn.disabled=true;
   try{
@@ -713,11 +720,11 @@ async function submitWaitlist(){
       msg.textContent="You're on the list! We'll be in touch soon.";
       document.getElementById('email').value='';
       btn.textContent='✓ You\'re in!';
-      setTimeout(function(){btn.textContent='Join the waitlist'},3000);
+      setTimeout(function(){btn.textContent='Get early access'},3000);
     }else if(data.status==='duplicate'){
       msg.style.color='#F5A623';
       msg.textContent="You're already on the list!";
-      btn.textContent='Join the waitlist';
+      btn.textContent='Get early access';
     }else{
       throw new Error('Unexpected response');
     }
@@ -726,7 +733,7 @@ async function submitWaitlist(){
     msg.style.display='block';
     msg.style.color='#EF4444';
     msg.textContent='Something went wrong. Please try again.';
-    btn.textContent='Join the waitlist';
+    btn.textContent='Get early access';
   }
   btn.disabled=false;
 }
@@ -780,16 +787,14 @@ document.querySelectorAll('.fade-in').forEach(function(el){el.style.animationPla
 (function(){
   var h1=document.querySelector('.hero h1');
   if(!h1)return;
-  var em=h1.querySelector('em');
-  if(!em)return;
-  var text=em.textContent;
+  var text=h1.textContent;
   var words=text.split(' ');
-  em.innerHTML='';
+  h1.innerHTML='';
   words.forEach(function(word,i){
     var span=document.createElement('span');
     span.className='tw-word';
     span.textContent=word+(i<words.length-1?' ':'');
-    em.appendChild(span);
+    h1.appendChild(span);
     setTimeout(function(){span.classList.add('visible')},300+i*100);
   });
 })();
