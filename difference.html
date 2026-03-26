@@ -73,7 +73,7 @@ nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4
 .answer-card h3{font-size:20px;color:#fff;margin-bottom:12px}
 .answer-card p{font-size:14px;color:var(--gray);line-height:1.7}
 
-/* Blockchain deep dive */
+/* Trust & verification */
 .blockchain-deep{padding:80px 0}
 .blockchain-deep h2{font-size:clamp(32px,4vw,44px);color:#fff;text-align:center;margin-bottom:12px;letter-spacing:-1px}
 .blockchain-deep .sub{text-align:center;color:var(--mid);font-size:15px;margin-bottom:48px;max-width:700px;margin-left:auto;margin-right:auto}
@@ -104,6 +104,9 @@ nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4
 .check{color:var(--teal)}
 .cross{color:var(--red);opacity:.6}
 .partial{color:var(--gold)}
+.comp-table tr.highlight-row td{background:rgba(0,201,167,.1);border-top:1px solid rgba(0,201,167,.25);border-bottom:1px solid rgba(0,201,167,.25)}
+.comp-table tr.highlight-row td:first-child{color:var(--teal);font-weight:700;font-size:14px}
+.comp-table tr.highlight-row td.ezora-col{background:rgba(0,201,167,.18)}
 
 /* Transparency pledge */
 .pledge{padding:80px 0}
@@ -140,20 +143,72 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
 .footer-socials a:hover{color:var(--teal)}
 
 
+/* Hamburger menu (hidden on desktop) */
+.nav-toggle-checkbox{display:none}
+.nav-hamburger{display:none}
+.nav-close{display:none}
+
+/* Mobile scroll hint for table */
+.scroll-hint{display:none;text-align:center;font-size:12px;color:var(--mid);margin-bottom:12px}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
+  .fade-in{opacity:1;transform:none}
+}
+
 /* Responsive */
 @media(max-width:768px){
   .expose-grid,.bc-benefits,.pledge-items{grid-template-columns:1fr}
   .answer-grid{grid-template-columns:1fr}
   .bc-flow{grid-template-columns:1fr 1fr}
   .bc-step .arrow{display:none}
-  .comp-table{font-size:11px;display:block;overflow-x:auto}
+  .comp-table{font-size:12px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
   .comp-table th,.comp-table td{padding:8px 10px}
   .comp-table th:first-child{width:auto;min-width:100px}
-  .nav-right{gap:10px;flex-wrap:wrap;justify-content:flex-end}
-  .nav-right a.nav-link{font-size:13px}
-  .nav-right a.cta-nav{font-size:13px;padding:6px 14px}
+  .scroll-hint{display:block}
   .manifesto-box{padding:28px 20px}
   .pledge-box{padding:28px 20px}
+
+  /* Section padding reduction */
+  .diff-hero{padding:60px 0 40px}
+  .manifesto{padding:40px 0}
+  .problem-expose{padding:60px 0}
+  .our-answer{padding:60px 0}
+  .blockchain-deep{padding:60px 0}
+  .comparison{padding:60px 0}
+  .pledge{padding:60px 0}
+  .diff-cta{padding:40px 0 60px}
+
+  /* Touch targets */
+  nav a.nav-link{min-height:44px;display:flex;align-items:center}
+  nav a.cta-nav{min-height:44px;display:inline-flex;align-items:center}
+  .diff-cta a{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+  .footer-col a{min-height:44px;display:flex;align-items:center}
+  .footer-socials a{min-height:44px;display:inline-flex;align-items:center}
+
+  /* Hamburger menu */
+  .nav-hamburger{display:flex;align-items:center;justify-content:center;width:44px;height:44px;font-size:24px;color:var(--white);cursor:pointer;border-radius:8px;background:rgba(255,255,255,.06)}
+  .nav-right{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(11,18,36,.97);backdrop-filter:blur(12px);padding:16px 24px 24px;border-bottom:1px solid rgba(255,255,255,.06);gap:4px}
+  .nav-toggle-checkbox:checked ~ .nav-right{display:flex}
+  .nav-close{display:flex;align-items:center;justify-content:center;align-self:flex-end;width:44px;height:44px;font-size:28px;color:var(--gray);cursor:pointer}
+  .nav-right a.nav-link{width:100%;padding:12px 16px;min-height:44px;display:flex;align-items:center;font-size:15px}
+  .nav-right a.cta-nav{width:100%;text-align:center;padding:14px;min-height:44px;margin-top:8px;font-size:15px}
+
+  /* Footer */
+  .footer-top{flex-direction:column;gap:8px;text-align:center}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:24px}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+}
+
+/* Small mobile */
+@media(max-width:480px){
+  .footer-grid{grid-template-columns:1fr}
+  .bc-flow{grid-template-columns:1fr}
+  .answer-card,.expose-card,.bc-step,.bc-benefit{padding:20px 16px}
+  .manifesto-box{padding:20px 16px}
+  .pledge-box{padding:20px 16px}
+  .expose-card .stat{font-size:24px}
 }
 
 /* Back to top */
@@ -180,7 +235,10 @@ document.addEventListener('click',function(e){
 <nav>
   <div class="container">
     <a href="index.html" class="logo-wordmark" style="text-decoration:none;font-family:'DM Sans',sans-serif;font-size:20px;font-weight:700;color:#F4F6FA;letter-spacing:-.3px">ezora<span style="color:#00C9A7">.ai</span></a>
+    <input type="checkbox" id="navToggle" class="nav-toggle-checkbox" style="display:none">
+    <label for="navToggle" class="nav-hamburger">&#9776;</label>
     <div class="nav-right">
+      <label for="navToggle" class="nav-close">&times;</label>
       <a href="index.html" class="nav-link">Home</a>
       <a href="vision.html" class="nav-link">Our vision</a>
       <a href="difference.html" class="nav-link active">The difference</a>
@@ -195,7 +253,7 @@ document.addEventListener('click',function(e){
   <div class="container">
     <span class="tag fade-in">The difference</span>
     <h1 class="fade-in delay-1">Built on <em>radical transparency.</em></h1>
-    <p class="fade-in delay-2">The AI talent industry is broken by hidden fees, opaque pricing, and unverifiable credentials. We're building the opposite — a platform where every price, every credential, and every track record is visible, verified, and permanent.</p>
+    <p class="fade-in delay-2">The AI talent industry is broken by hidden fees, opaque pricing, and unverifiable credentials. We're building the opposite — a platform where every price is published, every expert is continuously verified, and everyone has a community to lean on.</p>
   </div>
 </section>
 
@@ -204,7 +262,7 @@ document.addEventListener('click',function(e){
     <div class="manifesto-box fade-in delay-3">
       <h2>Why transparency matters now</h2>
       <p>The AI economy is growing faster than trust can keep up. Businesses are spending thousands on experts they can't verify. Individuals are paying for coaching from people with inflated resumes. And platforms are taking <span class="highlight">40–60% of every transaction</span> without telling either side.</p>
-      <p>We believe the AI economy deserves better infrastructure. Infrastructure where <span class="highlight">you know exactly what you're paying</span>, <span class="highlight">you can verify exactly who you're hiring</span>, and <span class="highlight">every expert's track record is immutable and on-chain</span>.</p>
+      <p>We believe the AI economy deserves better infrastructure. Infrastructure where <span class="highlight">you know exactly what you're paying</span>, <span class="highlight">you can verify exactly who you're hiring</span>, and <span class="highlight">you have a community behind you every step of the way</span>.</p>
       <p>That's not a feature. It's our foundation.</p>
     </div>
   </div>
@@ -248,7 +306,7 @@ document.addEventListener('click',function(e){
         <div class="accent" style="background:var(--teal)"></div>
         <div class="num">01</div>
         <h3>Published pricing. No hidden fees.</h3>
-        <p>Our take rate is 15–25% and it's published. Experts set their own prices. Users see exactly what they're paying. Experts know exactly what they're earning. No opacity. No NDAs about compensation. No surprises.</p>
+        <p>Experts set their own prices. Users see exactly what they're paying. Experts know exactly what they're earning. No opacity. No NDAs about compensation. No surprises.</p>
       </div>
       <div class="answer-card fade-in delay-2">
         <div class="accent" style="background:var(--purple)"></div>
@@ -259,8 +317,8 @@ document.addEventListener('click',function(e){
       <div class="answer-card fade-in delay-3">
         <div class="accent" style="background:var(--gold)"></div>
         <div class="num">03</div>
-        <h3>Blockchain-verified. Always.</h3>
-        <p>Every project completed, every coaching session delivered, every client rating — written to an immutable blockchain ledger. An expert's reputation isn't a one-time badge. It's a living, verifiable, permanent record that no one can fake.</p>
+        <h3>Verified experts. Real community.</h3>
+        <p>Every expert is continuously vetted through real client outcomes, ratings, and verified deliverables — not a one-time test from years ago. And you're never on your own: a 24/7 community of peers, mentors, and accountability groups is included with every plan.</p>
       </div>
     </div>
   </div>
@@ -268,32 +326,32 @@ document.addEventListener('click',function(e){
 
 <section class="blockchain-deep">
   <div class="container">
-    <h2 class="fade-in">Blockchain proof-of-work: how it protects you</h2>
-    <p class="sub fade-in delay-1">This isn't crypto hype. It's practical infrastructure that solves a real trust problem — for both sides of the marketplace.</p>
+    <h2 class="fade-in">How we build trust — for everyone</h2>
+    <p class="sub fade-in delay-1">Trust shouldn't be assumed. It should be earned, visible, and continuous. Here's how we make that happen for every person on the platform.</p>
 
     <div class="bc-flow fade-in delay-2">
       <div class="bc-step">
         <div class="step-num">1</div>
-        <h3>Work is completed</h3>
-        <p>Expert delivers a project, coaching session, or AI agent deployment through EzoraAI</p>
+        <h3>Experts are vetted</h3>
+        <p>Every expert goes through a real screening process before they can offer services on ezora.ai</p>
         <span class="arrow">→</span>
       </div>
       <div class="bc-step">
         <div class="step-num">2</div>
-        <h3>Outcome is verified</h3>
-        <p>Client confirms delivery, submits rating, and validates the scope of work completed</p>
+        <h3>Work is delivered</h3>
+        <p>Experts complete coaching sessions, projects, and engagements — all tracked on the platform</p>
         <span class="arrow">→</span>
       </div>
       <div class="bc-step">
         <div class="step-num">3</div>
-        <h3>Record goes on-chain</h3>
-        <p>Timestamped, tamper-proof entry written to the blockchain — permanent and immutable</p>
+        <h3>Outcomes are verified</h3>
+        <p>Clients confirm delivery and leave ratings — building a real, verified track record over time</p>
         <span class="arrow">→</span>
       </div>
       <div class="bc-step">
         <div class="step-num">4</div>
-        <h3>Profile reflects reality</h3>
-        <p>Expert's profile shows verified, real-time proof of every engagement they've completed</p>
+        <h3>Community supports you</h3>
+        <p>Peers, accountability groups, and expert-led spaces keep everyone growing — 24/7</p>
       </div>
     </div>
 
@@ -301,29 +359,29 @@ document.addEventListener('click',function(e){
       <div class="bc-benefit fade-in delay-1">
         <div class="bc-dot" style="background:var(--teal)"></div>
         <div>
-          <h3>For people hiring experts</h3>
-          <p>You see verified proof of real work before you spend a dollar. Not self-reported skills. Not a badge from a test they took three years ago. Actual, timestamped, client-verified deliverables. You know what you're getting because the blockchain doesn't lie.</p>
+          <h3>For people seeking guidance</h3>
+          <p>You see verified proof of real work before you spend a dollar. Not self-reported skills. Not a badge from a test someone took years ago. Real client outcomes, real ratings, and real deliverables — so you can make an informed decision with confidence.</p>
         </div>
       </div>
       <div class="bc-benefit fade-in delay-2">
         <div class="bc-dot" style="background:var(--gold)"></div>
         <div>
           <h3>For experts building careers</h3>
-          <p>Your track record is permanent, portable, and impossible to fake. Every great session, every successful project, every five-star review compounds into an on-chain reputation that follows you forever. No platform can take it away. No competitor can copy it.</p>
+          <p>Your track record grows with every session, project, and five-star review. A continuously verified profile that showcases your real impact — not just credentials from a one-time test. Your reputation compounds over time and speaks for itself.</p>
         </div>
       </div>
       <div class="bc-benefit fade-in delay-3">
         <div class="bc-dot" style="background:var(--purple)"></div>
         <div>
-          <h3>For the AI economy</h3>
-          <p>Blockchain verification creates a trust layer that the entire industry lacks. It eliminates credential fraud, incentivizes quality work, and makes the marketplace self-policing. Bad actors can't hide. Great experts rise to the top — provably.</p>
+          <h3>For everyone navigating AI</h3>
+          <p>A 24/7 community means you're never figuring this out alone. Career changers, business owners, and curious beginners all support each other — sharing wins, asking questions, and finding accountability partners who understand the journey.</p>
         </div>
       </div>
       <div class="bc-benefit fade-in delay-4">
         <div class="bc-dot" style="background:#fff"></div>
         <div>
-          <h3>Why not just reviews?</h3>
-          <p>Reviews can be faked, deleted, or manipulated by platforms. Blockchain records can't be edited, removed, or altered by anyone — not even us. That's the difference between "trust us" and "verify it yourself."</p>
+          <h3>Why continuous verification matters</h3>
+          <p>Other platforms vet experts once and call it done. We verify through ongoing client outcomes, ratings, and real deliverables — so an expert's profile always reflects their current ability, not a test they passed years ago.</p>
         </div>
       </div>
     </div>
@@ -332,8 +390,9 @@ document.addEventListener('click',function(e){
 
 <section class="comparison">
   <div class="container">
-    <h2 class="fade-in">The comparison speaks for itself</h2>
-    <p class="sub fade-in delay-1">We're not trying to be slightly better. We're building a fundamentally different model.</p>
+    <h2 class="fade-in">How we compare</h2>
+    <p class="sub fade-in delay-1">Every platform has strengths. Here's where ezora.ai offers something different.</p>
+    <p class="scroll-hint fade-in delay-2">&larr; Scroll to compare &rarr;</p>
     <table class="comp-table fade-in delay-2">
       <thead>
         <tr>
@@ -347,20 +406,12 @@ document.addEventListener('click',function(e){
       </thead>
       <tbody>
         <tr>
-          <td>Pricing transparency</td>
-          <td><span class="cross">✗ Hidden 40-60%</span></td>
-          <td><span class="partial">~ Visible but variable</span></td>
-          <td><span class="partial">~ N/A</span></td>
-          <td><span class="check">✓ Listed prices</span></td>
-          <td class="ezora-col ezora"><span class="check">✓ Published 15-25%</span></td>
-        </tr>
-        <tr>
           <td>Credential verification</td>
           <td><span class="partial">~ One-time test</span></td>
           <td><span class="cross">✗ Self-reported</span></td>
           <td><span class="cross">✗ Self-reported</span></td>
           <td><span class="cross">✗ Course completion</span></td>
-          <td class="ezora-col ezora"><span class="check">✓ Blockchain POW</span></td>
+          <td class="ezora-col ezora"><span class="check">✓ Continuously verified</span></td>
         </tr>
         <tr>
           <td>Cost to start (user)</td>
@@ -369,14 +420,6 @@ document.addEventListener('click',function(e){
           <td><span class="partial">Free / $30-60/mo</span></td>
           <td><span class="check">Per-course pricing</span></td>
           <td class="ezora-col ezora"><span class="check">$8.99/mo, no deposit</span></td>
-        </tr>
-        <tr>
-          <td>Expert earnings</td>
-          <td><span class="cross">Loses 40-60% to markup</span></td>
-          <td><span class="partial">Keeps 80-90%</span></td>
-          <td><span class="partial">N/A</span></td>
-          <td><span class="cross">Keeps 37% of sales</span></td>
-          <td class="ezora-col ezora"><span class="check">Keeps 75-85%</span></td>
         </tr>
         <tr>
           <td>1-on-1 AI coaching</td>
@@ -403,12 +446,28 @@ document.addEventListener('click',function(e){
           <td class="ezora-col ezora"><span class="check">✓ AI-only</span></td>
         </tr>
         <tr>
-          <td>Immutable track record</td>
+          <td>24/7 Community access</td>
           <td><span class="cross">✗</span></td>
           <td><span class="cross">✗</span></td>
           <td><span class="cross">✗</span></td>
           <td><span class="cross">✗</span></td>
-          <td class="ezora-col ezora"><span class="check">✓ Blockchain</span></td>
+          <td class="ezora-col ezora"><span class="check">✓ Included with every plan</span></td>
+        </tr>
+        <tr>
+          <td>Small business friendly</td>
+          <td><span class="cross">✗ Enterprise only</span></td>
+          <td><span class="partial">~ Gig-based, no strategy</span></td>
+          <td><span class="partial">~ Recruiting only</span></td>
+          <td><span class="cross">✗ Not a service</span></td>
+          <td class="ezora-col ezora"><span class="check">✓ Expert guidance + AI strategy</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Personalized learning</td>
+          <td><span class="cross">✗ Not offered</span></td>
+          <td><span class="cross">✗ Task-based only</span></td>
+          <td><span class="cross">✗ Not offered</span></td>
+          <td><span class="partial">~ Pre-recorded courses</span></td>
+          <td class="ezora-col ezora"><span class="check">✓ 1-on-1 with real experts</span></td>
         </tr>
       </tbody>
     </table>
@@ -423,15 +482,7 @@ document.addEventListener('click',function(e){
       <div class="pledge-items">
         <div class="pledge-item">
           <span class="check-icon">✓</span>
-          <p><strong>Published take rates.</strong> Our marketplace fee is 15–25% and it's displayed publicly. Always. We will never hide our margin inside an opaque hourly rate.</p>
-        </div>
-        <div class="pledge-item">
-          <span class="check-icon">✓</span>
-          <p><strong>Expert earnings visible.</strong> Experts know exactly what they earn from every transaction. No NDAs about compensation. No guessing.</p>
-        </div>
-        <div class="pledge-item">
-          <span class="check-icon">✓</span>
-          <p><strong>Blockchain-verified credentials.</strong> Every expert's proof-of-work is on-chain and publicly verifiable. We can't edit it. We can't delete it. Neither can anyone else.</p>
+          <p><strong>Always-on community.</strong> 24/7 access to peers, experts, and accountability groups included with every subscription. You're never navigating the AI transition alone.</p>
         </div>
         <div class="pledge-item">
           <span class="check-icon">✓</span>
@@ -519,6 +570,7 @@ window.addEventListener('scroll',()=>{
 bttBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'})});
 
 window.addEventListener('scroll',function(){var nav=document.querySelector('nav');if(window.scrollY>50){nav.classList.add('nav-scrolled')}else{nav.classList.remove('nav-scrolled')}});
+document.querySelectorAll('.nav-right a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navToggle').checked=false})});
 </script>
 
 </body>

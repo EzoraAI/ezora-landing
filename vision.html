@@ -97,14 +97,53 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
 .back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
 .back-to-top:hover{background:#00e6be}
 
+/* Hamburger menu (hidden on desktop) */
+.nav-hamburger{display:none}
+.nav-close{display:none}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
+  .fade-in{opacity:1;transform:none}
+}
+
 @media(max-width:768px){
-  .nav-right{gap:2px;flex-wrap:wrap;justify-content:flex-end}
-  .nav-right a.nav-link{font-size:12px;padding:6px 10px}
-  .nav-right a.cta-nav{font-size:12px;padding:6px 14px}
+  /* Hamburger menu */
+  .nav-hamburger{display:flex;align-items:center;justify-content:center;width:44px;height:44px;font-size:24px;color:var(--white);cursor:pointer;border-radius:8px;background:rgba(255,255,255,.06)}
+  .nav-right{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(11,18,36,.97);backdrop-filter:blur(12px);padding:16px 24px 24px;border-bottom:1px solid rgba(255,255,255,.06);gap:4px}
+  .nav-toggle-checkbox:checked ~ .nav-right{display:flex}
+  .nav-close{display:flex;align-items:center;justify-content:center;align-self:flex-end;width:44px;height:44px;font-size:28px;color:var(--gray);cursor:pointer}
+  .nav-right a.nav-link{width:100%;padding:12px 16px;min-height:44px;display:flex;align-items:center;font-size:15px}
+  .nav-right a.cta-nav{width:100%;text-align:center;padding:14px;min-height:44px;margin-top:8px;font-size:15px}
+  nav .container{position:relative}
+
+  /* Section padding reductions */
+  .vision-hero{padding:80px 0 40px}
+  .belief{padding:0 8px;margin-bottom:60px}
+  .building{margin-bottom:60px}
+  .community-mission{margin-bottom:60px}
+  .founders-card{padding:24px}
+  .closing-card{padding:36px 24px}
+
+  /* Touch targets */
+  .closing-card a{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+  .back-to-top{min-width:44px;min-height:44px}
+  .footer-col a{min-height:44px;display:flex;align-items:center}
+  .footer-socials a{min-height:44px;display:flex;align-items:center}
+
   .community-highlights{flex-direction:column;align-items:flex-start;gap:16px}
   .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
   .footer-top{flex-direction:column;align-items:flex-start;gap:4px}
   .footer-bottom{flex-direction:column;gap:12px;align-items:flex-start}
+}
+
+@media(max-width:480px){
+  .vision-hero{padding:60px 0 40px}
+  section{padding:50px 0}
+  .founders-card{padding:20px}
+  .closing-card{padding:24px 20px}
+  .belief blockquote{padding:12px 16px}
+  .footer-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -126,7 +165,10 @@ document.addEventListener('click',function(e){
 <nav>
   <div class="container wide">
     <a href="index.html" class="logo-wordmark" style="text-decoration:none;font-family:'DM Sans',sans-serif;font-size:20px;font-weight:700;color:#F4F6FA;letter-spacing:-.3px">ezora<span style="color:#00C9A7">.ai</span></a>
+    <input type="checkbox" id="navToggle" class="nav-toggle-checkbox" style="display:none">
+    <label for="navToggle" class="nav-hamburger">&#9776;</label>
     <div class="nav-right">
+      <label for="navToggle" class="nav-close">&times;</label>
       <a href="index.html" class="nav-link">Home</a>
       <a href="vision.html" class="nav-link active">Our vision</a>
       <a href="difference.html" class="nav-link">The difference</a>
@@ -260,6 +302,8 @@ window.addEventListener('scroll',()=>{
 bttBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'})});
 
 window.addEventListener('scroll',function(){var nav=document.querySelector('nav');if(window.scrollY>50){nav.classList.add('nav-scrolled')}else{nav.classList.remove('nav-scrolled')}});
+
+document.querySelectorAll('.nav-right a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navToggle').checked=false})});
 </script>
 
 </body>
