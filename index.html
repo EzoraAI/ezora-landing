@@ -80,10 +80,19 @@ nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4
 .hero-ctas .btn-browse.selected{border-color:rgba(255,255,255,.4);box-shadow:0 0 20px rgba(255,255,255,.08)}
 
 /* Hero email capture */
-.hero-capture{max-width:480px;margin:0 auto;overflow:hidden;max-height:0;opacity:0;transition:max-height .3s ease,opacity .3s ease,margin .3s ease}
-.hero-capture.open{max-height:200px;opacity:1;margin-top:24px}
+.hero-capture{max-width:480px;margin:0 auto;overflow:hidden;max-height:0;opacity:0;transition:max-height .4s ease,opacity .3s ease,margin .3s ease}
+.hero-capture.open{max-height:500px;opacity:1;margin-top:24px}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
 .hero-urgency{font-size:13px;color:var(--teal);margin-bottom:14px;animation:pulse 2s ease-in-out infinite}
+.hero-context{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.hero-context label{font-size:12px;color:var(--gray);text-align:left;font-weight:500}
+.hero-context select,.hero-context input[type=text]{width:100%;padding:12px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:var(--dark);color:#fff;font-size:14px;font-family:'DM Sans',sans-serif;-webkit-appearance:none;appearance:none}
+.hero-context select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394A3B8' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.hero-context select:focus,.hero-context input[type=text]:focus{outline:none;border-color:var(--teal)}
+.hero-context input[type=text]::placeholder{color:var(--mid)}
+.hero-context select option{background:var(--dark);color:#fff}
+.hero-skip{font-size:11px;color:var(--mid);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;margin-bottom:10px;transition:color .2s}
+.hero-skip:hover{color:var(--gray)}
 .hero-input-row{display:flex;gap:10px}
 .hero-input-row input{flex:1;padding:14px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:var(--dark);color:#fff;font-size:15px;font-family:'DM Sans',sans-serif}
 .hero-input-row input::placeholder{color:var(--mid)}
@@ -422,6 +431,30 @@ document.addEventListener('click',function(e){
     </div>
     <div class="hero-capture" id="heroCapture">
       <p class="hero-urgency">✦ Founding member spots are limited</p>
+      <div class="hero-context" id="ctxLearner" style="display:none">
+        <label>Where are you on your AI journey?</label>
+        <select id="ctxLevel">
+          <option value="" disabled selected>Select one...</option>
+          <option value="never">I've never used AI tools</option>
+          <option value="tried">I've tried AI but don't use it regularly</option>
+          <option value="use">I use AI but want to get much better</option>
+          <option value="specific">I need AI for a specific project or goal</option>
+        </select>
+        <input type="text" id="ctxGoal" placeholder="What do you want to learn? (e.g., automate my marketing, AI for my law practice)">
+        <button class="hero-skip" onclick="skipContext()">Skip — just give me early access</button>
+      </div>
+      <div class="hero-context" id="ctxExpert" style="display:none">
+        <input type="text" id="ctxSpecialty" placeholder="What's your AI specialty? (e.g., prompt engineering, AI automation, machine learning)">
+        <label>How would you like to help?</label>
+        <select id="ctxHelp">
+          <option value="" disabled selected>Select one...</option>
+          <option value="coaching">1-on-1 coaching sessions</option>
+          <option value="workshops">Group workshops or AMAs</option>
+          <option value="consulting">Project-based consulting</option>
+          <option value="all">All of the above</option>
+        </select>
+        <button class="hero-skip" onclick="skipContext()">Skip — just give me early access</button>
+      </div>
       <div class="hero-input-row">
         <input type="email" id="email" placeholder="Enter your email" required>
         <button onclick="submitWaitlist()">Get early access</button>
@@ -567,14 +600,42 @@ function selectRole(role,btn){
     if(b===btn){b.classList.add('selected');b.classList.remove('dimmed')}
     else{b.classList.remove('selected');b.classList.add('dimmed')}
   });
+  // Show/hide context fields based on role
+  document.getElementById('ctxLearner').style.display=(role==='learner')?'flex':'none';
+  document.getElementById('ctxExpert').style.display=(role==='expert')?'flex':'none';
   document.getElementById('heroCapture').classList.add('open');
-  setTimeout(function(){document.getElementById('email').focus()},350);
+  if(role==='learner'){
+    setTimeout(function(){document.getElementById('ctxLevel').focus()},350);
+  }else if(role==='expert'){
+    setTimeout(function(){document.getElementById('ctxSpecialty').focus()},350);
+  }else{
+    setTimeout(function(){document.getElementById('email').focus()},350);
+  }
+}
+
+function skipContext(){
+  document.getElementById('ctxLearner').style.display='none';
+  document.getElementById('ctxExpert').style.display='none';
+  document.getElementById('email').focus();
 }
 
 async function submitWaitlist(){
   var email=document.getElementById('email').value;
   var role=selectedRole||'browser';
   if(!email||!email.includes('@')){return}
+  var experience_level='';
+  var learning_goal='';
+  var specialty='';
+  var help_type='';
+  if(role==='learner'){
+    var lvl=document.getElementById('ctxLevel');
+    experience_level=lvl.value||'';
+    learning_goal=document.getElementById('ctxGoal').value||'';
+  }else if(role==='expert'){
+    specialty=document.getElementById('ctxSpecialty').value||'';
+    var ht=document.getElementById('ctxHelp');
+    help_type=ht.value||'';
+  }
   var msg=document.getElementById('wl-msg');
   var btn=document.querySelector('#heroCapture .hero-input-row button');
   btn.classList.add('btn-loading');
@@ -582,7 +643,7 @@ async function submitWaitlist(){
   try{
     var res=await fetch('https://script.google.com/macros/s/AKfycbzfjBhdJW3BrryrtT7TaVYFUpLfO4d346q2vHdZXEwa4M1S73ltEu5xaRnqkK7yxqnptQ/exec',{
       method:'POST',
-      body:JSON.stringify({email:email,role:role})
+      body:JSON.stringify({email:email,role:role,experience_level:experience_level,learning_goal:learning_goal,specialty:specialty,help_type:help_type})
     });
     var data=await res.json();
     btn.classList.remove('btn-loading');
