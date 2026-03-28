@@ -39,9 +39,7 @@ h1,h2,h3{font-family:'Instrument Serif',serif;font-weight:400}
 /* Utility */
 .container{max-width:1080px;margin:0 auto;padding:0 24px}
 .teal{color:var(--teal)}.purple{color:var(--purple)}.gold{color:var(--gold)}
-.fade-in{opacity:0;transform:translateY(30px);animation:fadeUp .8s ease forwards}
-@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-.delay-1{animation-delay:.15s}.delay-2{animation-delay:.3s}.delay-3{animation-delay:.45s}.delay-4{animation-delay:.6s}
+/* fade-in handled by animations.js */
 
 /* Nav */
 nav{padding:14px 0;position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:none;transition:background .3s,box-shadow .3s,border-bottom .3s,backdrop-filter .3s}
@@ -56,7 +54,7 @@ nav a.nav-link:hover::before{opacity:1;transform:scale(1)}
 nav a.nav-link.active{color:var(--white)}
 nav a.nav-link.active::before{opacity:1;transform:scale(1);background:rgba(255,255,255,.08)}
 nav a.nav-link.active::after{content:'';position:absolute;bottom:0;left:14px;right:14px;height:1.5px;background:var(--teal);border-radius:1px}
-nav a.cta-nav{color:var(--navy);font-size:13px;font-weight:600;text-decoration:none;background:var(--teal);padding:8px 22px;border-radius:6px;transition:all .2s;border:none;letter-spacing:.2px}
+nav a.cta-nav{color:var(--navy);font-size:13px;font-weight:600;text-decoration:none;background:var(--teal);padding:8px 22px;border-radius:6px;transition:all .2s cubic-bezier(.4,0,.2,1);border:none;letter-spacing:.2px;display:inline-block}
 nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,201,167,.3)}
 .nav-right{display:flex;align-items:center;gap:2px}
 
@@ -68,7 +66,8 @@ nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4
 .hero h1 .tw-word.visible{opacity:1}
 .hero .hero-sub{font-size:17px;color:var(--gray);max-width:560px;margin:0 auto 36px;line-height:1.6}
 .hero-ctas{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:480px;margin:0 auto}
-.hero-ctas button{padding:16px 32px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;text-align:center;border:2px solid transparent;transition:transform .15s,box-shadow .25s,opacity .25s,border-color .25s;font-family:'DM Sans',sans-serif}
+.hero-ctas button{padding:16px 32px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;text-align:center;border:2px solid transparent;transition:transform .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,.2,1),opacity .25s,border-color .25s;font-family:'DM Sans',sans-serif}
+.hero-ctas button:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
 .hero-ctas button:active{transform:scale(.97)}
 .hero-ctas button.dimmed{opacity:.45}
 @keyframes tealPulse{0%,100%{box-shadow:0 0 0 rgba(0,201,167,0)}50%{box-shadow:0 0 20px rgba(0,201,167,.2)}}
@@ -79,24 +78,29 @@ nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4
 .hero-ctas .btn-browse{grid-column:1/-1;background:rgba(255,255,255,.03);color:var(--gray);border:1px solid rgba(255,255,255,.1)}
 .hero-ctas .btn-browse.selected{border-color:rgba(255,255,255,.4);box-shadow:0 0 20px rgba(255,255,255,.08)}
 
+/* Stagger animation */
+@keyframes staggerIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.stagger-child{opacity:0;transform:translateY(12px)}
+.stagger-child.stagger-in{animation:staggerIn .4s cubic-bezier(.34,1.56,.64,1) forwards}
+
 /* Hero email capture */
 .hero-capture{max-width:480px;margin:0 auto;overflow:hidden;max-height:0;opacity:0;transition:max-height .4s ease,opacity .3s ease,margin .3s ease}
 .hero-capture.open{max-height:500px;opacity:1;margin-top:24px}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
-.hero-urgency{font-size:13px;color:var(--teal);margin-bottom:14px;animation:pulse 2s ease-in-out infinite}
+.hero-urgency{font-size:13px;color:var(--teal);margin-bottom:14px}
 .hero-context{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
 .hero-context label{font-size:12px;color:var(--gray);text-align:left;font-weight:500}
-.hero-context select,.hero-context input[type=text]{width:100%;padding:12px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:var(--dark);color:#fff;font-size:14px;font-family:'DM Sans',sans-serif;-webkit-appearance:none;appearance:none}
+.hero-context select,.hero-context input[type=text]{width:100%;padding:12px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:var(--dark);color:#fff;font-size:14px;font-family:'DM Sans',sans-serif;-webkit-appearance:none;appearance:none;transition:border-color .2s ease,box-shadow .2s ease,background-color .2s ease}
 .hero-context select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394A3B8' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
-.hero-context select:focus,.hero-context input[type=text]:focus{outline:none;border-color:var(--teal)}
+.hero-context select:focus,.hero-context input[type=text]:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,201,167,.15),inset 0 1px 2px rgba(0,0,0,.1);background-color:rgba(0,201,167,.03)}
 .hero-context input[type=text]::placeholder{color:var(--mid)}
 .hero-context select option{background:var(--dark);color:#fff}
 .hero-skip{font-size:11px;color:var(--mid);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;margin-bottom:10px;transition:color .2s}
 .hero-skip:hover{color:var(--gray)}
 .hero-input-row{display:flex;gap:10px}
-.hero-input-row input{flex:1;padding:14px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:var(--dark);color:#fff;font-size:15px;font-family:'DM Sans',sans-serif}
+.hero-input-row input{flex:1;padding:14px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:var(--dark);color:#fff;font-size:15px;font-family:'DM Sans',sans-serif;transition:border-color .2s ease,box-shadow .2s ease,background-color .2s ease}
 .hero-input-row input::placeholder{color:var(--mid)}
-.hero-input-row input:focus{outline:none;border-color:var(--teal)}
+.hero-input-row input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,201,167,.15),inset 0 1px 2px rgba(0,0,0,.1);background-color:rgba(0,201,167,.03)}
 .hero-input-row button{padding:14px 28px;border-radius:8px;border:none;background:var(--teal);color:var(--navy);font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;white-space:nowrap}
 .hero-input-row button:hover{background:#00e6be}
 .hero-input-row button:active,.wl-form button:active{transform:scale(.97)}
@@ -104,6 +108,12 @@ nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4
 @keyframes spin{to{transform:rotate(360deg)}}
 .btn-loading{pointer-events:none;position:relative;color:transparent!important}
 .btn-loading::after{content:'';position:absolute;top:50%;left:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border:2px solid rgba(11,18,36,.3);border-top-color:var(--navy);border-radius:50%;animation:spin .6s linear infinite}
+@keyframes btnFlash{0%{background:var(--teal)}40%{background:#fff}100%{background:#10B981}}
+@keyframes txtOut{to{opacity:0;transform:translateY(-8px)}}
+@keyframes txtIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.btn-success{animation:btnFlash .3s ease forwards;color:var(--navy)!important;position:relative;overflow:hidden}
+.btn-success .btn-txt-old{display:inline-block;animation:txtOut .2s ease forwards}
+.btn-success .btn-txt-new{display:inline-block;animation:txtIn .25s ease .15s forwards;opacity:0;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) translateY(8px);white-space:nowrap}
 .btn-teal{background:var(--teal);color:var(--navy)}
 .btn-teal:hover{background:#00e6be}
 .btn-purple{background:var(--purple);color:#fff}
@@ -148,10 +158,15 @@ nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4
 
 /* Audience sections */
 .audience{padding:80px 0}
-.audience-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
-.aud-card{background:var(--dark);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:32px 24px;position:relative;overflow:hidden;transition:.3s;display:flex;flex-direction:column}
-.aud-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.2),0 0 30px rgba(0,201,167,.08)}
+.audience-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;perspective:800px}
+.aud-card{background:var(--dark);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:32px 24px;position:relative;overflow:hidden;transition:transform .4s ease-out,box-shadow .3s,border-color .3s;display:flex;flex-direction:column;transform-style:preserve-3d;will-change:transform}
+.aud-card::after{content:'';position:absolute;width:200px;height:200px;border-radius:50%;top:calc(var(--y,50%) - 100px);left:calc(var(--x,50%) - 100px);background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:1}
+.aud-card:hover::after{opacity:1}
+.aud-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.25)}
 .aud-featured{box-shadow:0 0 24px rgba(124,58,237,.1);border-color:rgba(124,58,237,.15)}
+.aud-featured:hover{border-color:rgba(124,58,237,.3)}
+.aud-card.aud-gold:hover{border-color:rgba(245,166,35,.25)}
+.aud-card.aud-teal:hover{border-color:rgba(0,201,167,.25)}
 .aud-card .accent{height:4px;position:absolute;top:0;left:0;right:0}
 .aud-card h3{font-size:22px;color:#fff;margin:16px 0 8px}
 .aud-card .card-desc{font-size:15px;color:var(--gray);line-height:1.6;margin-bottom:16px;flex:1}
@@ -192,9 +207,9 @@ nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4
 .wl-pill.dimmed{opacity:.45}
 .waitlist .sub{color:var(--mid);font-size:16px;margin-bottom:32px}
 .wl-form{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;max-width:520px;margin:0 auto}
-.wl-form input{flex:1;min-width:240px;padding:14px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:var(--dark);color:#fff;font-size:15px;font-family:'DM Sans',sans-serif}
+.wl-form input{flex:1;min-width:240px;padding:14px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:var(--dark);color:#fff;font-size:15px;font-family:'DM Sans',sans-serif;transition:border-color .2s ease,box-shadow .2s ease,background-color .2s ease}
 .wl-form input::placeholder{color:var(--mid)}
-.wl-form input:focus{outline:none;border-color:var(--teal)}
+.wl-form input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,201,167,.15),inset 0 1px 2px rgba(0,0,0,.1);background-color:rgba(0,201,167,.03)}
 .wl-form button{padding:14px 32px;border-radius:8px;border:none;background:var(--teal);color:var(--navy);font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s}
 .wl-form button:hover{background:#00e6be}
 .wl-roles{display:flex;justify-content:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
@@ -275,18 +290,18 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
 .bb-expand.bb-open{max-height:300px;opacity:1;margin-top:14px}
 .bb-context{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
 .bb-context label{font-size:11px;color:var(--gray);text-align:left;font-weight:500}
-.bb-context select,.bb-context input[type=text]{width:100%;padding:8px 12px;border-radius:6px;border:1px solid rgba(255,255,255,.12);background:rgba(11,18,36,.8);color:#fff;font-size:13px;font-family:'DM Sans',sans-serif;-webkit-appearance:none;appearance:none}
+.bb-context select,.bb-context input[type=text]{width:100%;padding:8px 12px;border-radius:6px;border:1px solid rgba(255,255,255,.12);background:rgba(11,18,36,.8);color:#fff;font-size:13px;font-family:'DM Sans',sans-serif;-webkit-appearance:none;appearance:none;transition:border-color .2s ease,box-shadow .2s ease,background-color .2s ease}
 .bb-context select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394A3B8' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
-.bb-context select:focus,.bb-context input[type=text]:focus{outline:none;border-color:var(--teal)}
+.bb-context select:focus,.bb-context input[type=text]:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,201,167,.15),inset 0 1px 2px rgba(0,0,0,.1);background-color:rgba(0,201,167,.03)}
 .bb-context input[type=text]::placeholder{color:var(--mid)}
 .bb-context select option{background:var(--dark);color:#fff}
 .bb-skip{font-size:10px;color:var(--mid);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;margin-bottom:6px;transition:color .2s}
 .bb-skip:hover{color:var(--gray)}
 .bb-urgency{font-size:11px;color:var(--teal);margin-bottom:8px;text-align:center;animation:pulse 2s ease-in-out infinite}
 .bb-email-row{display:flex;gap:8px}
-.bb-email-row input{flex:1;padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,.12);background:rgba(11,18,36,.8);color:#fff;font-size:13px;font-family:'DM Sans',sans-serif}
+.bb-email-row input{flex:1;padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,.12);background:rgba(11,18,36,.8);color:#fff;font-size:13px;font-family:'DM Sans',sans-serif;transition:border-color .2s ease,box-shadow .2s ease,background-color .2s ease}
 .bb-email-row input::placeholder{color:var(--mid)}
-.bb-email-row input:focus{outline:none;border-color:var(--teal)}
+.bb-email-row input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,201,167,.15),inset 0 1px 2px rgba(0,0,0,.1);background-color:rgba(0,201,167,.03)}
 .bb-email-row button{padding:10px 20px;border-radius:6px;border:none;background:var(--teal);color:var(--navy);font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;white-space:nowrap}
 .bb-email-row button:hover{background:#00e6be}
 .bb-fine{font-size:10px;color:var(--mid);margin-top:6px;text-align:center}
@@ -426,7 +441,7 @@ document.addEventListener('click',function(e){
       <a href="difference.html" class="nav-link">The difference</a>
       <a href="for-individuals.html" class="nav-link">For individuals</a>
       <a href="community.html" class="nav-link">Community</a>
-      <a href="#join" class="cta-nav">Join the waitlist</a>
+      <a href="#join" class="cta-nav glow-hover glow-teal">Join the waitlist</a>
     </div>
   </div>
 </nav>
@@ -438,13 +453,13 @@ document.addEventListener('click',function(e){
     <h1 class="fade-in delay-1">Adapt or get left behind.</h1>
     <p class="hero-sub fade-in delay-2">EzoraAI gives you <strong style="color:var(--white)">access</strong> to real AI experts and a <strong style="color:var(--white)">community</strong> of people on the same journey — personalized 1-on-1 guidance, 24/7 peer support, and the tools to <strong style="color:var(--white)">stay ahead</strong>.</p>
     <div class="hero-ctas fade-in delay-3">
-      <button class="btn-teal" data-role="learner" onclick="selectRole('learner',this)">I need AI help</button>
-      <button class="btn-purple" data-role="expert" onclick="selectRole('expert',this)">I'm an AI expert</button>
-      <button class="btn-browse" data-role="browser" onclick="selectRole('browser',this)">I'm here to browse</button>
+      <button class="btn-teal glow-hover glow-teal" data-role="learner" onclick="selectRole('learner',this)">I need AI help</button>
+      <button class="btn-purple glow-hover glow-purple" data-role="expert" onclick="selectRole('expert',this)">I'm an AI expert</button>
+      <button class="btn-browse glow-hover glow-white" data-role="browser" onclick="selectRole('browser',this)">I'm here to browse</button>
     </div>
     <div class="hero-capture" id="heroCapture">
-      <p class="hero-urgency">✦ Founding member spots are limited</p>
-      <div class="hero-context" id="ctxLearner" style="display:none">
+      <p class="hero-urgency stagger-child">✦ Founding member spots are limited</p>
+      <div class="hero-context stagger-child" id="ctxLearner" style="display:none">
         <label>Where are you on your AI journey?</label>
         <select id="ctxLevel">
           <option value="" disabled selected>Select one...</option>
@@ -456,7 +471,7 @@ document.addEventListener('click',function(e){
         <input type="text" id="ctxGoal" placeholder="What do you want to learn? (e.g., automate my marketing, AI for my law practice)">
         <button class="hero-skip" onclick="skipContext()">Skip — just give me early access</button>
       </div>
-      <div class="hero-context" id="ctxExpert" style="display:none">
+      <div class="hero-context stagger-child" id="ctxExpert" style="display:none">
         <label>How would you like to help?</label>
         <select id="ctxHelp">
           <option value="" disabled selected>Select one...</option>
@@ -468,11 +483,11 @@ document.addEventListener('click',function(e){
         <input type="text" id="ctxSpecialty" placeholder="What's your AI specialty? (e.g., prompt engineering, AI automation, machine learning)">
         <button class="hero-skip" onclick="skipContext()">Skip — just give me early access</button>
       </div>
-      <div class="hero-input-row">
+      <div class="hero-input-row stagger-child">
         <input type="email" id="email" placeholder="Enter your email" required>
-        <button onclick="submitWaitlist()">Get early access</button>
+        <button class="glow-hover glow-teal" onclick="submitWaitlist()">Get early access</button>
       </div>
-      <p class="hero-fine">No spam. Unsubscribe anytime.</p>
+      <p class="hero-fine stagger-child">No spam. Unsubscribe anytime.</p>
       <p id="wl-msg" style="margin-top:8px;color:var(--teal);display:none;font-size:14px"></p>
     </div>
   </div>
@@ -513,19 +528,19 @@ document.addEventListener('click',function(e){
         <div class="accent" style="background:var(--purple)"></div>
         <h3>For <span class="purple">people</span></h3>
         <p class="card-desc">Personalized 1-on-1 AI coaching from a real expert who understands your goals — no coding needed, no confusion.</p>
-        <a href="#join" class="btn-card" style="background:var(--purple);color:#fff" onclick="selectRole('learner')">Start learning AI →</a>
+        <a href="#join" class="btn-card glow-hover glow-purple" style="background:var(--purple);color:#fff" onclick="scrollAndSelect('learner')">Start learning AI →</a>
       </div>
-      <div class="aud-card fade-in delay-2">
+      <div class="aud-card aud-gold fade-in delay-2">
         <div class="accent" style="background:var(--gold)"></div>
         <h3>For <span class="gold">AI experts</span></h3>
         <p class="card-desc">Build a verified profile, attract clients, and monetize your skills through coaching, projects, and sessions — all on one platform.</p>
-        <a href="#join" class="btn-card" style="background:var(--gold);color:var(--navy)" onclick="selectRole('expert')">Join the expert network →</a>
+        <a href="#join" class="btn-card glow-hover glow-gold" style="background:var(--gold);color:var(--navy)" onclick="scrollAndSelect('expert')">Join the expert network →</a>
       </div>
-      <div class="aud-card fade-in delay-3">
+      <div class="aud-card aud-teal fade-in delay-3">
         <div class="accent" style="background:var(--teal)"></div>
         <h3>For <span class="teal">businesses</span></h3>
         <p class="card-desc">Source vetted AI experts for projects, replace costly SaaS with custom AI tools, and get real strategy — not just gig work.</p>
-        <a href="#join" class="btn-card" style="background:var(--teal);color:var(--navy)" onclick="selectRole('learner')">Find AI talent →</a>
+        <a href="#join" class="btn-card glow-hover glow-teal" style="background:var(--teal);color:var(--navy)" onclick="scrollAndSelect('learner')">Find AI talent →</a>
       </div>
     </div>
   </div>
@@ -553,7 +568,7 @@ document.addEventListener('click',function(e){
       </div>
       <div class="wl-form">
         <input type="email" id="email2" placeholder="Enter your email" required>
-        <button onclick="submitWaitlist2()">Join the waitlist</button>
+        <button class="glow-hover glow-teal" onclick="submitWaitlist2()">Join the waitlist</button>
       </div>
       <p id="wl-msg2" style="margin-top:16px;color:var(--teal);display:none;font-size:14px"></p>
     </div>
@@ -605,6 +620,61 @@ document.addEventListener('click',function(e){
 </footer>
 
 <script>
+function btnSuccess(btn,originalText){
+  var oldText=btn.textContent;
+  btn.innerHTML='<span class="btn-txt-old">'+oldText+'</span><span class="btn-txt-new">✓ You\'re in!</span>';
+  btn.classList.add('btn-success');
+  // Confetti burst
+  var colors=['#00C9A7','#7C3AED','#F5A623','#10B981','#F4F6FA'];
+  var rect=btn.getBoundingClientRect();
+  var cx=rect.left+rect.width/2;
+  var cy=rect.top+rect.height/2;
+  for(var i=0;i<10;i++){
+    var dot=document.createElement('div');
+    var angle=Math.random()*Math.PI*2;
+    var dist=40+Math.random()*60;
+    var dx=Math.cos(angle)*dist;
+    var dy=Math.sin(angle)*dist;
+    dot.style.cssText='position:fixed;width:4px;height:4px;border-radius:50%;pointer-events:none;z-index:9999;left:'+cx+'px;top:'+cy+'px;background:'+colors[Math.floor(Math.random()*colors.length)]+';transition:transform .6s cubic-bezier(.25,.46,.45,.94),opacity .6s ease;opacity:1;transform:translate(-2px,-2px)';
+    document.body.appendChild(dot);
+    // Force reflow then animate
+    void dot.offsetHeight;
+    dot.style.transform='translate('+dx+'px,'+dy+'px)';
+    dot.style.opacity='0';
+    setTimeout(function(d){d.remove()},700,dot);
+  }
+  // Reset after 3s
+  setTimeout(function(){
+    btn.classList.remove('btn-success');
+    btn.innerHTML=originalText;
+    btn.style.animation='';
+    btn.style.background='';
+  },3000);
+}
+
+function scrollAndSelect(role){
+  setTimeout(function(){
+    var btn=document.querySelector('.hero-ctas button[data-role="'+role+'"]');
+    if(btn)btn.click();
+  },450);
+}
+
+function staggerChildren(container){
+  var children=container.querySelectorAll('.stagger-child');
+  // Reset all
+  children.forEach(function(c){c.classList.remove('stagger-in');c.style.animationDelay=''});
+  // Force reflow
+  void container.offsetHeight;
+  // Stagger visible ones
+  var delay=0;
+  children.forEach(function(c){
+    if(c.style.display==='none')return;
+    c.style.animationDelay=delay+'ms';
+    c.classList.add('stagger-in');
+    delay+=80;
+  });
+}
+
 var selectedRole='';
 function selectRole(role,btn){
   selectedRole=role;
@@ -613,16 +683,17 @@ function selectRole(role,btn){
     if(b===btn){b.classList.add('selected');b.classList.remove('dimmed')}
     else{b.classList.remove('selected');b.classList.add('dimmed')}
   });
-  // Show/hide context fields based on role
   document.getElementById('ctxLearner').style.display=(role==='learner')?'flex':'none';
   document.getElementById('ctxExpert').style.display=(role==='expert')?'flex':'none';
-  document.getElementById('heroCapture').classList.add('open');
+  var capture=document.getElementById('heroCapture');
+  capture.classList.add('open');
+  staggerChildren(capture);
   if(role==='learner'){
-    setTimeout(function(){document.getElementById('ctxLevel').focus()},350);
+    setTimeout(function(){document.getElementById('ctxLevel').focus()},400);
   }else if(role==='expert'){
-    setTimeout(function(){document.getElementById('ctxSpecialty').focus()},350);
+    setTimeout(function(){document.getElementById('ctxSpecialty').focus()},400);
   }else{
-    setTimeout(function(){document.getElementById('email').focus()},350);
+    setTimeout(function(){document.getElementById('email').focus()},400);
   }
 }
 
@@ -665,8 +736,7 @@ async function submitWaitlist(){
       msg.style.color='var(--teal)';
       msg.textContent="You're on the list! We'll be in touch soon.";
       document.getElementById('email').value='';
-      btn.textContent='✓ You\'re in!';
-      setTimeout(function(){btn.textContent='Get early access'},3000);
+      btnSuccess(btn,'Get early access');
     }else if(data.status==='duplicate'){
       msg.style.color='#F5A623';
       msg.textContent="You're already on the list!";
@@ -714,8 +784,7 @@ async function submitWaitlist2(){
       msg.style.color='var(--teal)';
       msg.textContent="You're on the list! We'll be in touch soon.";
       document.getElementById('email2').value='';
-      btn.textContent='✓ You\'re in!';
-      setTimeout(function(){btn.textContent='Join the waitlist'},3000);
+      btnSuccess(btn,'Join the waitlist');
     }else if(data.status==='duplicate'){
       msg.style.color='#F5A623';
       msg.textContent="You're already on the list!";
@@ -733,11 +802,28 @@ async function submitWaitlist2(){
   btn.disabled=false;
 }
 
-// Scroll-triggered fade-in
-var obs=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){if(e.isIntersecting){e.target.style.animationPlayState='running';obs.unobserve(e.target)}})
-},{threshold:0.1});
-document.querySelectorAll('.fade-in').forEach(function(el){el.style.animationPlayState='paused';obs.observe(el)});
+// 3D tilt effect on audience cards
+if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+  document.querySelectorAll('.aud-card').forEach(function(card){
+    card.addEventListener('mousemove',function(e){
+      var r=card.getBoundingClientRect();
+      var x=e.clientX-r.left;
+      var y=e.clientY-r.top;
+      var cx=r.width/2;
+      var cy=r.height/2;
+      var rotY=((x-cx)/cx)*4;
+      var rotX=((cy-y)/cy)*4;
+      card.style.transform='rotateX('+rotX+'deg) rotateY('+rotY+'deg)';
+      card.style.setProperty('--x',x+'px');
+      card.style.setProperty('--y',y+'px');
+    });
+    card.addEventListener('mouseleave',function(){
+      card.style.transform='';
+    });
+  });
+}
+
+// Scroll-triggered fade-in handled by animations.js
 
 // Typewriter effect for hero headline
 (function(){
@@ -765,13 +851,13 @@ document.querySelectorAll('.fade-in').forEach(function(el){el.style.animationPla
     <div class="bb-row1">
       <span class="bb-text"><strong>The AI economy is here.</strong> Don't get left behind.</span>
       <div class="bb-btns">
-        <button class="bb-teal" onclick="selectBannerRole('learner',this)">I need AI help</button>
-        <button class="bb-purple" onclick="selectBannerRole('expert',this)">I'm an AI expert</button>
-        <button class="bb-ghost" onclick="selectBannerRole('browser',this)">Just browsing</button>
+        <button class="bb-teal glow-hover glow-teal" onclick="selectBannerRole('learner',this)">I need AI help</button>
+        <button class="bb-purple glow-hover glow-purple" onclick="selectBannerRole('expert',this)">I'm an AI expert</button>
+        <button class="bb-ghost glow-hover glow-white" onclick="selectBannerRole('browser',this)">Just browsing</button>
       </div>
     </div>
     <div class="bb-expand" id="bbExpand">
-      <div class="bb-context" id="bbCtxLearner" style="display:none">
+      <div class="bb-context stagger-child" id="bbCtxLearner" style="display:none">
         <label>Where are you on your AI journey?</label>
         <select id="bbLevel">
           <option value="" disabled selected>Select one...</option>
@@ -783,7 +869,7 @@ document.querySelectorAll('.fade-in').forEach(function(el){el.style.animationPla
         <input type="text" id="bbGoal" placeholder="What do you want to learn? (e.g., automate my marketing)">
         <button class="bb-skip" onclick="skipBannerCtx()">Skip — just give me early access</button>
       </div>
-      <div class="bb-context" id="bbCtxExpert" style="display:none">
+      <div class="bb-context stagger-child" id="bbCtxExpert" style="display:none">
         <label>How would you like to help?</label>
         <select id="bbHelp">
           <option value="" disabled selected>Select one...</option>
@@ -795,12 +881,12 @@ document.querySelectorAll('.fade-in').forEach(function(el){el.style.animationPla
         <input type="text" id="bbSpecialty" placeholder="What's your AI specialty? (e.g., prompt engineering)">
         <button class="bb-skip" onclick="skipBannerCtx()">Skip — just give me early access</button>
       </div>
-      <p class="bb-urgency">✦ Founding member spots are limited</p>
-      <div class="bb-email-row">
+      <p class="bb-urgency stagger-child">✦ Founding member spots are limited</p>
+      <div class="bb-email-row stagger-child">
         <input type="email" id="bbEmail" placeholder="Enter your email" required>
-        <button onclick="submitBanner()">Get early access</button>
+        <button class="glow-hover glow-teal" onclick="submitBanner()">Get early access</button>
       </div>
-      <p class="bb-fine">No spam. Unsubscribe anytime.</p>
+      <p class="bb-fine stagger-child">No spam. Unsubscribe anytime.</p>
     </div>
     <button class="bb-close" onclick="dismissBanner()" aria-label="Close">&times;</button>
   </div>
@@ -883,13 +969,15 @@ function selectBannerRole(role,btn){
   });
   document.getElementById('bbCtxLearner').style.display=(role==='learner')?'flex':'none';
   document.getElementById('bbCtxExpert').style.display=(role==='expert')?'flex':'none';
-  document.getElementById('bbExpand').classList.add('bb-open');
+  var expand=document.getElementById('bbExpand');
+  expand.classList.add('bb-open');
+  staggerChildren(expand);
   if(role==='learner'){
-    setTimeout(function(){document.getElementById('bbLevel').focus()},300);
+    setTimeout(function(){document.getElementById('bbLevel').focus()},400);
   }else if(role==='expert'){
-    setTimeout(function(){document.getElementById('bbHelp').focus()},300);
+    setTimeout(function(){document.getElementById('bbHelp').focus()},400);
   }else{
-    setTimeout(function(){document.getElementById('bbEmail').focus()},300);
+    setTimeout(function(){document.getElementById('bbEmail').focus()},400);
   }
 }
 
@@ -931,8 +1019,7 @@ async function submitBanner(){
     var data=await res.json();
     btn.classList.remove('btn-loading');
     bannerSubmitted=true;
-    var inner=document.querySelector('.bb-inner');
-    inner.innerHTML='<span class="bb-text" style="color:var(--teal);font-weight:600;text-align:center;display:block;padding:12px 0">✓ You\'re on the list!</span>';
+    btnSuccess(btn,'Get early access');
     sessionStorage.setItem('bb_dismissed','1');
     setTimeout(dismissBanner,2000);
   }catch(err){
@@ -942,6 +1029,8 @@ async function submitBanner(){
   }
 }
 </script>
+<script src="glow.js"></script>
+<script src="animations.js"></script>
 
 </body>
 </html>

@@ -36,9 +36,7 @@ body.fade-out{opacity:0;transition:opacity .2s ease}
 h1,h2,h3{font-family:'Instrument Serif',serif;font-weight:400}
 .container{max-width:760px;margin:0 auto;padding:0 24px}
 .container.wide{max-width:1080px}
-.fade-in{opacity:0;transform:translateY(30px);animation:fadeUp .8s ease forwards}
-@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-.delay-1{animation-delay:.15s}.delay-2{animation-delay:.3s}.delay-3{animation-delay:.45s}.delay-4{animation-delay:.6s}
+/* fade-in handled by animations.js */
 
 /* Nav */
 nav{padding:14px 0;position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:none;transition:background .3s,box-shadow .3s,border-bottom .3s,backdrop-filter .3s}
@@ -193,7 +191,7 @@ document.addEventListener('click',function(e){
       <a href="difference.html" class="nav-link">The difference</a>
       <a href="for-individuals.html" class="nav-link">For individuals</a>
       <a href="community.html" class="nav-link">Community</a>
-      <a href="index.html#join" class="cta-nav">Join the waitlist</a>
+      <a href="index.html#join" class="cta-nav glow-hover glow-teal">Join the waitlist</a>
     </div>
   </div>
 </nav>
@@ -309,10 +307,7 @@ document.addEventListener('click',function(e){
 <button id="backToTop" class="back-to-top" aria-label="Back to top">&#8593;</button>
 
 <script>
-const obs=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.style.animationPlayState='running';obs.unobserve(e.target)}})
-},{threshold:0.1});
-document.querySelectorAll('.fade-in').forEach(el=>{el.style.animationPlayState='paused';obs.observe(el)});
+// Scroll-triggered fade-in handled by animations.js
 
 const bttBtn=document.getElementById('backToTop');
 window.addEventListener('scroll',()=>{
@@ -325,5 +320,7 @@ window.addEventListener('scroll',function(){var nav=document.querySelector('nav'
 document.querySelectorAll('.nav-right a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navToggle').checked=false})});
 </script>
 
+<script src="glow.js"></script>
+<script src="animations.js"></script>
 </body>
 </html>
