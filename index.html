@@ -467,7 +467,9 @@ document.addEventListener('click',function(e){
           <option value="tried">I've tried AI but don't use it regularly</option>
           <option value="use">I use AI but want to get much better</option>
           <option value="specific">I need AI for a specific project or goal</option>
+          <option value="other">Other</option>
         </select>
+        <input type="text" class="other-detail" id="ctxLevelOther" placeholder="Tell us more..." style="max-height:0;opacity:0;padding:0 16px;border:0;margin:0;overflow:hidden;transition:max-height .25s ease,opacity .25s ease,padding .25s ease,border .25s ease,margin .25s ease">
         <input type="text" id="ctxGoal" placeholder="What do you want to learn? (e.g., automate my marketing, AI for my law practice)">
         <button class="hero-skip" onclick="skipContext()">Skip — just give me early access</button>
       </div>
@@ -479,7 +481,9 @@ document.addEventListener('click',function(e){
           <option value="workshops">Group workshops or AMAs</option>
           <option value="consulting">Project-based consulting</option>
           <option value="all">All of the above</option>
+          <option value="other">Other</option>
         </select>
+        <input type="text" class="other-detail" id="ctxHelpOther" placeholder="Tell us more..." style="max-height:0;opacity:0;padding:0 16px;border:0;margin:0;overflow:hidden;transition:max-height .25s ease,opacity .25s ease,padding .25s ease,border .25s ease,margin .25s ease">
         <input type="text" id="ctxSpecialty" placeholder="What's your AI specialty? (e.g., prompt engineering, AI automation, machine learning)">
         <button class="hero-skip" onclick="skipContext()">Skip — just give me early access</button>
       </div>
@@ -703,22 +707,44 @@ function skipContext(){
   document.getElementById('email').focus();
 }
 
+// "Other" dropdown reveal logic
+function toggleOther(selectId,otherId){
+  var sel=document.getElementById(selectId);
+  var other=document.getElementById(otherId);
+  if(!sel||!other)return;
+  sel.addEventListener('change',function(){
+    if(sel.value==='other'){
+      other.style.maxHeight='48px';other.style.opacity='1';
+      other.style.padding=other.closest('.bb-context')?'8px 12px':'12px 16px';
+      other.style.border='1px solid rgba(255,255,255,.12)';other.style.marginTop='8px';
+      other.focus();
+    }else{
+      other.style.maxHeight='0';other.style.opacity='0';
+      other.style.padding=other.closest('.bb-context')?'0 12px':'0 16px';
+      other.style.border='0';other.style.marginTop='0';other.value='';
+    }
+  });
+}
+toggleOther('ctxLevel','ctxLevelOther');
+toggleOther('ctxHelp','ctxHelpOther');
+toggleOther('bbLevel','bbLevelOther');
+toggleOther('bbHelp','bbHelpOther');
+
 async function submitWaitlist(){
   var email=document.getElementById('email').value;
   var role=selectedRole||'browser';
   if(!email||!email.includes('@')){return}
-  var experience_level='';
-  var learning_goal='';
-  var specialty='';
-  var help_type='';
+  var experience_level='',learning_goal='',specialty='',help_type='',other_detail='';
   if(role==='learner'){
     var lvl=document.getElementById('ctxLevel');
     experience_level=lvl.value||'';
+    if(experience_level==='other')other_detail=document.getElementById('ctxLevelOther').value||'';
     learning_goal=document.getElementById('ctxGoal').value||'';
   }else if(role==='expert'){
-    specialty=document.getElementById('ctxSpecialty').value||'';
     var ht=document.getElementById('ctxHelp');
     help_type=ht.value||'';
+    if(help_type==='other')other_detail=document.getElementById('ctxHelpOther').value||'';
+    specialty=document.getElementById('ctxSpecialty').value||'';
   }
   var msg=document.getElementById('wl-msg');
   var btn=document.querySelector('#heroCapture .hero-input-row button');
@@ -727,7 +753,7 @@ async function submitWaitlist(){
   try{
     var res=await fetch('https://script.google.com/macros/s/AKfycbzfjBhdJW3BrryrtT7TaVYFUpLfO4d346q2vHdZXEwa4M1S73ltEu5xaRnqkK7yxqnptQ/exec',{
       method:'POST',
-      body:JSON.stringify({email:email,role:role,experience_level:experience_level,learning_goal:learning_goal,specialty:specialty,help_type:help_type})
+      body:JSON.stringify({email:email,role:role,experience_level:experience_level,learning_goal:learning_goal,specialty:specialty,help_type:help_type,other_detail:other_detail})
     });
     var data=await res.json();
     btn.classList.remove('btn-loading');
@@ -865,7 +891,9 @@ if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
           <option value="tried">I've tried AI but don't use it regularly</option>
           <option value="use">I use AI but want to get much better</option>
           <option value="specific">I need AI for a specific project or goal</option>
+          <option value="other">Other</option>
         </select>
+        <input type="text" class="other-detail" id="bbLevelOther" placeholder="Tell us more..." style="max-height:0;opacity:0;padding:0 12px;border:0;margin:0;overflow:hidden;transition:max-height .25s ease,opacity .25s ease,padding .25s ease,border .25s ease,margin .25s ease">
         <input type="text" id="bbGoal" placeholder="What do you want to learn? (e.g., automate my marketing)">
         <button class="bb-skip" onclick="skipBannerCtx()">Skip — just give me early access</button>
       </div>
@@ -877,7 +905,9 @@ if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
           <option value="workshops">Group workshops or AMAs</option>
           <option value="consulting">Project-based consulting</option>
           <option value="all">All of the above</option>
+          <option value="other">Other</option>
         </select>
+        <input type="text" class="other-detail" id="bbHelpOther" placeholder="Tell us more..." style="max-height:0;opacity:0;padding:0 12px;border:0;margin:0;overflow:hidden;transition:max-height .25s ease,opacity .25s ease,padding .25s ease,border .25s ease,margin .25s ease">
         <input type="text" id="bbSpecialty" placeholder="What's your AI specialty? (e.g., prompt engineering)">
         <button class="bb-skip" onclick="skipBannerCtx()">Skip — just give me early access</button>
       </div>
@@ -998,14 +1028,16 @@ function dismissBanner(){
 async function submitBanner(){
   var email=document.getElementById('bbEmail').value;
   if(!email||!email.includes('@'))return;
-  var experience_level='',learning_goal='',specialty='',help_type='';
+  var experience_level='',learning_goal='',specialty='',help_type='',other_detail='';
   if(bannerRole==='learner'){
     var lvl=document.getElementById('bbLevel');
     experience_level=lvl.value||'';
+    if(experience_level==='other')other_detail=document.getElementById('bbLevelOther').value||'';
     learning_goal=document.getElementById('bbGoal').value||'';
   }else if(bannerRole==='expert'){
     var ht=document.getElementById('bbHelp');
     help_type=ht.value||'';
+    if(help_type==='other')other_detail=document.getElementById('bbHelpOther').value||'';
     specialty=document.getElementById('bbSpecialty').value||'';
   }
   var btn=document.querySelector('#bbExpand .bb-email-row button');
@@ -1014,7 +1046,7 @@ async function submitBanner(){
   try{
     var res=await fetch('https://script.google.com/macros/s/AKfycbzfjBhdJW3BrryrtT7TaVYFUpLfO4d346q2vHdZXEwa4M1S73ltEu5xaRnqkK7yxqnptQ/exec',{
       method:'POST',
-      body:JSON.stringify({email:email,role:bannerRole,experience_level:experience_level,learning_goal:learning_goal,specialty:specialty,help_type:help_type})
+      body:JSON.stringify({email:email,role:bannerRole,experience_level:experience_level,learning_goal:learning_goal,specialty:specialty,help_type:help_type,other_detail:other_detail})
     });
     var data=await res.json();
     btn.classList.remove('btn-loading');
