@@ -258,34 +258,47 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
 .bottom-banner{position:fixed;bottom:0;left:0;right:0;z-index:998;background:var(--dark);border-top:2px solid var(--teal);transform:translateY(100%);transition:transform .3s ease-out;box-shadow:0 -4px 24px rgba(0,0,0,.4)}
 .bottom-banner.visible{transform:translateY(0)}
 .bottom-banner.hiding{transform:translateY(100%);transition:transform .3s ease-in}
-.bb-inner{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:16px;position:relative}
+.bb-inner{max-width:640px;margin:0 auto;padding:16px 48px 16px 24px}
+.bb-row1{display:flex;align-items:center;gap:12px;justify-content:center}
 .bb-text{font-size:14px;color:var(--gray);font-weight:500;white-space:nowrap}
 .bb-text strong{color:#fff}
-.bb-pills{display:flex;gap:8px;flex-shrink:0;transition:gap .25s ease}
-.bb-pill{height:32px;padding:0 16px;border-radius:16px;font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:transform .25s ease,opacity .25s ease,box-shadow .25s ease;white-space:nowrap}
-.bb-pill-learn{background:rgba(124,58,237,.8);color:#fff}
-.bb-pill-learn.bb-selected{background:rgba(124,58,237,1);box-shadow:0 0 14px rgba(124,58,237,.4)}
-.bb-pill-expert{background:rgba(245,166,35,.8);color:var(--navy)}
-.bb-pill-expert.bb-selected{background:rgba(245,166,35,1);box-shadow:0 0 14px rgba(245,166,35,.4)}
-.bb-pill-browse{background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--gray)}
-.bb-pill-browse.bb-selected{border-color:rgba(255,255,255,.5);box-shadow:0 0 14px rgba(255,255,255,.1);color:#fff}
-.bb-pill.bb-unselected{transform:scale(.85);opacity:.4}
-.bb-email-row{display:flex;gap:8px;align-items:center;overflow:hidden;max-width:0;opacity:0;transition:max-width .25s ease,opacity .25s ease}
-.bb-email-row.bb-open{max-width:320px;opacity:1}
-.bb-email-row input{width:180px;padding:7px 12px;border-radius:6px;border:1px solid rgba(255,255,255,.12);background:rgba(11,18,36,.8);color:#fff;font-size:13px;font-family:'DM Sans',sans-serif}
+.bb-btns{display:flex;gap:8px;flex-shrink:0}
+.bb-btns button{padding:8px 16px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;border:2px solid transparent;transition:opacity .25s,box-shadow .25s,border-color .25s;white-space:nowrap}
+.bb-btns button.dimmed{opacity:.4}
+.bb-btns .bb-teal{background:var(--teal);color:var(--navy)}
+.bb-btns .bb-teal.bb-sel{border-color:var(--teal);box-shadow:0 0 16px rgba(0,201,167,.3)}
+.bb-btns .bb-purple{background:var(--purple);color:#fff}
+.bb-btns .bb-purple.bb-sel{border-color:var(--purple);box-shadow:0 0 16px rgba(124,58,237,.3)}
+.bb-btns .bb-ghost{background:rgba(255,255,255,.03);color:var(--gray);border:1px solid rgba(255,255,255,.1)}
+.bb-btns .bb-ghost.bb-sel{border-color:rgba(255,255,255,.4);box-shadow:0 0 16px rgba(255,255,255,.08)}
+.bb-expand{overflow:hidden;max-height:0;opacity:0;transition:max-height .3s ease,opacity .25s ease,margin .25s ease}
+.bb-expand.bb-open{max-height:300px;opacity:1;margin-top:14px}
+.bb-context{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.bb-context label{font-size:11px;color:var(--gray);text-align:left;font-weight:500}
+.bb-context select,.bb-context input[type=text]{width:100%;padding:8px 12px;border-radius:6px;border:1px solid rgba(255,255,255,.12);background:rgba(11,18,36,.8);color:#fff;font-size:13px;font-family:'DM Sans',sans-serif;-webkit-appearance:none;appearance:none}
+.bb-context select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394A3B8' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
+.bb-context select:focus,.bb-context input[type=text]:focus{outline:none;border-color:var(--teal)}
+.bb-context input[type=text]::placeholder{color:var(--mid)}
+.bb-context select option{background:var(--dark);color:#fff}
+.bb-skip{font-size:10px;color:var(--mid);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;margin-bottom:6px;transition:color .2s}
+.bb-skip:hover{color:var(--gray)}
+.bb-urgency{font-size:11px;color:var(--teal);margin-bottom:8px;text-align:center;animation:pulse 2s ease-in-out infinite}
+.bb-email-row{display:flex;gap:8px}
+.bb-email-row input{flex:1;padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,.12);background:rgba(11,18,36,.8);color:#fff;font-size:13px;font-family:'DM Sans',sans-serif}
 .bb-email-row input::placeholder{color:var(--mid)}
 .bb-email-row input:focus{outline:none;border-color:var(--teal)}
-.bb-email-row button{padding:7px 18px;border-radius:6px;border:none;background:var(--teal);color:var(--navy);font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;white-space:nowrap}
+.bb-email-row button{padding:10px 20px;border-radius:6px;border:none;background:var(--teal);color:var(--navy);font-size:13px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;white-space:nowrap}
 .bb-email-row button:hover{background:#00e6be}
-.bb-close{background:none;border:none;color:var(--mid);font-size:20px;cursor:pointer;padding:4px 8px;line-height:1;transition:color .2s;position:absolute;right:16px;top:50%;transform:translateY(-50%)}
+.bb-fine{font-size:10px;color:var(--mid);margin-top:6px;text-align:center}
+.bb-close{background:none;border:none;color:var(--mid);font-size:20px;cursor:pointer;padding:8px;line-height:1;transition:color .2s;position:absolute;right:16px;top:16px;z-index:1}
 .bb-close:hover{color:#fff}
 @media(max-width:768px){
-  .bb-inner{flex-wrap:wrap;gap:10px;justify-content:center;padding:12px 48px 12px 16px}
+  .bb-inner{padding:14px 40px 14px 16px}
+  .bb-row1{flex-wrap:wrap;gap:8px}
   .bb-text{white-space:normal;text-align:center;width:100%;font-size:13px}
-  .bb-pills{justify-content:center;width:100%}
-  .bb-email-row{width:100%;justify-content:center}
-  .bb-email-row.bb-open{max-width:100%}
-  .bb-email-row input{flex:1;min-width:0}
+  .bb-btns{width:100%;justify-content:center}
+  .bb-email-row{flex-direction:column}
+  .bb-email-row input,.bb-email-row button{width:100%;min-height:44px}
 }
 
 /* Hamburger menu — hidden on desktop */
@@ -749,15 +762,45 @@ document.querySelectorAll('.fade-in').forEach(function(el){el.style.animationPla
 
 <div class="bottom-banner" id="bottomBanner">
   <div class="bb-inner">
-    <span class="bb-text"><strong>The AI economy is here.</strong> Don't get left behind.</span>
-    <div class="bb-pills">
-      <button class="bb-pill bb-pill-learn" onclick="selectBannerRole('learn',this)">Learn</button>
-      <button class="bb-pill bb-pill-expert" onclick="selectBannerRole('expert',this)">Expert</button>
-      <button class="bb-pill bb-pill-browse" onclick="selectBannerRole('browse',this)">Browse</button>
+    <div class="bb-row1">
+      <span class="bb-text"><strong>The AI economy is here.</strong> Don't get left behind.</span>
+      <div class="bb-btns">
+        <button class="bb-teal" onclick="selectBannerRole('learner',this)">I need AI help</button>
+        <button class="bb-purple" onclick="selectBannerRole('expert',this)">I'm an AI expert</button>
+        <button class="bb-ghost" onclick="selectBannerRole('browser',this)">Just browsing</button>
+      </div>
     </div>
-    <div class="bb-email-row" id="bbEmailRow">
-      <input type="email" id="bbEmail" placeholder="Your email">
-      <button onclick="submitBanner()">Join</button>
+    <div class="bb-expand" id="bbExpand">
+      <div class="bb-context" id="bbCtxLearner" style="display:none">
+        <label>Where are you on your AI journey?</label>
+        <select id="bbLevel">
+          <option value="" disabled selected>Select one...</option>
+          <option value="never">I've never used AI tools</option>
+          <option value="tried">I've tried AI but don't use it regularly</option>
+          <option value="use">I use AI but want to get much better</option>
+          <option value="specific">I need AI for a specific project or goal</option>
+        </select>
+        <input type="text" id="bbGoal" placeholder="What do you want to learn? (e.g., automate my marketing)">
+        <button class="bb-skip" onclick="skipBannerCtx()">Skip — just give me early access</button>
+      </div>
+      <div class="bb-context" id="bbCtxExpert" style="display:none">
+        <label>How would you like to help?</label>
+        <select id="bbHelp">
+          <option value="" disabled selected>Select one...</option>
+          <option value="coaching">1-on-1 coaching sessions</option>
+          <option value="workshops">Group workshops or AMAs</option>
+          <option value="consulting">Project-based consulting</option>
+          <option value="all">All of the above</option>
+        </select>
+        <input type="text" id="bbSpecialty" placeholder="What's your AI specialty? (e.g., prompt engineering)">
+        <button class="bb-skip" onclick="skipBannerCtx()">Skip — just give me early access</button>
+      </div>
+      <p class="bb-urgency">✦ Founding member spots are limited</p>
+      <div class="bb-email-row">
+        <input type="email" id="bbEmail" placeholder="Enter your email" required>
+        <button onclick="submitBanner()">Get early access</button>
+      </div>
+      <p class="bb-fine">No spam. Unsubscribe anytime.</p>
     </div>
     <button class="bb-close" onclick="dismissBanner()" aria-label="Close">&times;</button>
   </div>
@@ -834,12 +877,26 @@ function checkBanner(){
 
 function selectBannerRole(role,btn){
   bannerRole=role;
-  document.querySelectorAll('.bb-pill').forEach(function(p){
-    if(p===btn){p.classList.add('bb-selected');p.classList.remove('bb-unselected')}
-    else{p.classList.remove('bb-selected');p.classList.add('bb-unselected')}
+  document.querySelectorAll('.bb-btns button').forEach(function(b){
+    if(b===btn){b.classList.add('bb-sel');b.classList.remove('dimmed')}
+    else{b.classList.remove('bb-sel');b.classList.add('dimmed')}
   });
-  document.getElementById('bbEmailRow').classList.add('bb-open');
-  setTimeout(function(){document.getElementById('bbEmail').focus()},300);
+  document.getElementById('bbCtxLearner').style.display=(role==='learner')?'flex':'none';
+  document.getElementById('bbCtxExpert').style.display=(role==='expert')?'flex':'none';
+  document.getElementById('bbExpand').classList.add('bb-open');
+  if(role==='learner'){
+    setTimeout(function(){document.getElementById('bbLevel').focus()},300);
+  }else if(role==='expert'){
+    setTimeout(function(){document.getElementById('bbHelp').focus()},300);
+  }else{
+    setTimeout(function(){document.getElementById('bbEmail').focus()},300);
+  }
+}
+
+function skipBannerCtx(){
+  document.getElementById('bbCtxLearner').style.display='none';
+  document.getElementById('bbCtxExpert').style.display='none';
+  document.getElementById('bbEmail').focus();
 }
 
 function dismissBanner(){
@@ -853,19 +910,29 @@ function dismissBanner(){
 async function submitBanner(){
   var email=document.getElementById('bbEmail').value;
   if(!email||!email.includes('@'))return;
-  var btn=document.querySelector('.bb-email-row button');
+  var experience_level='',learning_goal='',specialty='',help_type='';
+  if(bannerRole==='learner'){
+    var lvl=document.getElementById('bbLevel');
+    experience_level=lvl.value||'';
+    learning_goal=document.getElementById('bbGoal').value||'';
+  }else if(bannerRole==='expert'){
+    var ht=document.getElementById('bbHelp');
+    help_type=ht.value||'';
+    specialty=document.getElementById('bbSpecialty').value||'';
+  }
+  var btn=document.querySelector('#bbExpand .bb-email-row button');
   btn.classList.add('btn-loading');
   btn.disabled=true;
   try{
     var res=await fetch('https://script.google.com/macros/s/AKfycbzfjBhdJW3BrryrtT7TaVYFUpLfO4d346q2vHdZXEwa4M1S73ltEu5xaRnqkK7yxqnptQ/exec',{
       method:'POST',
-      body:JSON.stringify({email:email,role:bannerRole})
+      body:JSON.stringify({email:email,role:bannerRole,experience_level:experience_level,learning_goal:learning_goal,specialty:specialty,help_type:help_type})
     });
     var data=await res.json();
     btn.classList.remove('btn-loading');
     bannerSubmitted=true;
     var inner=document.querySelector('.bb-inner');
-    inner.innerHTML='<span class="bb-text" style="color:var(--teal);font-weight:600">✓ You\'re on the list!</span>';
+    inner.innerHTML='<span class="bb-text" style="color:var(--teal);font-weight:600;text-align:center;display:block;padding:12px 0">✓ You\'re on the list!</span>';
     sessionStorage.setItem('bb_dismissed','1');
     setTimeout(dismissBanner,2000);
   }catch(err){
