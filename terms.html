@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EzoraAI — Our Vision</title>
+<title>Terms of Service — EzoraAI</title>
 
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -14,12 +14,12 @@
 <!-- Open Graph / Social sharing -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EzoraAI">
-<meta property="og:url" content="https://ezora.ai/vision.html">
+<meta property="og:url" content="https://ezora.ai/terms.html">
 <meta property="og:image" content="https://ezora.ai/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:title" content="Our Vision — EzoraAI">
-<meta property="og:description" content="Why we're building the central hub for the AI economy. The workforce shift is here — and no one gets left behind.">
+<meta property="og:title" content="Terms of Service — EzoraAI">
+<meta property="og:description" content="Waitlist Terms of Service for EzoraAI.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ezora.ai/og-image.png">
 
@@ -33,14 +33,12 @@
   --white:#F4F6FA;--gray:#94A3B8;--text:#E2E8F0;--mid:#64748b;
 }
 body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden}
-/* Page transition: only content fades, nav stays visible */
 #page-content{opacity:0;transform:translateY(6px);transition:opacity .35s cubic-bezier(.16,1,.3,1),transform .35s cubic-bezier(.16,1,.3,1)}
 #page-content.page-visible{opacity:1;transform:translateY(0)}
 #page-content.page-exit{opacity:0;transform:translateY(-4px);transition:opacity .18s ease,transform .18s ease}
 h1,h2,h3{font-family:'Instrument Serif',serif;font-weight:400}
 .container{max-width:760px;margin:0 auto;padding:0 24px}
 .container.wide{max-width:1080px}
-/* fade-in handled by animations.js */
 
 /* Nav */
 nav{padding:14px 0;position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:none;transition:background .3s,box-shadow .3s,border-bottom .3s,backdrop-filter .3s}
@@ -57,44 +55,20 @@ nav a.cta-nav{color:var(--navy);font-size:13px;font-weight:600;text-decoration:n
 nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,201,167,.3)}
 .nav-right{display:flex;align-items:center;gap:2px}
 
-/* Glow */
-.vision-hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:140%;height:180%;background:radial-gradient(ellipse 65% 55% at 50% 45%,rgba(0,201,167,.07) 0%,rgba(0,201,167,.03) 40%,transparent 70%);pointer-events:none;z-index:0;opacity:0;animation:glowIn .8s ease .15s forwards}
-@keyframes glowIn{to{opacity:1}}
-
-/* Hero */
-.vision-hero{padding:100px 0 60px;text-align:center;position:relative;overflow:visible}
-.vision-tag{display:inline-block;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);border:1px solid rgba(0,201,167,.3);padding:6px 16px;border-radius:20px;margin-bottom:20px}
-.vision-hero h1{font-size:clamp(36px,5vw,56px);color:#fff;letter-spacing:-1.5px;margin-bottom:16px;font-weight:400}
-.vision-hero p{font-size:17px;color:var(--mid);letter-spacing:.3px}
-
-/* Founders card */
-.founders-card{background:var(--dark);border-radius:14px;padding:32px;border-left:4px solid var(--teal);margin-bottom:64px}
-.founders-card p{font-size:16px;color:var(--gray);line-height:1.8}
-
-/* Belief blockquote */
-.belief{margin-bottom:64px;padding:0 8px}
-.belief blockquote{border-left:3px solid var(--teal);padding:16px 24px;font-family:'Instrument Serif',serif;font-size:clamp(20px,3vw,28px);color:var(--text);font-style:italic;line-height:1.5}
-
-/* What we're building */
-.building{margin-bottom:64px}
-.building h2{font-size:clamp(26px,3.5vw,36px);color:#fff;margin-bottom:20px;letter-spacing:-.5px}
-.building p{font-size:16px;color:var(--gray);line-height:1.8;margin-bottom:16px}
-.building p:last-child{margin-bottom:0}
-
-/* Community mission */
-.community-mission{margin-bottom:64px}
-.community-mission h2{font-size:clamp(26px,3.5vw,36px);color:#fff;margin-bottom:20px;letter-spacing:-.5px}
-.community-mission p{font-size:16px;color:var(--gray);line-height:1.8;margin-bottom:28px}
-.community-highlights{display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
-.community-highlight{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text);font-weight:500}
-.community-highlight .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0}
-
-/* Closing card */
-.closing-card{background:var(--dark);border-radius:16px;padding:48px 36px;border:1px solid rgba(0,201,167,.15);text-align:center;margin-bottom:80px}
-.closing-card .statement{font-family:'Instrument Serif',serif;font-size:clamp(22px,3.5vw,32px);color:#fff;line-height:1.3;margin-bottom:12px}
-.closing-card .sub{font-size:15px;color:var(--gray);margin-bottom:24px}
-.closing-card a{display:inline-block;padding:14px 32px;background:var(--teal);color:var(--navy);font-size:15px;font-weight:700;border-radius:8px;text-decoration:none;transition:.2s}
-.closing-card a:hover{background:#00e6be;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,201,167,.25)}
+/* Legal page content */
+.legal-hero{padding:100px 0 40px;text-align:center}
+.legal-hero h1{font-size:clamp(32px,4.5vw,48px);color:#fff;letter-spacing:-1px;margin-bottom:12px}
+.legal-hero p{font-size:15px;color:var(--mid)}
+.legal-body{padding:0 0 80px}
+.legal-body h2{font-size:clamp(20px,3vw,26px);color:#fff;margin:48px 0 16px;letter-spacing:-.5px}
+.legal-body h3{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;color:var(--white);margin:24px 0 10px}
+.legal-body p{font-size:15px;color:var(--gray);line-height:1.8;margin-bottom:16px}
+.legal-body p.caps{text-transform:uppercase;font-size:13px;line-height:1.7;letter-spacing:.3px}
+.legal-body ul{list-style:none;margin-bottom:16px;padding-left:0}
+.legal-body li{font-size:15px;color:var(--gray);line-height:1.8;padding:4px 0 4px 20px;position:relative}
+.legal-body li::before{content:'';position:absolute;left:0;top:14px;width:6px;height:6px;border-radius:50%;background:var(--teal);opacity:.5}
+.legal-body a{color:var(--teal);text-decoration:none;transition:color .2s}
+.legal-body a:hover{color:#00e6be}
 
 /* Footer */
 footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
@@ -113,11 +87,6 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
 .footer-socials a{color:var(--mid);text-decoration:none;font-size:13px;transition:color .2s}
 .footer-socials a:hover{color:var(--teal)}
 
-/* Back to top */
-.back-to-top{position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;border:none;background:var(--teal);color:var(--navy);font-size:22px;cursor:pointer;z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .3s,transform .3s,background .2s;box-shadow:0 4px 16px rgba(0,0,0,.3)}
-.back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
-.back-to-top:hover{background:#00e6be}
-
 /* Hamburger menu (hidden on desktop) */
 .nav-toggle-checkbox{display:none}
 .nav-toggle-label{display:none}
@@ -130,40 +99,22 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
 }
 
 @media(max-width:768px){
-  /* Hamburger menu */
   .nav-toggle-label{display:flex;align-items:center;justify-content:center;width:44px;height:44px;font-size:24px;color:var(--white);cursor:pointer;border-radius:8px;background:rgba(255,255,255,.06)}
   .nav-right{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(11,18,36,.97);backdrop-filter:blur(12px);padding:16px 24px 24px;border-bottom:1px solid rgba(255,255,255,.06);gap:4px}
   .nav-toggle-checkbox:checked ~ .nav-right{display:flex}
   .nav-close-label{display:flex;align-items:center;justify-content:center;align-self:flex-end;width:44px;height:44px;font-size:28px;color:var(--gray);cursor:pointer}
   .nav-right a.nav-link{width:100%;padding:12px 16px;min-height:44px;display:flex;align-items:center;font-size:15px}
   .nav-right a.cta-nav{width:100%;text-align:center;padding:14px;min-height:44px;margin-top:8px;font-size:15px}
-
-  /* Section padding reductions */
-  .vision-hero{padding:80px 0 40px}
-  .belief{padding:0 8px;margin-bottom:60px}
-  .building{margin-bottom:60px}
-  .community-mission{margin-bottom:60px}
-  .founders-card{padding:24px}
-  .closing-card{padding:36px 24px}
-
-  /* Touch targets */
-  .closing-card a{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
-  .back-to-top{min-width:44px;min-height:44px}
+  .legal-hero{padding:80px 0 30px}
   .footer-col a{min-height:44px;display:flex;align-items:center}
   .footer-socials a{min-height:44px;display:flex;align-items:center}
-
-  .community-highlights{flex-direction:column;align-items:flex-start;gap:16px}
   .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
   .footer-top{flex-direction:column;align-items:flex-start;gap:4px}
   .footer-bottom{flex-direction:column;gap:12px;align-items:flex-start}
 }
 
 @media(max-width:480px){
-  .vision-hero{padding:60px 0 40px}
-  section{padding:50px 0}
-  .founders-card{padding:20px}
-  .closing-card{padding:24px 20px}
-  .belief blockquote{padding:12px 16px}
+  .legal-hero{padding:60px 0 24px}
   .footer-grid{grid-template-columns:1fr}
 }
 </style>
@@ -179,7 +130,7 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
     <div class="nav-right">
       <label for="navToggle" class="nav-close-label" aria-label="Close menu">&times;</label>
       <a href="index.html" class="nav-link">Home</a>
-      <a href="vision.html" class="nav-link active">Our vision</a>
+      <a href="vision.html" class="nav-link">Our vision</a>
       <a href="difference.html" class="nav-link">The difference</a>
       <a href="for-individuals.html" class="nav-link">For individuals</a>
       <a href="for-experts.html" class="nav-link">For experts</a>
@@ -191,67 +142,57 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
 
 <div id="page-content">
 
-<!-- Hero -->
-<section class="vision-hero">
+<section class="legal-hero">
   <div class="container">
-    <span class="vision-tag fade-in">Our vision</span>
-    <h1 class="fade-in delay-1">Two founders. One mission.</h1>
-    <p class="fade-in delay-2">We're building the platform we wish existed.</p>
+    <h1 class="fade-in">Terms of Service</h1>
+    <p class="fade-in delay-1">Pre-Launch Version — Waitlist & Early Access | Effective March 2026</p>
   </div>
 </section>
 
-<!-- Founders -->
-<section>
+<section class="legal-body">
   <div class="container">
-    <div class="founders-card fade-in delay-3">
-      <p>We come from Private Equity and Cloud Infrastructure — not AI research labs. That's the point. We've spent our careers watching technology reshape industries, and we saw the same pattern emerging with AI: the people who need help the most have nowhere to turn. So we decided to build the place.</p>
-    </div>
-  </div>
-</section>
 
-<!-- The belief -->
-<section>
-  <div class="container">
-    <div class="belief fade-in">
-      <blockquote>AI will be the defining skill of this generation. The people who learn it will thrive. The people who don't will be left behind. We refuse to accept that outcome.</blockquote>
-    </div>
-  </div>
-</section>
+    <h2>1. Acceptance</h2>
+    <p>By submitting your email address or any other information to join the EzoraAI waitlist at ezora.ai, you agree to these Waitlist Terms of Service. If you do not agree, please do not submit your information.</p>
+    <p>EzoraAI LLC is a limited liability company formed under the laws of the State of New Jersey. References to "EzoraAI," "we," "us," or "our" refer to EzoraAI LLC.</p>
 
-<!-- What we're building -->
-<section>
-  <div class="container">
-    <div class="building fade-in">
-      <h2>The central hub for the AI economy.</h2>
-      <p>EzoraAI is where anyone — a displaced marketer, a small business owner, a curious student — can find a real AI expert and get personalized help. Not a YouTube video. Not a chatbot. A real human who understands their situation.</p>
-      <p>And it's where AI experts can finally build verified careers — with blockchain-backed proof of every project delivered, every session completed, every client helped. A track record no one can fake.</p>
-    </div>
-  </div>
-</section>
+    <h2>2. What the Waitlist Is</h2>
+    <p>The EzoraAI waitlist allows you to express interest in gaining early access to the EzoraAI platform — a marketplace and professional community connecting individuals and businesses with AI experts. By joining the waitlist, you are not guaranteed access to the platform, a specific launch date, or any particular features.</p>
+    <p>EzoraAI is currently in pre-launch. The platform, its features, pricing, and availability are subject to change at any time without notice.</p>
 
-<!-- Community is the mission -->
-<section>
-  <div class="container">
-    <div class="community-mission fade-in">
-      <h2>This is bigger than a marketplace.</h2>
-      <p>The subscription doesn't just unlock experts. It unlocks a community — a place where people navigating the same uncertainty can find each other, share what's working, ask for help, and celebrate wins. Career changers supporting career changers. Business owners helping business owners. Experts mentoring the next wave. That's not a feature. That's the soul of this platform.</p>
-      <div class="community-highlights">
-        <div class="community-highlight"><span class="dot"></span>24/7 community access</div>
-        <div class="community-highlight"><span class="dot"></span>Expert-led AMAs</div>
-        <div class="community-highlight"><span class="dot"></span>Peer accountability groups</div>
-      </div>
-    </div>
-  </div>
-</section>
+    <h2>3. Information We Collect</h2>
+    <p>When you join the waitlist, we collect:</p>
+    <ul>
+      <li>Your email address</li>
+      <li>Any additional information you voluntarily provide (e.g., your role, how you plan to use the platform)</li>
+      <li>Technical information such as your IP address, browser type, and how you arrived at our site (collected automatically via analytics tools)</li>
+    </ul>
+    <p>We use this information to send you updates about the platform, manage your waitlist position, and improve our product. See our <a href="privacy.html">Waitlist Privacy Policy</a> for full details on how we handle your data.</p>
 
-<!-- Closing -->
-<section>
-  <div class="container">
-    <div class="closing-card fade-in">
-      <p class="statement">Make AI expertise accessible, trustworthy, and actionable — for everyone.</p>
-      <p class="sub">That's the vision. We're just getting started.</p>
-      <a href="index.html#join">Join us &rarr;</a>
-    </div>
+    <h2>4. Communications</h2>
+    <p>By joining the waitlist, you consent to receive emails from EzoraAI related to your waitlist status, platform updates, and early access invitations. You may unsubscribe at any time by clicking the unsubscribe link in any email we send. We will not sell your email address to third parties.</p>
+
+    <h2>5. No Guarantee of Access or Service</h2>
+    <p>Joining the waitlist does not guarantee you access to the EzoraAI platform, any specific features, any particular pricing, or access by any specific date. We reserve the right to modify, delay, or discontinue the platform at any time.</p>
+
+    <h2>6. Intellectual Property</h2>
+    <p>All content on the EzoraAI website, including but not limited to text, graphics, logos, and design, is owned by or licensed to EzoraAI LLC. You may not reproduce, distribute, or create derivative works from our content without our express written permission.</p>
+
+    <h2>7. Disclaimer of Warranties</h2>
+    <p class="caps">The ezora.ai website and waitlist are provided "as is" without warranties of any kind, express or implied. EzoraAI does not warrant that the website will be uninterrupted, error-free, or free of harmful components.</p>
+
+    <h2>8. Limitation of Liability</h2>
+    <p class="caps">To the maximum extent permitted by law, EzoraAI LLC and its members, officers, and agents shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of or inability to use the website or waitlist.</p>
+
+    <h2>9. Governing Law</h2>
+    <p>These Terms are governed by the laws of the State of New Jersey, without regard to its conflict of law provisions. Any disputes shall be resolved in the state or federal courts located in New Jersey.</p>
+
+    <h2>10. Changes to These Terms</h2>
+    <p>We may update these Terms at any time. The updated version will be posted at ezora.ai with a new effective date. Continued use of the waitlist after changes constitutes acceptance.</p>
+
+    <h2>11. Contact</h2>
+    <p>For questions about these Terms, contact us at: <a href="mailto:legal@ezora.ai">legal@ezora.ai</a></p>
+
   </div>
 </section>
 
@@ -266,6 +207,7 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
         <h4>Platform</h4>
         <a href="index.html">Home</a>
         <a href="for-individuals.html">For Individuals</a>
+        <a href="for-experts.html">For Experts</a>
         <a href="community.html">Community</a>
         <a href="index.html#join">Waitlist</a>
       </div>
@@ -301,19 +243,8 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
   </div>
 </footer>
 
-<button id="backToTop" class="back-to-top" aria-label="Back to top">&#8593;</button>
-
 <script>
-// Scroll-triggered fade-in handled by animations.js
-
-const bttBtn=document.getElementById('backToTop');
-window.addEventListener('scroll',()=>{
-  bttBtn.classList.toggle('visible',window.scrollY>300);
-});
-bttBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'})});
-
 window.addEventListener('scroll',function(){var nav=document.querySelector('nav');if(window.scrollY>50){nav.classList.add('nav-scrolled')}else{nav.classList.remove('nav-scrolled')}});
-
 document.querySelectorAll('.nav-right a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navToggle').checked=false})});
 </script>
 
