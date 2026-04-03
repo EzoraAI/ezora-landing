@@ -37,11 +37,6 @@ body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;o
 #page-content{opacity:0;transform:translateY(6px);transition:opacity .35s cubic-bezier(.16,1,.3,1),transform .35s cubic-bezier(.16,1,.3,1)}
 #page-content.page-visible{opacity:1;transform:translateY(0)}
 #page-content.page-exit{opacity:0;transform:translateY(-4px);transition:opacity .18s ease,transform .18s ease}
-@view-transition{navigation:auto}
-::view-transition-old(root){animation:fade-out .15s ease}
-::view-transition-new(root){animation:fade-in .25s ease}
-@keyframes fade-out{from{opacity:1}to{opacity:0}}
-@keyframes fade-in{from{opacity:0}to{opacity:1}}
 h1,h2,h3{font-family:'Instrument Serif',serif;font-weight:400}
 .container{max-width:1080px;margin:0 auto;padding:0 24px}
 
@@ -49,7 +44,7 @@ h1,h2,h3{font-family:'Instrument Serif',serif;font-weight:400}
 /* fade-in handled by animations.js */
 
 /* Nav */
-nav{padding:14px 0;position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:none;transition:background .3s,box-shadow .3s,border-bottom .3s,backdrop-filter .3s;view-transition-name:navbar}
+nav{padding:14px 0;position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:none;transition:background .3s,box-shadow .3s,border-bottom .3s,backdrop-filter .3s}
 nav.nav-scrolled{background:rgba(11,18,36,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 24px rgba(0,0,0,.4);border-bottom:1px solid rgba(255,255,255,.06)}
 nav .container{display:flex;justify-content:space-between;align-items:center;gap:16px;position:relative}
 nav a.nav-link{color:var(--mid);font-size:13px;font-weight:500;text-decoration:none;transition:color .2s ease-out;padding:7px 14px;border-radius:6px;position:relative;letter-spacing:.2px;z-index:1}

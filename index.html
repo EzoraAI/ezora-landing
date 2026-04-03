@@ -39,11 +39,6 @@ body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;o
 #page-content.page-visible{opacity:1;transform:translateY(0)}
 #page-content.page-exit{opacity:0;transform:translateY(-4px);transition:opacity .18s ease,transform .18s ease}
 /* View Transitions API styles */
-@view-transition{navigation:auto}
-::view-transition-old(root){animation:fade-out .15s ease}
-::view-transition-new(root){animation:fade-in .25s ease}
-@keyframes fade-out{from{opacity:1}to{opacity:0}}
-@keyframes fade-in{from{opacity:0}to{opacity:1}}
 h1,h2,h3{font-family:'Instrument Serif',serif;font-weight:400}
 
 /* Utility */
@@ -52,7 +47,7 @@ h1,h2,h3{font-family:'Instrument Serif',serif;font-weight:400}
 /* fade-in handled by animations.js */
 
 /* Nav */
-nav{padding:14px 0;position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:none;transition:background .3s,box-shadow .3s,border-bottom .3s,backdrop-filter .3s;view-transition-name:navbar}
+nav{padding:14px 0;position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:none;transition:background .3s,box-shadow .3s,border-bottom .3s,backdrop-filter .3s}
 nav.nav-scrolled{background:rgba(11,18,36,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 24px rgba(0,0,0,.4);border-bottom:1px solid rgba(255,255,255,.06)}
 nav .container{display:flex;justify-content:space-between;align-items:center;gap:16px}
 .logo{font-family:'Instrument Serif',serif;font-size:26px;color:#fff;text-decoration:none;letter-spacing:-0.5px}
