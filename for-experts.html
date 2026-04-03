@@ -118,13 +118,29 @@ nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4
 .trust-strip{padding:48px 0;text-align:center;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
 .trust-strip .trust-items{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;color:var(--gray);font-size:15px;font-weight:500}
 
-/* Final CTA */
-.expert-cta{padding:80px 0;text-align:center;background:rgba(245,166,35,.04)}
-.expert-cta h2{font-size:clamp(28px,4vw,44px);color:#fff;margin-bottom:12px;letter-spacing:-1px}
-.expert-cta p{color:var(--gray);font-size:16px;margin-bottom:28px;max-width:600px;margin-left:auto;margin-right:auto}
-.expert-cta .contact-note{font-size:13px;color:var(--mid);margin-top:16px}
-.expert-cta .contact-note a{color:var(--mid);text-decoration:underline;transition:color .2s}
-.expert-cta .contact-note a:hover{color:var(--teal)}
+/* Waitlist */
+.waitlist{padding:80px 0;text-align:center;background:rgba(245,166,35,.04)}
+.waitlist h2{font-size:clamp(32px,4vw,48px);color:#fff;margin-bottom:12px;letter-spacing:-1px}
+.waitlist .sub{color:var(--mid);font-size:16px;margin-bottom:32px}
+.waitlist .contact-note{font-size:13px;color:var(--mid);margin-top:16px}
+.waitlist .contact-note a{color:var(--mid);text-decoration:underline;transition:color .2s}
+.waitlist .contact-note a:hover{color:var(--teal)}
+.wl-form{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;max-width:520px;margin:0 auto}
+.wl-form input{flex:1;min-width:240px;padding:14px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:var(--dark);color:#fff;font-size:15px;font-family:'DM Sans',sans-serif;transition:border-color .2s ease,box-shadow .2s ease,background-color .2s ease}
+.wl-form input::placeholder{color:var(--mid)}
+.wl-form input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,166,35,.15),inset 0 1px 2px rgba(0,0,0,.1);background-color:rgba(245,166,35,.03)}
+.wl-form button{padding:14px 32px;border-radius:8px;border:none;background:var(--gold);color:var(--navy);font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s}
+.wl-form button:hover{background:#f7b84a}
+.wl-form button:active{transform:scale(.97)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.btn-loading{pointer-events:none;position:relative;color:transparent!important}
+.btn-loading::after{content:'';position:absolute;top:50%;left:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border:2px solid rgba(11,18,36,.3);border-top-color:var(--navy);border-radius:50%;animation:spin .6s linear infinite}
+@keyframes btnFlash{0%{background:var(--gold)}40%{background:#fff}100%{background:#10B981}}
+@keyframes txtOut{to{opacity:0;transform:translateY(-8px)}}
+@keyframes txtIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.btn-success{animation:btnFlash .3s ease forwards;color:var(--navy)!important;position:relative;overflow:hidden}
+.btn-success .btn-txt-old{display:inline-block;animation:txtOut .2s ease forwards}
+.btn-success .btn-txt-new{display:inline-block;animation:txtIn .25s ease .15s forwards;opacity:0;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) translateY(8px);white-space:nowrap}
 
 /* Footer */
 footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
@@ -169,7 +185,10 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
   /* Section padding */
   .expert-hero{padding:60px 0 40px}
   .expert-advantage,.expert-earnings,.founding-benefits{padding:60px 0}
-  .expert-cta{padding:60px 0}
+  .waitlist{padding:60px 0}
+  .wl-form{flex-direction:column;align-items:stretch}
+  .wl-form input{min-width:0;width:100%;min-height:48px}
+  .wl-form button{width:100%;min-height:48px}
 
   /* Touch targets */
   .btn-gold{min-height:48px;display:inline-flex;align-items:center;justify-content:center}
@@ -198,7 +217,7 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
   .trust-strip .trust-items{flex-direction:column;gap:12px}
   .expert-hero{padding:50px 0 30px}
   .expert-advantage,.expert-earnings,.founding-benefits{padding:50px 0}
-  .expert-cta{padding:50px 0}
+  .waitlist{padding:50px 0}
 }
 </style>
 </head>
@@ -219,7 +238,7 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
       <a href="for-businesses.html" class="nav-link">For businesses</a>
       <a href="for-experts.html" class="nav-link active">For experts</a>
       <a href="community.html" class="nav-link">Community</a>
-      <a href="index.html#join" class="cta-nav glow-hover glow-teal">Join the waitlist</a>
+      <a href="#join" class="cta-nav glow-hover glow-teal">Join the waitlist</a>
     </div>
   </div>
 </nav>
@@ -390,13 +409,17 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
   </div>
 </section>
 
-<!-- Final CTA -->
-<section class="expert-cta">
-  <div class="container fade-in">
-    <h2>The AI economy is here.<br>Build your place in it.</h2>
-    <p>Founding expert spots are limited. Apply now and lock in benefits that won't be available later.</p>
-    <a href="index.html#join" class="btn-gold glow-hover glow-gold">Apply as a founding expert &rarr;</a>
-    <p class="contact-note">Questions? Reach us at <a href="mailto:hello@ezora.ai">hello@ezora.ai</a></p>
+<!-- Waitlist -->
+<section class="waitlist" id="join">
+  <div class="container">
+    <h2 class="fade-in">Ready to start earning?</h2>
+    <p class="sub fade-in delay-1">Apply as a founding expert and lock in preferred rates.</p>
+    <div class="wl-form fade-in delay-2">
+      <input type="email" id="wl-email" placeholder="Enter your email" required>
+      <button class="glow-hover glow-gold" onclick="submitPageWaitlist()">Apply now</button>
+    </div>
+    <p id="wl-msg" style="margin-top:16px;color:var(--gold);display:none;font-size:14px"></p>
+    <p class="contact-note fade-in delay-3">Questions? Reach us at <a href="mailto:hello@ezora.ai">hello@ezora.ai</a></p>
   </div>
 </section>
 
@@ -458,6 +481,70 @@ bttBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'})}
 
 window.addEventListener('scroll',function(){var nav=document.querySelector('nav');if(window.scrollY>50){nav.classList.add('nav-scrolled')}else{nav.classList.remove('nav-scrolled')}});
 document.querySelectorAll('.nav-right a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navToggle').checked=false})});
+
+// Waitlist form
+function btnSuccess(btn,originalText){
+  var oldText=btn.textContent;
+  btn.innerHTML='<span class="btn-txt-old">'+oldText+'</span><span class="btn-txt-new">\u2713 You\'re in!</span>';
+  btn.classList.add('btn-success');
+  var colors=['#00C9A7','#7C3AED','#F5A623','#10B981','#F4F6FA'];
+  var rect=btn.getBoundingClientRect();
+  var cx=rect.left+rect.width/2;
+  var cy=rect.top+rect.height/2;
+  for(var i=0;i<10;i++){
+    var dot=document.createElement('div');
+    var angle=Math.random()*Math.PI*2;
+    var dist=40+Math.random()*60;
+    var dx=Math.cos(angle)*dist;
+    var dy=Math.sin(angle)*dist;
+    dot.style.cssText='position:fixed;width:4px;height:4px;border-radius:50%;pointer-events:none;z-index:9999;left:'+cx+'px;top:'+cy+'px;background:'+colors[Math.floor(Math.random()*colors.length)]+';transition:transform .6s cubic-bezier(.25,.46,.45,.94),opacity .6s ease;opacity:1;transform:translate(-2px,-2px)';
+    document.body.appendChild(dot);
+    void dot.offsetHeight;
+    dot.style.transform='translate('+dx+'px,'+dy+'px)';
+    dot.style.opacity='0';
+    setTimeout(function(d){d.remove()},700,dot);
+  }
+  setTimeout(function(){
+    btn.classList.remove('btn-success');
+    btn.innerHTML=originalText;
+  },3000);
+}
+
+async function submitPageWaitlist(){
+  var email=document.getElementById('wl-email').value;
+  if(!email||!email.includes('@'))return;
+  var msg=document.getElementById('wl-msg');
+  var btn=document.querySelector('.wl-form button');
+  var label='Apply now';
+  btn.classList.add('btn-loading');
+  btn.disabled=true;
+  try{
+    var res=await fetch('https://script.google.com/macros/s/AKfycbzfjBhdJW3BrryrtT7TaVYFUpLfO4d346q2vHdZXEwa4M1S73ltEu5xaRnqkK7yxqnptQ/exec',{
+      method:'POST',
+      body:JSON.stringify({email:email,role:'expert'})
+    });
+    var data=await res.json();
+    btn.classList.remove('btn-loading');
+    msg.style.display='block';
+    if(data.status==='ok'){
+      msg.style.color='var(--gold)';
+      msg.textContent="You're on the list! We'll be in touch soon.";
+      document.getElementById('wl-email').value='';
+      btnSuccess(btn,label);
+    }else if(data.status==='duplicate'){
+      msg.style.color='#F5A623';
+      msg.textContent="You're already on the list!";
+      btn.textContent=label;
+    }else{throw new Error('err')}
+  }catch(err){
+    btn.classList.remove('btn-loading');
+    msg.style.display='block';
+    msg.style.color='#EF4444';
+    msg.textContent='Something went wrong. Please try again.';
+    btn.textContent=label;
+  }
+  btn.disabled=false;
+}
 </script>
 
 <script src="glow.js"></script>
