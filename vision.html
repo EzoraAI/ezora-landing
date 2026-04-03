@@ -23,6 +23,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ezora.ai/og-image.png">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -166,20 +168,25 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
 </head>
 <body>
 <script>
-document.body.classList.add('loaded');
-document.addEventListener('click',function(e){
-  var link=e.target.closest('a');
-  if(!link)return;
-  var href=link.getAttribute('href');
-  if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')||link.target==='_blank')return;
-  var current=location.pathname.split('/').pop()||'index.html';
-  var target=href.split('#')[0].split('/').pop()||'index.html';
-  if(current===target){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});return}
-  e.preventDefault();
-  document.body.classList.add('fade-out');
-  document.body.classList.remove('loaded');
-  setTimeout(function(){window.location.href=href},200);
-});
+(function(){
+  function show(){document.body.classList.add('loaded')}
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(show)}
+  else{show()}
+  setTimeout(show,400);
+  document.addEventListener('click',function(e){
+    var link=e.target.closest('a');
+    if(!link)return;
+    var href=link.getAttribute('href');
+    if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')||link.target==='_blank')return;
+    var current=location.pathname.split('/').pop()||'index.html';
+    var target=href.split('#')[0].split('/').pop()||'index.html';
+    if(current===target){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});return}
+    e.preventDefault();
+    document.body.classList.add('fade-out');
+    document.body.classList.remove('loaded');
+    setTimeout(function(){window.location.href=href},200);
+  });
+})();
 </script>
 
 <nav>
