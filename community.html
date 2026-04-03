@@ -49,7 +49,7 @@ h1,h2,h3{font-family:'Instrument Serif',serif;font-weight:400}
 /* fade-in handled by animations.js */
 
 /* Nav */
-nav{padding:14px 0;position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:none;transition:background .3s,box-shadow .3s,border-bottom .3s,backdrop-filter .3s}
+nav{padding:14px 0;position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:none;transition:background .3s,box-shadow .3s,border-bottom .3s,backdrop-filter .3s;view-transition-name:navbar}
 nav.nav-scrolled{background:rgba(11,18,36,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 24px rgba(0,0,0,.4);border-bottom:1px solid rgba(255,255,255,.06)}
 nav .container{display:flex;justify-content:space-between;align-items:center;gap:16px;position:relative}
 nav a.nav-link{color:var(--mid);font-size:13px;font-weight:500;text-decoration:none;transition:color .2s ease-out;padding:7px 14px;border-radius:6px;position:relative;letter-spacing:.2px;z-index:1}
@@ -220,6 +220,8 @@ footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
     </div>
   </div>
 </nav>
+
+<div id="page-content">
 
 <!-- Hero -->
 <section class="hero">
@@ -421,5 +423,6 @@ document.querySelectorAll('.nav-right a').forEach(function(link){link.addEventLi
 
 <script src="glow.js"></script>
 <script src="animations.js"></script>
+</div><!-- /page-content -->
 </body>
 </html>
