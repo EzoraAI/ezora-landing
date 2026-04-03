@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Difference — EzoraAI</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+
+<!-- Open Graph / Social sharing -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EzoraAI">
+<meta property="og:url" content="https://ezora.ai/difference.html">
+<meta property="og:image" content="https://ezora.ai/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:title" content="The EzoraAI Difference">
+<meta property="og:description" content="Built on radical transparency. See how EzoraAI compares to Toptal, Fiverr, Upwork, and more.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ezora.ai/og-image.png">
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0B1224;--dark:#131D3B;--teal:#00C9A7;--purple:#7C3AED;--gold:#F5A623;
+  --white:#F4F6FA;--gray:#94A3B8;--text:#E2E8F0;--mid:#64748b;--red:#EF4444;
+}
+body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;opacity:0;transition:opacity .3s ease}
+body.loaded{opacity:1}
+body.fade-out{opacity:0;transition:opacity .2s ease}
+h1,h2,h3{font-family:'Instrument Serif',serif;font-weight:400}
+.container{max-width:1080px;margin:0 auto;padding:0 24px}
+/* fade-in handled by animations.js */
+
+/* Nav */
+nav{padding:14px 0;position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:none;transition:background .3s,box-shadow .3s,border-bottom .3s,backdrop-filter .3s}
+nav.nav-scrolled{background:rgba(11,18,36,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 24px rgba(0,0,0,.4);border-bottom:1px solid rgba(255,255,255,.06)}
+nav .container{display:flex;justify-content:space-between;align-items:center;gap:16px;position:relative}
+nav a.nav-link{color:var(--mid);font-size:13px;font-weight:500;text-decoration:none;transition:color .2s ease-out;padding:7px 14px;border-radius:6px;position:relative;letter-spacing:.2px;z-index:1}
+nav a.nav-link::before{content:'';position:absolute;inset:0;border-radius:6px;background:rgba(255,255,255,.06);opacity:0;transform:scale(.8);transition:opacity .2s ease-out,transform .2s ease-out;z-index:-1}
+nav a.nav-link:hover{color:var(--white)}
+nav a.nav-link:hover::before{opacity:1;transform:scale(1)}
+nav a.nav-link.active{color:var(--white)}
+nav a.nav-link.active::before{opacity:1;transform:scale(1);background:rgba(255,255,255,.08)}
+nav a.nav-link.active::after{content:'';position:absolute;bottom:0;left:14px;right:14px;height:1.5px;background:var(--teal);border-radius:1px}
+nav a.cta-nav{color:var(--navy);font-size:13px;font-weight:600;text-decoration:none;background:var(--teal);padding:8px 22px;border-radius:6px;transition:all .2s;border:none;letter-spacing:.2px}
+nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,201,167,.3)}
+.nav-right{display:flex;align-items:center;gap:2px}
+
+/* Hero */
+.diff-hero{padding:80px 0 60px;text-align:center;position:relative}
+.diff-hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:140%;height:180%;background:radial-gradient(ellipse 65% 55% at 50% 45%,rgba(0,201,167,.07) 0%,rgba(0,201,167,.03) 40%,transparent 70%);pointer-events:none;opacity:0;animation:glowIn .8s ease .15s forwards}
+@keyframes glowIn{to{opacity:1}}
+.diff-hero .tag{display:inline-block;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);border:1px solid rgba(0,201,167,.3);padding:6px 16px;border-radius:20px;margin-bottom:20px}
+.diff-hero h1{font-size:clamp(40px,5.5vw,64px);line-height:1.08;color:#fff;margin-bottom:16px;letter-spacing:-1.5px}
+.diff-hero h1 em{font-style:italic;color:var(--teal)}
+.diff-hero p{font-size:17px;color:var(--gray);max-width:680px;margin:0 auto;line-height:1.6}
+
+/* Manifesto */
+.manifesto{padding:60px 0;text-align:center}
+.manifesto-box{background:var(--dark);border-radius:16px;padding:48px 40px;border:1px solid rgba(0,201,167,.1);max-width:860px;margin:0 auto}
+.manifesto-box h2{font-size:28px;color:#fff;margin-bottom:16px}
+.manifesto-box p{font-size:16px;color:var(--gray);line-height:1.8;margin-bottom:12px}
+.manifesto-box .highlight{color:var(--teal);font-weight:600}
+
+/* Problem expose */
+.problem-expose{padding:80px 0}
+.problem-expose h2{font-size:clamp(32px,4vw,44px);color:#fff;text-align:center;margin-bottom:12px;letter-spacing:-1px}
+.problem-expose .sub{text-align:center;color:var(--mid);font-size:15px;margin-bottom:48px;max-width:700px;margin-left:auto;margin-right:auto}
+.expose-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.expose-card{background:var(--dark);border-radius:14px;padding:28px 24px;border-left:4px solid var(--red)}
+.expose-card h3{font-size:18px;color:var(--red);margin-bottom:8px;font-family:'DM Sans',sans-serif;font-weight:700}
+.expose-card p{font-size:14px;color:var(--gray);line-height:1.6}
+.expose-card .stat{font-size:28px;font-family:'Instrument Serif',serif;color:#fff;margin-bottom:4px}
+
+/* Our answer */
+.our-answer{padding:80px 0;background:rgba(0,201,167,.03)}
+.our-answer h2{font-size:clamp(32px,4vw,44px);color:#fff;text-align:center;margin-bottom:12px;letter-spacing:-1px}
+.our-answer .sub{text-align:center;color:var(--mid);font-size:15px;margin-bottom:48px;max-width:700px;margin-left:auto;margin-right:auto}
+.answer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.answer-card{background:var(--dark);border-radius:14px;padding:32px 24px;position:relative;overflow:hidden}
+.answer-card .accent{height:4px;position:absolute;top:0;left:0;right:0}
+.answer-card .num{font-family:'Instrument Serif',serif;font-size:48px;color:var(--teal);opacity:.3;position:absolute;top:12px;right:20px}
+.answer-card h3{font-size:20px;color:#fff;margin-bottom:12px}
+.answer-card p{font-size:14px;color:var(--gray);line-height:1.7}
+
+/* Trust & verification */
+.blockchain-deep{padding:80px 0}
+.blockchain-deep h2{font-size:clamp(32px,4vw,44px);color:#fff;text-align:center;margin-bottom:12px;letter-spacing:-1px}
+.blockchain-deep .sub{text-align:center;color:var(--mid);font-size:15px;margin-bottom:48px;max-width:700px;margin-left:auto;margin-right:auto}
+.bc-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px}
+.bc-step{background:var(--dark);border-radius:12px;padding:24px 18px;text-align:center;position:relative}
+.bc-step .step-num{width:40px;height:40px;border-radius:50%;background:var(--teal);color:var(--navy);font-family:'Instrument Serif',serif;font-size:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-weight:700}
+.bc-step h3{font-size:14px;color:#fff;margin-bottom:6px;font-family:'DM Sans',sans-serif;font-weight:600}
+.bc-step p{font-size:12px;color:var(--gray);line-height:1.5}
+.bc-step .arrow{position:absolute;right:-12px;top:50%;color:var(--teal);font-size:18px;transform:translateY(-50%)}
+.bc-benefits{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.bc-benefit{background:var(--dark);border-radius:14px;padding:28px 24px;display:flex;gap:16px;align-items:flex-start}
+.bc-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.bc-benefit h3{font-size:16px;color:#fff;margin-bottom:6px;font-family:'DM Sans',sans-serif;font-weight:600}
+.bc-benefit p{font-size:13px;color:var(--gray);line-height:1.6}
+
+/* Comparison table */
+.comparison{padding:80px 0;background:rgba(0,201,167,.03)}
+.comparison h2{font-size:clamp(32px,4vw,44px);color:#fff;text-align:center;margin-bottom:12px;letter-spacing:-1px}
+.comparison .sub{text-align:center;color:var(--mid);font-size:15px;margin-bottom:48px;max-width:700px;margin-left:auto;margin-right:auto}
+.comp-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden}
+.comp-table th{background:var(--dark);color:var(--white);font-size:13px;font-weight:600;padding:14px 16px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06)}
+.comp-table th:first-child{text-align:left;width:200px}
+.comp-table td{padding:12px 16px;font-size:13px;color:var(--gray);text-align:center;border-bottom:1px solid rgba(255,255,255,.04);background:rgba(19,29,59,.5)}
+.comp-table td:first-child{text-align:left;color:var(--white);font-weight:500}
+.comp-table td.ezora{color:var(--teal);font-weight:600}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table .ezora-col{background:rgba(0,201,167,.06)}
+.check{color:var(--teal)}
+.cross{color:var(--red);opacity:.6}
+.partial{color:var(--gold)}
+.comp-table tr.highlight-row td{background:rgba(0,201,167,.1);border-top:1px solid rgba(0,201,167,.25);border-bottom:1px solid rgba(0,201,167,.25)}
+.comp-table tr.highlight-row td:first-child{color:var(--teal);font-weight:700;font-size:14px}
+.comp-table tr.highlight-row td.ezora-col{background:rgba(0,201,167,.18)}
+
+/* Transparency pledge */
+.pledge{padding:80px 0}
+.pledge-box{background:var(--dark);border-radius:16px;padding:48px 40px;border:1px solid rgba(0,201,167,.15);max-width:900px;margin:0 auto;text-align:center}
+.pledge-box h2{font-size:clamp(28px,3.5vw,40px);color:#fff;margin-bottom:20px}
+.pledge-items{display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:left;margin:32px 0}
+.pledge-item{display:flex;gap:12px;align-items:flex-start;padding:16px;background:rgba(0,201,167,.04);border-radius:10px;border:1px solid rgba(0,201,167,.08)}
+.pledge-item .check-icon{color:var(--teal);font-size:18px;flex-shrink:0;margin-top:2px}
+.pledge-item p{font-size:14px;color:var(--gray);line-height:1.5}
+.pledge-item strong{color:var(--white)}
+
+/* CTA */
+.diff-cta{padding:60px 0 80px;text-align:center}
+.diff-cta h2{font-size:clamp(28px,3.5vw,40px);color:#fff;margin-bottom:12px}
+.diff-cta p{color:var(--gray);font-size:16px;margin-bottom:28px}
+.diff-cta a{display:inline-block;padding:16px 36px;background:var(--teal);color:var(--navy);font-size:16px;font-weight:700;border-radius:8px;text-decoration:none;transition:.2s}
+.diff-cta a:hover{background:#00e6be}
+
+/* Footer */
+footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
+.footer-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px}
+.footer-logo{font-family:'DM Sans',sans-serif;font-size:20px;font-weight:700;color:#F4F6FA;letter-spacing:-.3px}
+.footer-logo span{color:var(--teal)}
+.footer-tagline{font-size:13px;color:var(--mid)}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-bottom:48px}
+.footer-col h4{font-size:12px;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:var(--mid);text-decoration:none;padding:4px 0;transition:color .2s}
+.footer-col a:hover{color:var(--teal)}
+.footer-col .coming-soon{display:block;font-size:13px;color:rgba(100,116,139,.5);padding:4px 0;cursor:default}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding:24px 0;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{font-size:12px;color:var(--mid)}
+.footer-socials{display:flex;gap:16px}
+.footer-socials a{color:var(--mid);text-decoration:none;font-size:13px;transition:color .2s}
+.footer-socials a:hover{color:var(--teal)}
+
+
+/* Hamburger menu (hidden on desktop) */
+.nav-toggle-checkbox{display:none}
+.nav-toggle-label{display:none}
+.nav-close-label{display:none}
+
+/* Mobile scroll hint for table */
+.scroll-hint{display:none;text-align:center;font-size:12px;color:var(--mid);margin-bottom:12px}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
+  .fade-in{opacity:1;transform:none}
+}
+
+/* Responsive */
+@media(max-width:768px){
+  .expose-grid,.bc-benefits,.pledge-items{grid-template-columns:1fr}
+  .answer-grid{grid-template-columns:1fr}
+  .bc-flow{grid-template-columns:1fr 1fr}
+  .bc-step .arrow{display:none}
+  .comp-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:12px}
+  .comp-table{min-width:800px;border-radius:0;overflow:visible}
+  .comp-table th,.comp-table td{padding:8px 10px;font-size:11px}
+  .comp-table th:first-child,.comp-table td:first-child{position:sticky;left:0;z-index:2;width:110px;min-width:110px;max-width:110px;padding:8px 10px;font-size:11px;word-wrap:break-word;box-shadow:2px 0 8px rgba(0,0,0,.3)}
+  .comp-table th:first-child{background:#0f1730}
+  .comp-table td:first-child{background:var(--dark)}
+  .comp-table tr.highlight-row td:first-child{background:#0f2a2a}
+  .scroll-hint{display:block}
+  .manifesto-box{padding:28px 20px}
+  .pledge-box{padding:28px 20px}
+
+  /* Section padding reduction */
+  .diff-hero{padding:60px 0 40px}
+  .manifesto{padding:40px 0}
+  .problem-expose{padding:60px 0}
+  .our-answer{padding:60px 0}
+  .blockchain-deep{padding:60px 0}
+  .comparison{padding:60px 0}
+  .pledge{padding:60px 0}
+  .diff-cta{padding:40px 0 60px}
+
+  /* Touch targets */
+  nav a.nav-link{min-height:44px;display:flex;align-items:center}
+  nav a.cta-nav{min-height:44px;display:inline-flex;align-items:center}
+  .diff-cta a{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+  .footer-col a{min-height:44px;display:flex;align-items:center}
+  .footer-socials a{min-height:44px;display:inline-flex;align-items:center}
+
+  /* Hamburger menu */
+  .nav-toggle-label{display:flex;align-items:center;justify-content:center;width:44px;height:44px;font-size:24px;color:var(--white);cursor:pointer;border-radius:8px;background:rgba(255,255,255,.06)}
+  .nav-right{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(11,18,36,.97);backdrop-filter:blur(12px);padding:16px 24px 24px;border-bottom:1px solid rgba(255,255,255,.06);gap:4px}
+  .nav-toggle-checkbox:checked ~ .nav-right{display:flex}
+  .nav-close-label{display:flex;align-items:center;justify-content:center;align-self:flex-end;width:44px;height:44px;font-size:28px;color:var(--gray);cursor:pointer}
+  .nav-right a.nav-link{width:100%;padding:12px 16px;min-height:44px;display:flex;align-items:center;font-size:15px}
+  .nav-right a.cta-nav{width:100%;text-align:center;padding:14px;min-height:44px;margin-top:8px;font-size:15px}
+
+  /* Footer */
+  .footer-top{flex-direction:column;gap:8px;text-align:center}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:24px}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+}
+
+/* Small mobile */
+@media(max-width:480px){
+  .footer-grid{grid-template-columns:1fr}
+  .bc-flow{grid-template-columns:1fr}
+  .answer-card,.expose-card,.bc-step,.bc-benefit{padding:20px 16px}
+  .manifesto-box{padding:20px 16px}
+  .pledge-box{padding:20px 16px}
+  .expose-card .stat{font-size:24px}
+}
+
+/* Back to top */
+.back-to-top{position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;border:none;background:var(--teal);color:var(--navy);font-size:22px;cursor:pointer;z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .3s,transform .3s,background .2s;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+.back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.back-to-top:hover{background:#00e6be}
+</style>
+</head>
+<body>
+<script>
+document.body.classList.add('loaded');
+document.addEventListener('click',function(e){
+  var link=e.target.closest('a');
+  if(!link)return;
+  var href=link.getAttribute('href');
+  if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')||link.target==='_blank')return;
+  e.preventDefault();
+  document.body.classList.add('fade-out');
+  document.body.classList.remove('loaded');
+  setTimeout(function(){window.location.href=href},200);
+});
+</script>
+
+<nav>
+  <div class="container">
+    <a href="index.html" class="logo-wordmark" style="text-decoration:none;font-family:'DM Sans',sans-serif;font-size:20px;font-weight:700;color:#F4F6FA;letter-spacing:-.3px;display:flex;align-items:center;gap:5px"><img src="icon-512.png" alt="EzoraAI" style="width:28px;height:28px"><span>ezora<span style="color:#00C9A7">.ai</span></span></a>
+    <input type="checkbox" id="navToggle" class="nav-toggle-checkbox" aria-label="Toggle navigation menu">
+    <label for="navToggle" class="nav-toggle-label" aria-label="Open menu">&#9776;</label>
+    <div class="nav-right">
+      <label for="navToggle" class="nav-close-label" aria-label="Close menu">&times;</label>
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="vision.html" class="nav-link">Our vision</a>
+      <a href="difference.html" class="nav-link active">The difference</a>
+      <a href="for-individuals.html" class="nav-link">For individuals</a>
+      <a href="for-experts.html" class="nav-link">For experts</a>
+      <a href="community.html" class="nav-link">Community</a>
+      <a href="index.html#join" class="cta-nav glow-hover glow-teal">Join the waitlist</a>
+    </div>
+  </div>
+</nav>
+
+<section class="diff-hero">
+  <div class="container">
+    <span class="tag fade-in">The difference</span>
+    <h1 class="fade-in delay-1">Built on <em>radical transparency.</em></h1>
+    <p class="fade-in delay-2">The AI talent industry is broken by hidden fees, opaque pricing, and unverifiable credentials. We're building the opposite — a platform where every price is published, every expert is continuously verified, and everyone has a community to lean on.</p>
+  </div>
+</section>
+
+<section class="manifesto">
+  <div class="container">
+    <div class="manifesto-box fade-in delay-3">
+      <h2>Why transparency matters now</h2>
+      <p>The AI economy is growing faster than trust can keep up. Businesses are spending thousands on experts they can't verify. Individuals are paying for coaching from people with inflated resumes. And platforms are taking <span class="highlight">40–60% of every transaction</span> without telling either side.</p>
+      <p>We believe the AI economy deserves better infrastructure. Infrastructure where <span class="highlight">you know exactly what you're paying</span>, <span class="highlight">you can verify exactly who you're hiring</span>, and <span class="highlight">you have a community behind you every step of the way</span>.</p>
+      <p>That's not a feature. It's our foundation.</p>
+    </div>
+  </div>
+</section>
+
+<section class="problem-expose">
+  <div class="container">
+    <h2 class="fade-in">What the industry doesn't want you to see</h2>
+    <p class="sub fade-in delay-1">The current talent marketplace model has structural problems that hurt both experts and the people who hire them.</p>
+    <div class="expose-grid">
+      <div class="expose-card fade-in delay-1">
+        <div class="stat">40–60%</div>
+        <h3>Hidden platform markups</h3>
+        <p>Major platforms fold their margin into the hourly rate without disclosing it. You pay $150/hr — the expert gets $80. Neither side knows the real split. Some platforms even require experts to sign NDAs about their actual pay.</p>
+      </div>
+      <div class="expose-card fade-in delay-2">
+        <div class="stat">1x</div>
+        <h3>One-time vetting, lifetime badge</h3>
+        <p>Pass a screening test once and you're "top 3%" forever — regardless of what you do after. There's no continuous verification, no proof of recent work, and no way for clients to see real outcomes.</p>
+      </div>
+      <div class="expose-card fade-in delay-3">
+        <div class="stat">$500</div>
+        <h3>Pay before you even start</h3>
+        <p>Some platforms require a $500 refundable deposit plus a monthly subscription before you can even see a single expert profile. The barrier to entry locks out individuals and small businesses.</p>
+      </div>
+      <div class="expose-card fade-in delay-4">
+        <div class="stat">0</div>
+        <h3>Zero access for everyday people</h3>
+        <p>Premium talent platforms serve enterprises only. If you're an individual who needs to learn AI to stay relevant in your career, these platforms weren't built for you. You don't exist to them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="our-answer">
+  <div class="container">
+    <h2 class="fade-in">How EzoraAI is different</h2>
+    <p class="sub fade-in delay-1">We didn't just build a better marketplace. We built a fundamentally different model — one where transparency isn't a feature, it's the architecture.</p>
+    <div class="answer-grid">
+      <div class="answer-card fade-in delay-1">
+        <div class="accent" style="background:var(--teal)"></div>
+        <div class="num">01</div>
+        <h3>Published pricing. No hidden fees.</h3>
+        <p>Experts set their own prices. Users see exactly what they're paying. Experts know exactly what they're earning. No opacity. No NDAs about compensation. No surprises.</p>
+      </div>
+      <div class="answer-card fade-in delay-2">
+        <div class="accent" style="background:var(--purple)"></div>
+        <div class="num">02</div>
+        <h3>Built for everyone. No deposit.</h3>
+        <p>Access the entire expert network with accessible pricing. No $500 deposits. No enterprise-only gatekeeping. Whether you're a Fortune 500 company or a freelancer learning AI — you're in.</p>
+      </div>
+      <div class="answer-card fade-in delay-3">
+        <div class="accent" style="background:var(--gold)"></div>
+        <div class="num">03</div>
+        <h3>Verified experts. Real community.</h3>
+        <p>Every expert is continuously vetted through real client outcomes, ratings, and verified deliverables — not a one-time test from years ago. And you're never on your own: a 24/7 community of peers, mentors, and accountability groups is included with every plan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blockchain-deep">
+  <div class="container">
+    <h2 class="fade-in">How we build trust — for everyone</h2>
+    <p class="sub fade-in delay-1">Trust shouldn't be assumed. It should be earned, visible, and continuous. Here's how we make that happen for every person on the platform.</p>
+
+    <div class="bc-flow fade-in delay-2">
+      <div class="bc-step">
+        <div class="step-num">1</div>
+        <h3>Experts are vetted</h3>
+        <p>Every expert goes through a real screening process before they can offer services on ezora.ai</p>
+        <span class="arrow">→</span>
+      </div>
+      <div class="bc-step">
+        <div class="step-num">2</div>
+        <h3>Work is delivered</h3>
+        <p>Experts complete coaching sessions, projects, and engagements — all tracked on the platform</p>
+        <span class="arrow">→</span>
+      </div>
+      <div class="bc-step">
+        <div class="step-num">3</div>
+        <h3>Outcomes are verified</h3>
+        <p>Clients confirm delivery and leave ratings — building a real, verified track record over time</p>
+        <span class="arrow">→</span>
+      </div>
+      <div class="bc-step">
+        <div class="step-num">4</div>
+        <h3>Community supports you</h3>
+        <p>Peers, accountability groups, and expert-led spaces keep everyone growing — 24/7</p>
+      </div>
+    </div>
+
+    <div class="bc-benefits">
+      <div class="bc-benefit fade-in delay-1">
+        <div class="bc-dot" style="background:var(--teal)"></div>
+        <div>
+          <h3>For people seeking guidance</h3>
+          <p>You see verified proof of real work before you spend a dollar. Not self-reported skills. Not a badge from a test someone took years ago. Real client outcomes, real ratings, and real deliverables — so you can make an informed decision with confidence.</p>
+        </div>
+      </div>
+      <div class="bc-benefit fade-in delay-2">
+        <div class="bc-dot" style="background:var(--gold)"></div>
+        <div>
+          <h3>For experts building careers</h3>
+          <p>Your track record grows with every session, project, and five-star review. A continuously verified profile that showcases your real impact — not just credentials from a one-time test. Your reputation compounds over time and speaks for itself.</p>
+        </div>
+      </div>
+      <div class="bc-benefit fade-in delay-3">
+        <div class="bc-dot" style="background:var(--purple)"></div>
+        <div>
+          <h3>For everyone navigating AI</h3>
+          <p>A 24/7 community means you're never figuring this out alone. Career changers, business owners, and curious beginners all support each other — sharing wins, asking questions, and finding accountability partners who understand the journey.</p>
+        </div>
+      </div>
+      <div class="bc-benefit fade-in delay-4">
+        <div class="bc-dot" style="background:#fff"></div>
+        <div>
+          <h3>Why continuous verification matters</h3>
+          <p>Other platforms vet experts once and call it done. We verify through ongoing client outcomes, ratings, and real deliverables — so an expert's profile always reflects their current ability, not a test they passed years ago.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="comparison">
+  <div class="container">
+    <h2 class="fade-in">How we compare</h2>
+    <p class="sub fade-in delay-1">Every platform has strengths. Here's where ezora.ai offers something different.</p>
+    <p class="scroll-hint fade-in delay-2">&larr; Scroll to compare &rarr;</p>
+    <div class="comp-scroll"><table class="comp-table fade-in delay-2">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Toptal</th>
+          <th>Fiverr / Upwork</th>
+          <th>LinkedIn</th>
+          <th>Udemy</th>
+          <th class="ezora-col" style="color:var(--teal)">EzoraAI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Credential verification</td>
+          <td><span class="partial">~ One-time test</span></td>
+          <td><span class="cross">✗ Self-reported</span></td>
+          <td><span class="cross">✗ Self-reported</span></td>
+          <td><span class="cross">✗ Course completion</span></td>
+          <td class="ezora-col ezora"><span class="check">✓ Continuously verified</span></td>
+        </tr>
+        <tr>
+          <td>Cost to start (user)</td>
+          <td><span class="cross">$500 deposit + $79/mo</span></td>
+          <td><span class="check">Free</span></td>
+          <td><span class="partial">Free / $30-60/mo</span></td>
+          <td><span class="check">Per-course pricing</span></td>
+          <td class="ezora-col ezora"><span class="check">Accessible pricing, no deposit</span></td>
+        </tr>
+        <tr>
+          <td>1-on-1 AI coaching</td>
+          <td><span class="cross">✗ Not offered</span></td>
+          <td><span class="partial">~ Generic services</span></td>
+          <td><span class="cross">✗ Not offered</span></td>
+          <td><span class="cross">✗ Pre-recorded only</span></td>
+          <td class="ezora-col ezora"><span class="check">✓ Core feature</span></td>
+        </tr>
+        <tr>
+          <td>Serves individuals</td>
+          <td><span class="cross">✗ Enterprise only</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td class="ezora-col ezora"><span class="check">✓ B2B + B2C</span></td>
+        </tr>
+        <tr>
+          <td>AI-native focus</td>
+          <td><span class="cross">✗ Generalist</span></td>
+          <td><span class="cross">✗ Generalist</span></td>
+          <td><span class="cross">✗ Generalist</span></td>
+          <td><span class="partial">~ Some AI courses</span></td>
+          <td class="ezora-col ezora"><span class="check">✓ AI-only</span></td>
+        </tr>
+        <tr>
+          <td>24/7 Community access</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td class="ezora-col ezora"><span class="check">✓ Included with every plan</span></td>
+        </tr>
+        <tr>
+          <td>Small business friendly</td>
+          <td><span class="cross">✗ Enterprise only</span></td>
+          <td><span class="partial">~ Gig-based, no strategy</span></td>
+          <td><span class="partial">~ Recruiting only</span></td>
+          <td><span class="cross">✗ Not a service</span></td>
+          <td class="ezora-col ezora"><span class="check">✓ Expert guidance + AI strategy</span></td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Personalized learning</td>
+          <td><span class="cross">✗ Not offered</span></td>
+          <td><span class="cross">✗ Task-based only</span></td>
+          <td><span class="cross">✗ Not offered</span></td>
+          <td><span class="partial">~ Pre-recorded courses</span></td>
+          <td class="ezora-col ezora"><span class="check">✓ 1-on-1 with real experts</span></td>
+        </tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section class="pledge">
+  <div class="container">
+    <div class="pledge-box fade-in">
+      <h2>Our transparency pledge</h2>
+      <p style="font-size:16px;color:var(--gray);margin-bottom:8px">These aren't aspirations. These are commitments we're building into the platform from day one.</p>
+      <div class="pledge-items">
+        <div class="pledge-item">
+          <span class="check-icon">✓</span>
+          <p><strong>Always-on community.</strong> 24/7 access to peers, experts, and accountability groups included with every subscription. You're never navigating the AI transition alone.</p>
+        </div>
+        <div class="pledge-item">
+          <span class="check-icon">✓</span>
+          <p><strong>No pay-to-play rankings.</strong> Expert search results are driven by verified outcomes and ratings — not by who pays for featured placement. Quality rises. Always.</p>
+        </div>
+        <div class="pledge-item">
+          <span class="check-icon">✓</span>
+          <p><strong>Accessible to everyone.</strong> Affordable pricing for individuals. No deposits. No enterprise-only gatekeeping. The AI economy should be open to anyone willing to learn or build.</p>
+        </div>
+        <div class="pledge-item">
+          <span class="check-icon">✓</span>
+          <p><strong>Open feedback.</strong> Reviews are permanent and two-directional. Experts rate clients. Clients rate experts. Both are visible. Accountability goes both ways.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="diff-cta">
+  <div class="container fade-in">
+    <h2>Transparency isn't a feature.<br>It's the foundation.</h2>
+    <p>Join the platform built on trust you can verify — not trust you're told to assume.</p>
+    <a href="index.html#join">Join the waitlist →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-logo">ezora<span>.ai</span></div>
+      <p class="footer-tagline">Critical infrastructure for the largest workforce transition in modern history.</p>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a href="index.html">Home</a>
+        <a href="for-individuals.html">For Individuals</a>
+        <a href="community.html">Community</a>
+        <a href="index.html#join">Waitlist</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="vision.html">Our Vision</a>
+        <a href="difference.html">The Difference</a>
+        <span class="coming-soon">Blog (coming soon)</span>
+        <span class="coming-soon">Careers (coming soon)</span>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+        <a href="https://www.instagram.com/ezora.ai/" target="_blank">Instagram</a>
+        <span class="coming-soon">Discord (coming soon)</span>
+        <span class="coming-soon">Contact (coming soon)</span>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="EzoraAI_Waitlist_Privacy_Policy.docx.pdf" target="_blank">Privacy Policy</a>
+        <a href="EzoraAI_Waitlist_Terms_of_Service.docx.pdf" target="_blank">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 EzoraAI. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+        <a href="https://www.instagram.com/ezora.ai/" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll-triggered fade-in handled by animations.js
+</script>
+
+<button id="backToTop" class="back-to-top" aria-label="Back to top">&#8593;</button>
+
+<script>
+const bttBtn=document.getElementById('backToTop');
+window.addEventListener('scroll',()=>{
+  bttBtn.classList.toggle('visible',window.scrollY>300);
+});
+bttBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'})});
+
+window.addEventListener('scroll',function(){var nav=document.querySelector('nav');if(window.scrollY>50){nav.classList.add('nav-scrolled')}else{nav.classList.remove('nav-scrolled')}});
+document.querySelectorAll('.nav-right a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navToggle').checked=false})});
+</script>
+
+<script src="glow.js"></script>
+<script src="animations.js"></script>
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EzoraAI — Community</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+
+<!-- Open Graph / Social sharing -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EzoraAI">
+<meta property="og:url" content="https://ezora.ai/community.html">
+<meta property="og:image" content="https://ezora.ai/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:title" content="EzoraAI Community — Always On">
+<meta property="og:description" content="24/7 access to a welcoming community where career changers, business owners, and curious learners navigate AI together.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ezora.ai/og-image.png">
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0B1224;--dark:#131D3B;--teal:#00C9A7;--purple:#7C3AED;--gold:#F5A623;
+  --white:#F4F6FA;--gray:#94A3B8;--text:#E2E8F0;--mid:#64748b;
+}
+body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;opacity:0;transition:opacity .3s ease}
+body.loaded{opacity:1}
+body.fade-out{opacity:0;transition:opacity .2s ease}
+h1,h2,h3{font-family:'Instrument Serif',serif;font-weight:400}
+.container{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* Animations */
+/* fade-in handled by animations.js */
+
+/* Nav */
+nav{padding:14px 0;position:sticky;top:0;z-index:100;background:transparent;border-bottom:1px solid transparent;box-shadow:none;transition:background .3s,box-shadow .3s,border-bottom .3s,backdrop-filter .3s}
+nav.nav-scrolled{background:rgba(11,18,36,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 24px rgba(0,0,0,.4);border-bottom:1px solid rgba(255,255,255,.06)}
+nav .container{display:flex;justify-content:space-between;align-items:center;gap:16px;position:relative}
+nav a.nav-link{color:var(--mid);font-size:13px;font-weight:500;text-decoration:none;transition:color .2s ease-out;padding:7px 14px;border-radius:6px;position:relative;letter-spacing:.2px;z-index:1}
+nav a.nav-link::before{content:'';position:absolute;inset:0;border-radius:6px;background:rgba(255,255,255,.06);opacity:0;transform:scale(.8);transition:opacity .2s ease-out,transform .2s ease-out;z-index:-1}
+nav a.nav-link:hover{color:var(--white)}
+nav a.nav-link:hover::before{opacity:1;transform:scale(1)}
+nav a.nav-link.active{color:var(--white)}
+nav a.nav-link.active::before{opacity:1;transform:scale(1);background:rgba(255,255,255,.08)}
+nav a.nav-link.active::after{content:'';position:absolute;bottom:0;left:14px;right:14px;height:1.5px;background:var(--teal);border-radius:1px}
+nav a.cta-nav{color:var(--navy);font-size:13px;font-weight:600;text-decoration:none;background:var(--teal);padding:8px 22px;border-radius:6px;transition:all .2s;border:none;letter-spacing:.2px}
+nav a.cta-nav:hover{background:#00e6be;transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,201,167,.3)}
+.nav-right{display:flex;align-items:center;gap:2px}
+
+/* Hero */
+.hero{padding:80px 0 40px;text-align:center;position:relative}
+.hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:140%;height:180%;background:radial-gradient(ellipse 65% 55% at 50% 45%,rgba(0,201,167,.07) 0%,rgba(0,201,167,.03) 40%,transparent 70%);pointer-events:none;opacity:0;animation:glowIn .8s ease .15s forwards}
+@keyframes glowIn{to{opacity:1}}
+.hero-tag{display:inline-block;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);border:1px solid rgba(0,201,167,.3);padding:6px 16px;border-radius:20px;margin-bottom:20px}
+.hero h1{font-size:clamp(36px,5vw,60px);line-height:1.1;color:#fff;margin-bottom:24px;letter-spacing:-1.5px;font-weight:400}
+.hero p{font-size:17px;color:var(--gray);max-width:660px;margin:0 auto;line-height:1.7}
+
+/* Section common */
+.section-title{font-size:clamp(28px,4vw,44px);color:#fff;text-align:center;margin-bottom:12px;letter-spacing:-1px}
+.section-sub{text-align:center;color:var(--mid);font-size:16px;margin-bottom:48px;max-width:650px;margin-left:auto;margin-right:auto}
+
+/* Feature cards */
+.features{padding:20px 0 80px}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.feature-card{background:var(--dark);border-radius:12px;padding:28px 24px;border:1px solid rgba(255,255,255,.04);transition:transform .3s,box-shadow .3s}
+.feature-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.feature-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px;font-weight:700}
+.feature-card h3{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;color:#fff;margin-bottom:8px}
+.feature-card p{font-size:14px;color:var(--gray);line-height:1.6}
+
+/* How it works */
+.how-it-works{padding:80px 0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:800px;margin:0 auto}
+.step{text-align:center}
+.step-num{width:48px;height:48px;border-radius:50%;background:var(--teal);color:var(--navy);font-family:'Instrument Serif',serif;font-size:22px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.step h3{font-family:'DM Sans',sans-serif;font-size:16px;color:#fff;margin-bottom:8px;font-weight:600}
+.step p{font-size:14px;color:var(--gray);line-height:1.6}
+
+/* Forum preview */
+.forum-preview{padding:80px 0;position:relative}
+.forum-list{display:flex;flex-direction:column;gap:12px}
+.forum-row{background:var(--dark);border-radius:10px;padding:20px 24px;display:flex;align-items:center;gap:20px;border-left:3px solid;transition:transform .2s}
+.forum-row:hover{transform:translateX(4px)}
+.forum-row h4{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;color:#fff;margin-bottom:4px}
+.forum-row p{font-size:13px;color:var(--gray);line-height:1.4}
+.forum-row .members{font-size:12px;color:var(--mid);margin-left:auto;white-space:nowrap;flex-shrink:0}
+.forum-fade{position:absolute;bottom:0;left:0;right:0;height:360px;background:linear-gradient(to bottom,transparent,rgba(11,18,36,.9) 45%,var(--navy) 75%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:60px;z-index:2}
+.forum-fade-inner{text-align:center}
+.forum-fade-inner p{font-size:16px;color:var(--gray);margin-bottom:20px;font-weight:500}
+.forum-fade-inner a{display:inline-block;padding:14px 32px;background:var(--teal);color:var(--navy);font-size:15px;font-weight:700;border-radius:8px;text-decoration:none;transition:.2s}
+.forum-fade-inner a:hover{background:#00e6be;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,201,167,.25)}
+
+/* Why section */
+.why-forum{padding:80px 0}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.why-left h2{font-size:clamp(26px,3.5vw,38px);color:#fff;margin-bottom:24px;letter-spacing:-.5px}
+.why-list{list-style:none}
+.why-list li{font-size:15px;color:var(--gray);line-height:1.6;padding:10px 0;padding-left:24px;position:relative}
+.why-list li::before{content:'';position:absolute;left:0;top:16px;width:8px;height:8px;border-radius:50%;background:var(--teal);opacity:.6}
+.why-right{background:var(--dark);border-radius:16px;padding:36px 32px;border:1px solid rgba(255,255,255,.06)}
+.why-right h3{font-size:22px;color:#fff;margin-bottom:16px}
+.compare-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:14px}
+.compare-row:last-child{border-bottom:none}
+.compare-row .label{color:var(--gray)}
+.compare-row .discord{color:var(--mid);font-size:13px}
+.compare-row .ezora{color:var(--teal);font-weight:600;font-size:13px}
+
+/* CTA */
+.final-cta{padding:60px 0 80px;text-align:center}
+.final-cta h2{font-size:clamp(28px,4vw,44px);color:#fff;margin-bottom:12px;letter-spacing:-1px}
+.final-cta p{color:var(--gray);font-size:16px;margin-bottom:28px}
+.final-cta a{display:inline-block;padding:16px 36px;background:var(--teal);color:var(--navy);font-size:16px;font-weight:700;border-radius:8px;text-decoration:none;transition:.2s}
+.final-cta a:hover{background:#00e6be;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,201,167,.25)}
+
+/* Footer */
+footer{padding:60px 0 0;border-top:1px solid rgba(255,255,255,.06)}
+.footer-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px}
+.footer-logo{font-family:'DM Sans',sans-serif;font-size:20px;font-weight:700;color:#F4F6FA;letter-spacing:-.3px}
+.footer-logo span{color:var(--teal)}
+.footer-tagline{font-size:13px;color:var(--mid)}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-bottom:48px}
+.footer-col h4{font-size:12px;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:var(--mid);text-decoration:none;padding:4px 0;transition:color .2s}
+.footer-col a:hover{color:var(--teal)}
+.footer-col .coming-soon{display:block;font-size:13px;color:rgba(100,116,139,.5);padding:4px 0;cursor:default}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding:24px 0;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{font-size:12px;color:var(--mid)}
+.footer-socials{display:flex;gap:16px}
+.footer-socials a{color:var(--mid);text-decoration:none;font-size:13px;transition:color .2s}
+.footer-socials a:hover{color:var(--teal)}
+
+
+/* Hamburger menu (hidden on desktop) */
+.nav-toggle-checkbox{display:none}
+.nav-toggle-label{display:none}
+.nav-close-label{display:none}
+
+/* Back to top */
+.back-to-top{position:fixed;bottom:32px;right:32px;width:48px;height:48px;border-radius:50%;border:none;background:var(--teal);color:var(--navy);font-size:22px;cursor:pointer;z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .3s,transform .3s,background .2s;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+.back-to-top.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.back-to-top:hover{background:#00e6be}
+
+/* Responsive */
+@media(max-width:768px){
+  .feature-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr;gap:32px}
+  .why-grid{grid-template-columns:1fr;gap:32px}
+  .hero{padding:80px 0 60px}
+  .forum-row .members{display:none}
+  .features,.how-it-works,.forum-preview,.why-forum{padding:60px 0}
+  .footer-grid{grid-template-columns:repeat(2,1fr);gap:32px}
+
+  /* Hamburger menu */
+  .nav-toggle-label{display:flex;align-items:center;justify-content:center;width:44px;height:44px;font-size:24px;color:var(--white);cursor:pointer;border-radius:8px;background:rgba(255,255,255,.06)}
+  .nav-right{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(11,18,36,.97);backdrop-filter:blur(12px);padding:16px 24px 24px;border-bottom:1px solid rgba(255,255,255,.06);gap:4px}
+  .nav-toggle-checkbox:checked ~ .nav-right{display:flex}
+  .nav-close-label{display:flex;align-items:center;justify-content:center;align-self:flex-end;width:44px;height:44px;font-size:28px;color:var(--gray);cursor:pointer}
+  .nav-right a.nav-link{width:100%;padding:12px 16px;min-height:44px;display:flex;align-items:center;font-size:15px}
+  .nav-right a.cta-nav{width:100%;text-align:center;padding:14px;min-height:44px;margin-top:8px;font-size:15px}
+  nav .container{position:relative}
+
+  /* Touch targets */
+  .footer-col a,.footer-col .coming-soon{min-height:44px;display:flex;align-items:center}
+  .footer-socials a{min-height:44px;display:flex;align-items:center}
+  .forum-fade-inner a{min-height:44px;display:inline-flex;align-items:center}
+  .final-cta a{min-height:44px;display:inline-flex;align-items:center}
+  .footer-bottom{flex-direction:column;gap:16px;text-align:center}
+  .footer-top{flex-direction:column;gap:12px;text-align:center}
+}
+
+@media(max-width:480px){
+  .footer-grid{grid-template-columns:1fr}
+  .hero{padding:60px 0 40px}
+  .features,.how-it-works,.forum-preview,.why-forum{padding:50px 0}
+  .feature-card{padding:20px 16px}
+  .forum-row{padding:16px}
+  .why-list li{padding-left:20px}
+}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
+  .fade-in{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<script>
+document.body.classList.add('loaded');
+document.addEventListener('click',function(e){
+  var link=e.target.closest('a');
+  if(!link)return;
+  var href=link.getAttribute('href');
+  if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')||link.target==='_blank')return;
+  e.preventDefault();
+  document.body.classList.add('fade-out');
+  document.body.classList.remove('loaded');
+  setTimeout(function(){window.location.href=href},200);
+});
+</script>
+
+<nav>
+  <div class="container">
+    <a href="index.html" class="logo-wordmark" style="text-decoration:none;font-family:'DM Sans',sans-serif;font-size:20px;font-weight:700;color:#F4F6FA;letter-spacing:-.3px;display:flex;align-items:center;gap:5px"><img src="icon-512.png" alt="EzoraAI" style="width:28px;height:28px"><span>ezora<span style="color:#00C9A7">.ai</span></span></a>
+    <input type="checkbox" id="navToggle" class="nav-toggle-checkbox" aria-label="Toggle navigation menu">
+    <label for="navToggle" class="nav-toggle-label" aria-label="Open menu">&#9776;</label>
+    <div class="nav-right">
+      <label for="navToggle" class="nav-close-label" aria-label="Close menu">&times;</label>
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="vision.html" class="nav-link">Our vision</a>
+      <a href="difference.html" class="nav-link">The difference</a>
+      <a href="for-individuals.html" class="nav-link">For individuals</a>
+      <a href="for-experts.html" class="nav-link">For experts</a>
+      <a href="community.html" class="nav-link active">Community</a>
+      <a href="index.html#join" class="cta-nav glow-hover glow-teal">Join the waitlist</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <span class="hero-tag fade-in">Included with every subscription</span>
+    <h1 class="fade-in delay-1">Your AI community. Always on.</h1>
+    <p class="fade-in delay-2">As an EzoraAI subscriber, you get 24/7 access to a private community where you can ask questions, share wins, learn from experts, and connect with people on the same journey. This isn't a Discord server. It's a structured, moderated, expert-powered forum built into your subscription.</p>
+  </div>
+</section>
+
+<!-- What you get access to -->
+<section class="features">
+  <div class="container">
+    <div class="feature-grid">
+
+      <div class="feature-card fade-in delay-1">
+        <div class="feature-icon" style="background:rgba(124,58,237,.15);color:var(--purple)">?</div>
+        <h3>Ask an expert</h3>
+        <p>Post questions and get real answers from verified AI professionals. Not chatbot responses — real human expertise from people with blockchain-verified track records.</p>
+      </div>
+
+      <div class="feature-card fade-in delay-2">
+        <div class="feature-icon" style="background:rgba(0,201,167,.15);color:var(--teal)">&#9776;</div>
+        <h3>Discussion boards</h3>
+        <p>Organized forums by topic: AI fundamentals, career transitions, business automation, vibe coding, industry-specific AI, and more. Find your people.</p>
+      </div>
+
+      <div class="feature-card fade-in delay-3">
+        <div class="feature-icon" style="background:rgba(245,166,35,.15);color:var(--gold)">&#9733;</div>
+        <h3>Expert AMAs</h3>
+        <p>Weekly live Ask Me Anything sessions with top-rated EzoraAI experts. Ask your questions directly, watch live demos, and get personalized advice.</p>
+      </div>
+
+      <div class="feature-card fade-in delay-4">
+        <div class="feature-icon" style="background:rgba(124,58,237,.15);color:var(--purple)">&#10070;</div>
+        <h3>Workflow library</h3>
+        <p>A growing collection of AI workflows, prompts, and templates shared by the community and curated by experts. Copy, customize, and deploy.</p>
+      </div>
+
+      <div class="feature-card fade-in delay-1">
+        <div class="feature-icon" style="background:rgba(0,201,167,.15);color:var(--teal)">&#9823;</div>
+        <h3>Accountability groups</h3>
+        <p>Join small peer groups organized by goal — career changers, business owners, freelancers learning AI. Weekly check-ins, shared progress, real support.</p>
+      </div>
+
+      <div class="feature-card fade-in delay-2">
+        <div class="feature-icon" style="background:rgba(245,166,35,.15);color:var(--gold)">&#9881;</div>
+        <h3>Job board & opportunities</h3>
+        <p>Exclusive listings from companies looking for AI-literate talent, plus experts posting collaboration opportunities and project openings.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- How the forum works -->
+<section class="how-it-works">
+  <div class="container">
+    <h2 class="section-title fade-in">How the forum works</h2>
+    <div class="steps fade-in delay-1">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Subscribe</h3>
+        <p>Any EzoraAI subscription includes full community access. No extra fees. No upsells.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Create your profile</h3>
+        <p>Set up your community profile with your interests, industry, and goals. The forum personalizes your feed based on what matters to you.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Dive in</h3>
+        <p>Post questions, join discussions, attend AMAs, browse the workflow library, and connect with experts and peers 24/7.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Forum categories preview -->
+<section class="forum-preview">
+  <div class="container">
+    <h2 class="section-title fade-in">Forum categories</h2>
+    <p class="section-sub fade-in delay-1">A hypothetical preview of the structured spaces waiting for you inside.</p>
+    <div class="forum-list fade-in delay-2">
+
+      <div class="forum-row" style="border-color:var(--purple)">
+        <div><h4>Getting started with AI</h4><p>New to AI? Start here. No judgment, just guidance.</p></div>
+        <span class="members">2.4k members</span>
+      </div>
+
+      <div class="forum-row" style="border-color:var(--purple)">
+        <div><h4>Career & workforce transition</h4><p>Navigating job changes, reskilling, and AI-proofing your career.</p></div>
+        <span class="members">1.8k members</span>
+      </div>
+
+      <div class="forum-row" style="border-color:var(--teal)">
+        <div><h4>AI for business</h4><p>Automation, SaaS replacement, and building AI-powered operations.</p></div>
+        <span class="members">3.1k members</span>
+      </div>
+
+      <div class="forum-row" style="border-color:var(--teal)">
+        <div><h4>Vibe coding & building</h4><p>Share what you're building, get feedback, learn from others.</p></div>
+        <span class="members">1.5k members</span>
+      </div>
+
+      <div class="forum-row" style="border-color:var(--gold)">
+        <div><h4>Expert corner</h4><p>Verified experts share insights, case studies, and behind-the-scenes of their work.</p></div>
+        <span class="members">890 members</span>
+      </div>
+
+      <div class="forum-row" style="border-color:var(--gold)">
+        <div><h4>Industry specific</h4><p>Sub-forums for law, finance, marketing, HR, real estate, healthcare, and more.</p></div>
+        <span class="members">2.2k members</span>
+      </div>
+
+      <div class="forum-row" style="border-color:var(--teal)">
+        <div><h4>Showcase & wins</h4><p>Share your AI wins. Landed a job? Automated a workflow? Built an app? Celebrate here.</p></div>
+        <span class="members">1.1k members</span>
+      </div>
+
+      <div class="forum-row" style="border-color:var(--purple)">
+        <div><h4>Feature requests & feedback</h4><p>Help us build the platform you want. Your voice shapes EzoraAI.</p></div>
+        <span class="members">740 members</span>
+      </div>
+
+    </div>
+  </div>
+  <div class="forum-fade">
+    <div class="forum-fade-inner">
+      <h2 style="font-family:'Instrument Serif',serif;font-size:clamp(28px,4vw,44px);color:#fff;margin-bottom:12px;letter-spacing:-1px;font-weight:400">Be part of it from day one.</h2>
+      <p>Early subscribers get founding member status and help shape the community from the ground up.</p>
+      <a href="index.html#join">Join the waitlist</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-logo">ezora<span>.ai</span></div>
+      <p class="footer-tagline">Critical infrastructure for the largest workforce transition in modern history.</p>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a href="index.html">Home</a>
+        <a href="for-individuals.html">For Individuals</a>
+        <a href="community.html">Community</a>
+        <a href="index.html#join">Waitlist</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="vision.html">Our Vision</a>
+        <a href="difference.html">The Difference</a>
+        <span class="coming-soon">Blog (coming soon)</span>
+        <span class="coming-soon">Careers (coming soon)</span>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+        <a href="https://www.instagram.com/ezora.ai/" target="_blank">Instagram</a>
+        <span class="coming-soon">Discord (coming soon)</span>
+        <span class="coming-soon">Contact (coming soon)</span>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="EzoraAI_Waitlist_Privacy_Policy.docx.pdf" target="_blank">Privacy Policy</a>
+        <a href="EzoraAI_Waitlist_Terms_of_Service.docx.pdf" target="_blank">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 EzoraAI. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+        <a href="https://www.instagram.com/ezora.ai/" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button id="backToTop" class="back-to-top" aria-label="Back to top">&#8593;</button>
+
+<script>
+// Scroll-triggered fade-in handled by animations.js
+
+// Back to top
+const bttBtn=document.getElementById('backToTop');
+window.addEventListener('scroll',()=>{
+  bttBtn.classList.toggle('visible',window.scrollY>300);
+});
+bttBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'})});
+
+window.addEventListener('scroll',function(){var nav=document.querySelector('nav');if(window.scrollY>50){nav.classList.add('nav-scrolled')}else{nav.classList.remove('nav-scrolled')}});
+
+// Auto-close hamburger menu on link click
+document.querySelectorAll('.nav-right a').forEach(function(link){link.addEventListener('click',function(){var cb=document.getElementById('navToggle');if(cb)cb.checked=false})});
+</script>
+
+<script src="glow.js"></script>
+<script src="animations.js"></script>
+</body>
+</html>
