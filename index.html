@@ -726,6 +726,23 @@ toggleOther('ctxHelp','ctxHelpOther');
 toggleOther('bbLevel','bbLevelOther');
 toggleOther('bbHelp','bbHelpOther');
 
+// Auto-select role from URL parameter (e.g. ?role=expert#join)
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var urlRole=params.get('role');
+  if(!urlRole)return;
+  var roleMap={learner:'learner',expert:'expert',business:'browser',browser:'browser'};
+  var mapped=roleMap[urlRole]||urlRole;
+  setTimeout(function(){
+    var btn=document.querySelector('.hero-ctas button[data-role="'+mapped+'"]');
+    if(btn){
+      selectRole(mapped,btn);
+      var join=document.getElementById('join');
+      if(join)join.scrollIntoView({behavior:'smooth'});
+    }
+  },600);
+})();
+
 async function submitWaitlist(){
   var email=document.getElementById('email').value;
   var role=selectedRole||'browser';
