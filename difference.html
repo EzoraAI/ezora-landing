@@ -60,8 +60,35 @@ nav a.cta-nav-outline{color:var(--navy);font-size:13px;font-weight:600;text-deco
 nav a.cta-nav-outline:hover{background:rgba(0,0,0,.04);transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.08)}
 .nav-right{display:flex;align-items:center;gap:2px}
 
+/* Mega dropdown */
+.nav-dropdown{position:relative}
+.nav-dropdown>.nav-link{display:inline-flex;align-items:center;gap:4px;cursor:pointer}
+.nav-dropdown>.nav-link::after{content:'';border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid currentColor;transition:transform .2s;margin-top:1px;position:static;width:auto;height:auto;background:none;left:auto;right:auto;bottom:auto}
+.nav-dropdown:hover>.nav-link::after{transform:rotate(180deg)}
+.nav-dropdown:hover>.nav-link{color:var(--navy)}
+.mega-panel{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(4px);opacity:0;visibility:hidden;pointer-events:none;background:#fff;border:1px solid #E2E8F0;border-radius:14px;box-shadow:0 12px 48px rgba(0,0,0,.08),0 2px 8px rgba(0,0,0,.04);padding:24px;display:grid;gap:0;transition:opacity .2s ease,transform .2s ease,visibility .2s;z-index:200;min-width:480px}
+.mega-panel.mega-2col{grid-template-columns:1fr 1fr;gap:8px}
+.mega-panel.mega-3col{grid-template-columns:1fr 1fr 180px;gap:8px;min-width:580px}
+.nav-dropdown:hover>.mega-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.mega-col-label{font-size:10px;font-weight:600;color:var(--mid);text-transform:uppercase;letter-spacing:1.5px;padding:0 12px 8px;grid-column:1/-1}
+.mega-item{display:flex;align-items:flex-start;gap:12px;padding:12px;border-radius:10px;text-decoration:none;transition:background .15s}
+.mega-item:hover{background:rgba(0,0,0,.03)}
+.mega-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:rgba(0,0,0,.04)}
+.mega-icon.mi-purple{background:rgba(124,58,237,.08);color:#7C3AED}
+.mega-icon.mi-teal{background:rgba(0,201,167,.08);color:#00C9A7}
+.mega-icon.mi-gold{background:rgba(245,166,35,.08);color:#F5A623}
+.mega-icon.mi-navy{background:rgba(11,18,36,.06);color:#0B1224}
+.mega-text{display:flex;flex-direction:column;gap:2px}
+.mega-text span{font-size:13px;font-weight:600;color:var(--navy)}
+.mega-text small{font-size:11px;color:var(--mid);line-height:1.3}
+.mega-featured{background:linear-gradient(135deg,rgba(0,201,167,.06),rgba(124,58,237,.06));border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;text-decoration:none;transition:background .2s}
+.mega-featured:hover{background:linear-gradient(135deg,rgba(0,201,167,.1),rgba(124,58,237,.1))}
+.mega-featured .mf-label{font-size:10px;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:1px}
+.mega-featured .mf-title{font-size:14px;font-weight:600;color:var(--navy);line-height:1.3}
+.mega-featured .mf-cta{font-size:12px;color:var(--teal);font-weight:600;display:inline-flex;align-items:center;gap:4px}
+
 /* Hero */
-.diff-hero{padding:80px 0 60px;text-align:center;position:relative}
+.diff-hero{padding:80px 0 60px;text-align:center;position:relative;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(0,201,167,.06) 0%,rgba(0,201,167,.03) 40%,transparent 70%),linear-gradient(180deg,#FAFBFC 0%,#FAFBFC 60%,rgba(0,201,167,.03) 100%)}
 .diff-hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:140%;height:180%;background:radial-gradient(ellipse 65% 55% at 50% 45%,rgba(0,201,167,.07) 0%,rgba(0,201,167,.03) 40%,transparent 70%);pointer-events:none;opacity:0;animation:glowIn .8s ease .15s forwards}
 @keyframes glowIn{to{opacity:1}}
 .diff-hero .tag{display:inline-block;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal);border:1px solid rgba(0,201,167,.3);padding:6px 16px;border-radius:20px;margin-bottom:20px}
@@ -70,14 +97,14 @@ nav a.cta-nav-outline:hover{background:rgba(0,0,0,.04);transform:translateY(-1px
 .diff-hero p{font-size:17px;color:var(--gray);max-width:680px;margin:0 auto;line-height:1.6}
 
 /* Manifesto */
-.manifesto{padding:60px 0;text-align:center}
+.manifesto{padding:60px 0;text-align:center;background:linear-gradient(180deg,#FAFBFC 0%,#F1F5F9 40%,#F1F5F9 60%,#FAFBFC 100%)}
 .manifesto-box{background:var(--dark);border-radius:16px;padding:48px 40px;border:1.5px solid #E2E8F0;max-width:860px;margin:0 auto;box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .manifesto-box h2{font-size:28px;color:var(--navy);margin-bottom:16px}
 .manifesto-box p{font-size:16px;color:var(--gray);line-height:1.8;margin-bottom:12px}
 .manifesto-box .highlight{color:var(--teal);font-weight:600}
 
 /* Problem expose */
-.problem-expose{padding:100px 0}
+.problem-expose{padding:100px 0;background:linear-gradient(180deg,#FAFBFC 0%,#F1F5F9 40%,#F1F5F9 60%,#FAFBFC 100%)}
 .problem-expose h2{font-size:clamp(32px,4vw,44px);color:var(--navy);text-align:center;margin-bottom:12px;letter-spacing:-1px}
 .problem-expose .sub{text-align:center;color:var(--mid);font-size:15px;margin-bottom:48px;max-width:700px;margin-left:auto;margin-right:auto}
 .expose-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
@@ -87,7 +114,7 @@ nav a.cta-nav-outline:hover{background:rgba(0,0,0,.04);transform:translateY(-1px
 .expose-card .stat{font-size:28px;font-family:'Instrument Serif',serif;color:var(--navy);margin-bottom:4px}
 
 /* Our answer */
-.our-answer{padding:100px 0;background:var(--bg-alt)}
+.our-answer{padding:100px 0;background:linear-gradient(180deg,#FAFBFC 0%,rgba(124,58,237,.03) 30%,rgba(124,58,237,.05) 50%,rgba(124,58,237,.03) 70%,#FAFBFC 100%)}
 .our-answer h2{font-size:clamp(32px,4vw,44px);color:var(--navy);text-align:center;margin-bottom:12px;letter-spacing:-1px}
 .our-answer .sub{text-align:center;color:var(--mid);font-size:15px;margin-bottom:48px;max-width:700px;margin-left:auto;margin-right:auto}
 .answer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
@@ -98,7 +125,7 @@ nav a.cta-nav-outline:hover{background:rgba(0,0,0,.04);transform:translateY(-1px
 .answer-card p{font-size:14px;color:var(--gray);line-height:1.7}
 
 /* Trust & verification */
-.blockchain-deep{padding:100px 0}
+.blockchain-deep{padding:100px 0;background:linear-gradient(180deg,#FAFBFC 0%,#F1F5F9 40%,#F1F5F9 60%,#FAFBFC 100%)}
 .blockchain-deep h2{font-size:clamp(32px,4vw,44px);color:var(--navy);text-align:center;margin-bottom:12px;letter-spacing:-1px}
 .blockchain-deep .sub{text-align:center;color:var(--mid);font-size:15px;margin-bottom:48px;max-width:700px;margin-left:auto;margin-right:auto}
 .bc-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px}
@@ -114,7 +141,7 @@ nav a.cta-nav-outline:hover{background:rgba(0,0,0,.04);transform:translateY(-1px
 .bc-benefit p{font-size:13px;color:var(--gray);line-height:1.6}
 
 /* Comparison table */
-.comparison{padding:100px 0;background:var(--bg-alt)}
+.comparison{padding:100px 0;background:linear-gradient(180deg,#FAFBFC 0%,rgba(124,58,237,.03) 30%,rgba(124,58,237,.05) 50%,rgba(124,58,237,.03) 70%,#FAFBFC 100%)}
 .comparison h2{font-size:clamp(32px,4vw,44px);color:var(--navy);text-align:center;margin-bottom:12px;letter-spacing:-1px}
 .comparison .sub{text-align:center;color:var(--mid);font-size:15px;margin-bottom:48px;max-width:700px;margin-left:auto;margin-right:auto}
 .comp-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden}
@@ -225,6 +252,17 @@ footer{padding:60px 0 0;border-top:1px solid #E2E8F0}
   .nav-right a.cta-nav,.nav-right a.cta-nav-outline{width:100%;text-align:center;padding:14px;min-height:44px;margin-top:8px;font-size:15px}
   .nav-auth-group{flex-direction:column;width:100%}
 
+  .nav-dropdown{width:100%}
+  .nav-dropdown>.nav-link{width:100%;justify-content:space-between;padding:14px 8px;font-size:15px;border-radius:0;border-bottom:1px solid rgba(0,0,0,.06);min-height:44px}
+  .mega-panel{position:static;transform:none;opacity:1;visibility:visible;pointer-events:auto;min-width:0;border:none;border-radius:0;box-shadow:none;padding:0 0 0 12px;display:none;grid-template-columns:1fr}
+  .mega-panel.mega-2col,.mega-panel.mega-3col{grid-template-columns:1fr}
+  .nav-dropdown:hover>.mega-panel{transform:none}
+  .nav-dropdown.mob-open>.mega-panel{display:grid}
+  .mega-col-label{display:none}
+  .mega-featured{display:none}
+  .mega-item{padding:10px 8px;border-bottom:1px solid rgba(0,0,0,.03)}
+  .mega-icon{width:28px;height:28px;font-size:14px;border-radius:6px}
+
   /* Footer */
   .footer-top{flex-direction:column;gap:8px;text-align:center}
   .footer-grid{grid-template-columns:1fr 1fr;gap:24px}
@@ -258,12 +296,46 @@ footer{padding:60px 0 0;border-top:1px solid #E2E8F0}
     <div class="nav-right">
       <label for="navToggle" class="nav-close-label" aria-label="Close menu">&times;</label>
       <a href="index.html" class="nav-link">Home</a>
-      <a href="vision.html" class="nav-link">Our vision</a>
-      <a href="difference.html" class="nav-link active">The difference</a>
-      <a href="for-individuals.html" class="nav-link">For individuals</a>
-      <a href="for-businesses.html" class="nav-link">For businesses</a>
-      <a href="for-experts.html" class="nav-link">For experts</a>
-      <a href="community.html" class="nav-link">Community</a>
+      <div class="nav-dropdown" onclick="this.classList.toggle('mob-open')">
+        <a class="nav-link">Platform</a>
+        <div class="mega-panel mega-3col">
+          <span class="mega-col-label">Who it's for</span>
+          <a href="for-individuals.html" class="mega-item">
+            <div class="mega-icon mi-purple">&#x1F9D1;</div>
+            <div class="mega-text"><span>For Individuals</span><small>1-on-1 AI coaching tailored to your goals</small></div>
+          </a>
+          <a href="for-businesses.html" class="mega-item">
+            <div class="mega-icon mi-teal">&#x1F3E2;</div>
+            <div class="mega-text"><span>For Businesses</span><small>Vetted AI talent for projects &amp; strategy</small></div>
+          </a>
+          <a href="for-experts.html" class="mega-item">
+            <div class="mega-icon mi-gold">&#x2B50;</div>
+            <div class="mega-text"><span>For AI Experts</span><small>Monetize your skills on your terms</small></div>
+          </a>
+          <a href="community.html" class="mega-item">
+            <div class="mega-icon mi-navy">&#x1F91D;</div>
+            <div class="mega-text"><span>Community</span><small>24/7 peer support &amp; learning</small></div>
+          </a>
+          <a href="#join" class="mega-featured" onclick="event.stopPropagation()">
+            <span class="mf-label">Get started</span>
+            <span class="mf-title">Join 2,000+ professionals already on the waitlist</span>
+            <span class="mf-cta">Sign up free &#x2192;</span>
+          </a>
+        </div>
+      </div>
+      <div class="nav-dropdown" onclick="this.classList.toggle('mob-open')">
+        <a class="nav-link">About</a>
+        <div class="mega-panel mega-2col">
+          <a href="vision.html" class="mega-item">
+            <div class="mega-icon mi-teal">&#x1F52D;</div>
+            <div class="mega-text"><span>Our Vision</span><small>Why we're building EzoraAI</small></div>
+          </a>
+          <a href="difference.html" class="mega-item">
+            <div class="mega-icon mi-purple">&#x26A1;</div>
+            <div class="mega-text"><span>The Difference</span><small>How we compare to the alternatives</small></div>
+          </a>
+        </div>
+      </div>
       <span class="nav-auth-group" style="display:inline-flex;align-items:center;gap:8px">
         <a href="https://app.ezora.ai/login" class="cta-nav-outline">Log in</a>
         <a href="https://app.ezora.ai/signup" class="cta-nav glow-hover glow-teal">Sign up</a>
