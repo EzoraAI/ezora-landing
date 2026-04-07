@@ -68,7 +68,8 @@ nav a.cta-nav-outline:hover{background:rgba(203,213,225,.1);transform:translateY
 .nav-dropdown>.nav-link::after{content:'';border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid currentColor;transition:transform .2s;margin-top:1px;position:static;width:auto;height:auto;background:none;left:auto;right:auto;bottom:auto}
 .nav-dropdown:hover>.nav-link::after{transform:rotate(180deg)}
 .nav-dropdown:hover>.nav-link{color:var(--navy)}
-.mega-panel{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(4px);opacity:0;visibility:hidden;pointer-events:none;background:#fff;border:1px solid #E2E8F0;border-radius:14px;box-shadow:0 12px 48px rgba(0,0,0,.08),0 2px 8px rgba(0,0,0,.04);padding:24px;display:grid;gap:0;transition:opacity .2s ease,transform .2s ease,visibility .2s;z-index:200;min-width:480px}
+.mega-panel{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(4px);opacity:0;visibility:hidden;pointer-events:none;background:#fff;border:1px solid #E2E8F0;border-radius:14px;box-shadow:0 12px 48px rgba(0,0,0,.08),0 2px 8px rgba(0,0,0,.04);padding:24px;padding-top:34px;display:grid;gap:0;transition:opacity .2s ease,transform .2s ease,visibility .2s;z-index:200;min-width:480px}
+.mega-panel::before{content:'';position:absolute;top:-12px;left:0;right:0;height:12px;background:transparent}
 .mega-panel.mega-2col{grid-template-columns:1fr 1fr;gap:8px}
 .mega-panel.mega-3col{grid-template-columns:1fr 1fr 180px;gap:8px;min-width:580px}
 .nav-dropdown:hover>.mega-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
