@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EzoraAI Hero Graphic Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #FAFBFC 0%, #F0F4F8 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.hero-scene {
+  width: 520px;
+  height: 480px;
+  position: relative;
+  perspective: 900px;
+}
+
+/* Connecting lines behind cards */
+.hero-scene::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    /* line from profile card to video card */
+    linear-gradient(135deg, transparent 30%, rgba(0,201,167,.12) 30.5%, rgba(0,201,167,.12) 31%, transparent 31.5%),
+    /* line from profile card to chain card */
+    linear-gradient(200deg, transparent 45%, rgba(0,201,167,.08) 45.5%, rgba(0,201,167,.08) 46%, transparent 46.5%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* SVG connection lines */
+.connect-lines {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Floating card base */
+.float-card {
+  position: absolute;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow:
+    0 4px 16px rgba(0,0,0,.06),
+    0 12px 40px rgba(0,0,0,.04),
+    0 0 0 1px rgba(0,0,0,.03);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+/* ---- Main profile card ---- */
+.card-profile {
+  width: 200px;
+  height: 240px;
+  top: 80px;
+  left: 40px;
+  transform: rotateY(8deg) rotateX(-3deg) rotateZ(-2deg);
+  z-index: 3;
+  padding: 28px 20px;
+  animation: float1 4s ease-in-out infinite;
+}
+
+.avatar-ring {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E0F7F1 0%, #F0FDFA 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.avatar-ring svg {
+  width: 40px;
+  height: 40px;
+  stroke: #0B1224;
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.verify-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 26px;
+  height: 26px;
+  background: #00C9A7;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.verify-badge svg {
+  width: 13px;
+  height: 13px;
+  stroke: #fff;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+.card-profile .card-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.card-profile .card-sub {
+  font-size: 12px;
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+.card-profile .card-tag {
+  margin-top: 12px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  background: rgba(0,201,167,.08);
+  color: #00C9A7;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+
+/* ---- Video call card ---- */
+.card-video {
+  width: 160px;
+  height: 160px;
+  top: 40px;
+  right: 50px;
+  transform: rotateY(-10deg) rotateX(5deg) rotateZ(3deg);
+  z-index: 2;
+  padding: 20px;
+  animation: float2 4.5s ease-in-out infinite;
+}
+
+.video-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #EEE5FF 0%, #F5F0FF 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.video-icon-wrap svg {
+  width: 28px;
+  height: 28px;
+  stroke: #7C3AED;
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.card-video .card-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.card-video .card-sub {
+  font-size: 11px;
+  color: #94A3B8;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* ---- Blockchain / chain card ---- */
+.card-chain {
+  width: 130px;
+  height: 130px;
+  bottom: 60px;
+  right: 80px;
+  transform: rotateY(-5deg) rotateX(8deg) rotateZ(-4deg);
+  z-index: 4;
+  padding: 16px;
+  animation: float3 5s ease-in-out infinite;
+}
+
+.chain-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #FEF3E2 0%, #FFFBF5 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.chain-icon-wrap svg {
+  width: 24px;
+  height: 24px;
+  stroke: #F5A623;
+  stroke-width: 1.8;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.card-chain .card-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.card-chain .card-sub {
+  font-size: 10px;
+  color: #94A3B8;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* ---- Small floating accent dots ---- */
+.accent-dot {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.dot-teal {
+  width: 12px; height: 12px;
+  background: rgba(0,201,167,.25);
+  top: 30px; left: 200px;
+  animation: float2 3s ease-in-out infinite;
+}
+
+.dot-purple {
+  width: 8px; height: 8px;
+  background: rgba(124,58,237,.2);
+  bottom: 120px; left: 20px;
+  animation: float3 3.5s ease-in-out infinite;
+}
+
+.dot-gold {
+  width: 10px; height: 10px;
+  background: rgba(245,166,35,.2);
+  bottom: 40px; right: 40px;
+  animation: float1 4s ease-in-out infinite;
+}
+
+/* ---- Stat pill (floating) ---- */
+.stat-pill {
+  position: absolute;
+  background: #fff;
+  border-radius: 30px;
+  padding: 8px 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.06), 0 0 0 1px rgba(0,0,0,.03);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 5;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.pill-rating {
+  bottom: 30px;
+  left: 60px;
+  transform: rotateZ(2deg);
+  animation: float2 4s ease-in-out infinite;
+}
+
+.pill-rating .pill-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(0,201,167,.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pill-rating .pill-icon svg {
+  width: 11px;
+  height: 11px;
+  fill: #00C9A7;
+  stroke: none;
+}
+
+.pill-sessions {
+  top: 10px;
+  right: 10px;
+  transform: rotateZ(-1deg);
+  animation: float3 3.8s ease-in-out infinite;
+}
+
+.pill-sessions .pill-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(124,58,237,.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pill-sessions .pill-icon svg {
+  width: 11px;
+  height: 11px;
+  stroke: #7C3AED;
+  stroke-width: 2;
+  fill: none;
+}
+
+/* ---- Floating animations ---- */
+@keyframes float1 {
+  0%, 100% { transform: translateY(0px) rotateY(8deg) rotateX(-3deg); }
+  50% { transform: translateY(-10px) rotateY(8deg) rotateX(-3deg); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translateY(0px) rotateY(-10deg) rotateX(5deg); }
+  50% { transform: translateY(-8px) rotateY(-10deg) rotateX(5deg); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translateY(0px) rotateY(-5deg) rotateX(8deg); }
+  50% { transform: translateY(-12px) rotateY(-5deg) rotateX(8deg); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .float-card, .accent-dot, .stat-pill {
+    animation: none !important;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-scene {
+    width: 320px;
+    height: 360px;
+    perspective: 600px;
+  }
+  .card-profile { width: 150px; height: 190px; top: 60px; left: 10px; padding: 20px 14px; }
+  .avatar-ring { width: 60px; height: 60px; margin-bottom: 10px; }
+  .avatar-ring svg { width: 30px; height: 30px; }
+  .card-video { width: 120px; height: 120px; top: 20px; right: 10px; padding: 14px; }
+  .video-icon-wrap { width: 48px; height: 48px; margin-bottom: 10px; }
+  .card-chain { width: 100px; height: 100px; bottom: 40px; right: 30px; padding: 12px; }
+  .stat-pill { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero-scene">
+  <!-- Connection lines -->
+  <svg class="connect-lines" viewBox="0 0 520 480" fill="none">
+    <!-- Profile to Video -->
+    <line x1="200" y1="160" x2="350" y2="110" stroke="url(#grad1)" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.3"/>
+    <!-- Profile to Chain -->
+    <line x1="170" y1="280" x2="340" y2="340" stroke="url(#grad2)" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.25"/>
+    <!-- Video to Chain -->
+    <line x1="400" y1="180" x2="380" y2="330" stroke="url(#grad3)" stroke-width="1" stroke-dasharray="4 4" opacity="0.2"/>
+    <defs>
+      <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#00C9A7"/>
+        <stop offset="100%" stop-color="#7C3AED"/>
+      </linearGradient>
+      <linearGradient id="grad2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#00C9A7"/>
+        <stop offset="100%" stop-color="#F5A623"/>
+      </linearGradient>
+      <linearGradient id="grad3" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#7C3AED"/>
+        <stop offset="100%" stop-color="#F5A623"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- Accent dots -->
+  <div class="accent-dot dot-teal"></div>
+  <div class="accent-dot dot-purple"></div>
+  <div class="accent-dot dot-gold"></div>
+
+  <!-- Main profile card -->
+  <div class="float-card card-profile">
+    <div class="avatar-ring">
+      <svg viewBox="0 0 24 24">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      <div class="verify-badge">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+    </div>
+    <span class="card-label">AI Expert</span>
+    <span class="card-sub">Verified Professional</span>
+    <span class="card-tag">Available Now</span>
+  </div>
+
+  <!-- Video call card -->
+  <div class="float-card card-video">
+    <div class="video-icon-wrap">
+      <svg viewBox="0 0 24 24">
+        <polygon points="23 7 16 12 23 17 23 7"/>
+        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+      </svg>
+    </div>
+    <span class="card-label">1-on-1 Session</span>
+    <span class="card-sub">Live coaching</span>
+  </div>
+
+  <!-- Blockchain chain card -->
+  <div class="float-card card-chain">
+    <div class="chain-icon-wrap">
+      <svg viewBox="0 0 24 24">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+      </svg>
+    </div>
+    <span class="card-label">On-Chain</span>
+    <span class="card-sub">Verified work</span>
+  </div>
+
+  <!-- Floating stat pills -->
+  <div class="stat-pill pill-rating">
+    <div class="pill-icon">
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    </div>
+    <span>4.9 Rating</span>
+  </div>
+
+  <div class="stat-pill pill-sessions">
+    <div class="pill-icon">
+      <svg viewBox="0 0 24 24">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+      </svg>
+    </div>
+    <span>2.4k Sessions</span>
+  </div>
+</div>
+
+</body>
+</html>
