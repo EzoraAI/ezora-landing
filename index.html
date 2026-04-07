@@ -666,7 +666,7 @@ footer{padding:60px 0 0;border-top:1px solid #E2E8F0;background:var(--bg)}
       <div class="label">Jobs exposed to AI risk</div>
     </div>
     <div class="stat fade-in delay-1">
-      <div class="num" data-target="2" data-prefix="$" data-suffix="T+">0</div>
+      <div class="num" data-target="2000" data-prefix="$" data-suffix="" data-format="billions">0</div>
       <div class="label">Global AI spending in 2026</div>
     </div>
     <div class="stat fade-in delay-2">
@@ -1117,6 +1117,7 @@ var statsObs=new IntersectionObserver(function(entries){
       var prefix=el.getAttribute('data-prefix')||'';
       var suffix=el.getAttribute('data-suffix')||'';
       var decimals=parseInt(el.getAttribute('data-decimals'))||0;
+      var fmt=el.getAttribute('data-format')||'';
       var duration=3000;
       var start=performance.now();
       function update(now){
@@ -1124,7 +1125,12 @@ var statsObs=new IntersectionObserver(function(entries){
         var progress=Math.min(elapsed/duration,1);
         var eased=progress*progress*progress;
         var current=eased*target;
-        el.textContent=prefix+(decimals?current.toFixed(decimals):Math.floor(current))+suffix;
+        if(fmt==='billions'){
+          if(current<1000){el.textContent=prefix+Math.floor(current)+'B+';}
+          else{var t=current/1000;el.textContent=prefix+(t<2?t.toFixed(1):Math.floor(t))+'T+';}
+        }else{
+          el.textContent=prefix+(decimals?current.toFixed(decimals):Math.floor(current))+suffix;
+        }
         if(progress<1)requestAnimationFrame(update);
       }
       requestAnimationFrame(update);
