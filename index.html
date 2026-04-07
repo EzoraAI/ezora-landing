@@ -1123,7 +1123,7 @@ var statsObs=new IntersectionObserver(function(entries){
       function update(now){
         var elapsed=now-start;
         var progress=Math.min(elapsed/duration,1);
-        var eased=progress*progress*progress;
+        var eased=progress<0.5?4*progress*progress*progress:1-Math.pow(-2*progress+2,3)/2;
         var current=eased*target;
         if(fmt==='billions'){
           if(current<1000){el.textContent=prefix+Math.floor(current)+'B+';}
