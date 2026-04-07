@@ -42,6 +42,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;ove
 #page-content.page-exit{opacity:0;transform:translateY(-4px);transition:opacity .18s ease,transform .18s ease}
 /* View Transitions API styles */
 h1,h2,h3{font-family:'Instrument Serif',serif;font-weight:400}
+h1{font-family:'DM Sans','Inter',sans-serif;font-weight:700}
 
 /* Utility */
 .container{max-width:1080px;margin:0 auto;padding:0 24px}
@@ -96,10 +97,11 @@ nav a.cta-nav-outline:hover{background:rgba(0,0,0,.04);transform:translateY(-1px
 .hero{padding:100px 0 80px;text-align:left;background:radial-gradient(ellipse 60% 50% at 30% 40%,rgba(0,201,167,.06) 0%,rgba(0,201,167,.03) 40%,transparent 70%),linear-gradient(180deg,#FAFBFC 0%,#FAFBFC 60%,rgba(0,201,167,.03) 100%)}
 .hero .container{display:grid;grid-template-columns:1fr;gap:0;max-width:720px;margin-left:auto;margin-right:auto;padding-left:clamp(24px,5vw,80px)}
 .hero-logo{display:none}
-.hero h1{font-size:clamp(40px,5.5vw,64px);line-height:1.05;color:var(--navy);margin-bottom:20px;letter-spacing:-2px;font-weight:400;font-style:normal;font-family:'Instrument Serif',serif}
+.hero h1{font-size:clamp(44px,6vw,72px);line-height:1.0;color:var(--navy);margin-bottom:20px;letter-spacing:-.04em;font-weight:700;font-style:normal;font-family:'DM Sans','Inter',sans-serif}
+.hero .fade-in{opacity:1!important;transform:none!important}
 .hero h1 .tw-word{opacity:0;display:inline-block;transition:opacity .3s ease;margin-right:.25em}
 .hero h1 .tw-word.visible{opacity:1}
-.hero .hero-sub{font-size:17px;color:var(--gray);max-width:520px;margin:0 0 36px;line-height:1.6}
+.hero .hero-sub{font-size:18px;color:#475569;max-width:540px;margin:0 0 36px;line-height:1.6}
 .hero-ctas{display:flex;gap:12px;max-width:480px}
 .hero-ctas button,.hero-ctas a{padding:16px 32px;border-radius:50px;font-size:16px;font-weight:600;text-decoration:none;cursor:pointer;text-align:center;border:1.5px solid transparent;transition:transform .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,.2,1),background .2s;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap}
 .hero-ctas button:hover,.hero-ctas a:hover{transform:translateY(-1px)}
