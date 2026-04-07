@@ -205,7 +205,7 @@ nav a.cta-nav-outline:hover{background:rgba(0,0,0,.04);transform:translateY(-1px
 .stats .container{display:flex;justify-content:center;align-items:center;gap:0}
 .stat{text-align:center;flex:1;padding:0 40px;position:relative}
 .stat+.stat::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:56px;background:linear-gradient(to bottom,transparent,#E2E8F0 30%,#E2E8F0 70%,transparent)}
-.stat .num{font-family:'DM Sans','Inter',sans-serif;font-size:clamp(40px,5vw,48px);font-weight:800;color:var(--teal);line-height:1;letter-spacing:-1.5px}
+.stat .num{font-family:'DM Sans','Inter',sans-serif;font-size:clamp(32px,4vw,40px);font-weight:800;color:var(--teal);line-height:1;letter-spacing:-1px}
 .stat .label{font-size:12px;color:var(--mid);margin-top:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;white-space:nowrap}
 
 /* Problem */
@@ -1117,12 +1117,12 @@ var statsObs=new IntersectionObserver(function(entries){
       var prefix=el.getAttribute('data-prefix')||'';
       var suffix=el.getAttribute('data-suffix')||'';
       var decimals=parseInt(el.getAttribute('data-decimals'))||0;
-      var duration=1500;
+      var duration=3000;
       var start=performance.now();
       function update(now){
         var elapsed=now-start;
         var progress=Math.min(elapsed/duration,1);
-        var eased=1-Math.pow(1-progress,3);
+        var eased=progress*progress*progress;
         var current=eased*target;
         el.textContent=prefix+(decimals?current.toFixed(decimals):Math.floor(current))+suffix;
         if(progress<1)requestAnimationFrame(update);
