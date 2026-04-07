@@ -321,7 +321,7 @@ footer{padding:60px 0 0;border-top:1px solid #E2E8F0}
 
 <script>
 window.addEventListener('scroll',function(){var nav=document.querySelector('nav');if(window.scrollY>50){nav.classList.add('nav-scrolled')}else{nav.classList.remove('nav-scrolled')}});
-document.querySelectorAll('.nav-right a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navToggle').checked=false})});
+document.querySelectorAll('.nav-right a').forEach(function(a){a.addEventListener('click',function(){if(this.closest('.nav-dropdown')&&this.classList.contains('nav-link'))return;document.getElementById('navToggle').checked=false})});
 </script>
 
 <script src="glow.js"></script>
