@@ -71,7 +71,7 @@ nav a.cta-nav-outline:hover{background:#f1f5f9;transform:translateY(-1px);box-sh
 .mega-panel{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(4px);opacity:0;visibility:hidden;pointer-events:none;background:#fff;border:1px solid #E2E8F0;border-radius:14px;box-shadow:0 12px 48px rgba(0,0,0,.08),0 2px 8px rgba(0,0,0,.04);padding:24px;padding-top:34px;display:grid;gap:0;transition:opacity .2s ease,transform .2s ease,visibility .2s;z-index:200;min-width:480px}
 .mega-panel::before{content:'';position:absolute;top:-12px;left:0;right:0;height:12px;background:transparent}
 .mega-panel.mega-2col{grid-template-columns:1fr 1fr;gap:8px}
-.mega-panel.mega-3col{grid-template-columns:1fr 1fr 180px;gap:8px;min-width:580px}
+.mega-panel.mega-3col{grid-template-columns:1fr 1fr;gap:8px;min-width:480px}
 .nav-dropdown:hover>.mega-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
 .mega-col-label{font-size:10px;font-weight:600;color:var(--mid);text-transform:uppercase;letter-spacing:1.5px;padding:0 12px 8px;grid-column:1/-1}
 .mega-item{display:flex;align-items:flex-start;gap:12px;padding:12px;border-radius:10px;text-decoration:none;transition:background .15s}
@@ -267,10 +267,9 @@ footer{padding:60px 0 0;border-top:1px solid #E2E8F0}
             <div class="mega-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
             <div class="mega-text"><span>Community</span><small>24/7 peer support &amp; learning</small></div>
           </a>
-          <a href="#join" class="mega-featured" onclick="event.stopPropagation()">
-            <span class="mf-label">Get started</span>
-            <span class="mf-title">Join 2,000+ professionals already on the waitlist</span>
-            <span class="mf-cta">Sign up free &#x2192;</span>
+          <a href="https://app.ezora.ai/get-started?role=expert" class="mega-featured" style="grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between" onclick="event.stopPropagation()">
+            <span class="mf-title" style="font-size:14px">Join the founding experts and begin earning</span>
+            <span class="mf-cta" style="white-space:nowrap">Get started &#x2192;</span>
           </a>
         </div>
       </div>
